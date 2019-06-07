@@ -21,7 +21,7 @@ Remote patient monitoring ; wearable medical sensor networks ; energy consumptio
 Python ; interface
 
 ### abstract of the thesis "Optimisation de la gestion d’énergie dans les systèmes embarqués"
-Whether it is to monitor patients at home, or to prevent the isolation and
+"*Whether it is to monitor patients at home, or to prevent the isolation and
 vulnerability of the elderly, the emerging electronic monitoring and assistance
 systems offer new opportunities. The technological development we have
 witnessed allows individuals, hospitals, or medical aid organizations to provide
@@ -56,4 +56,4 @@ complies with medical requirements. An application to a single Bluetooth Low
 Energy body temperature sensor is first proposed. The same sensor is then
 included in a physiological sensor network. A physical implementation is used
 in order to compare the results obtained through simulation with practical
-measurements.
+measurements.*"
