@@ -7,6 +7,7 @@
 from tkinter import *
 from tkinter import font  as tkfont # python 3
 from convenience import *
+from Add_new_capteur_window import *
 
 
 DEFAULT_NUM_CAP = 1 # capteurs
@@ -75,28 +76,6 @@ class window():
 		pad_frame_bottom = Frame(self.root, width=30, height=25, bg="", colormap="new")
 		pad_frame_bottom.grid(column=10, row=10)
 
-	def next_page(self):
-		### go to next page
-		if(self.current_page=="StartPage"):
-			self.show_frame("NumComposantsPage")
-		elif(self.current_page=="NumComposantsPage"):
-			self.show_frame("ProblemePage")
-		elif(self.current_page=="ProblemePage"):
-			self.show_frame("TestPage")
-		elif(self.current_page=="TestPage"):
-			self.show_frame("EndPage")
-
-	def previous_page(self):
-		### go to previous page
-		if(self.current_page=="NumComposantsPage"):
-			self.show_frame("StartPage")
-		elif(self.current_page=="ProblemePage"):
-			self.show_frame("NumComposantsPage")
-		elif(self.current_page=="TestPage"):
-			self.show_frame("ProblemePage")
-		elif(self.current_page=="EndPage"):
-			self.show_frame("TestPage")
-
 	def show_frame(self, page_name):
 		'''Show a frame for the given page name'''
 		frame = self.frames[page_name]
@@ -136,8 +115,6 @@ class window():
 
 		self.add_capteur_button = Button(self.frames["ProblemePage"], text = "Add new capteur", command=self.add_new_capteur)
 		self.add_capteur_button.grid(column=1, row=1, sticky=E)
-
-
 
 	def init_composants_page(self):
 
@@ -202,13 +179,6 @@ class window():
 		self.entry_numRFs.grid(column=2, row=5)
 		s_numRFs.set(str(DEFAULT_NUM_RF))
 
-
-
-	def init_capteurs_pages(self, numCapteurs):
-		# TODO
-		pass
-		#for i in range(numCapteurs):
-
 	def init_start_page(self):
 
 		# create page
@@ -256,11 +226,31 @@ class window():
 		self.test_lbl = Label(self.frames["TestPage"] , text=test_text, font=self.text_font)
 		self.test_lbl.pack()
 
-
-
-
 	def add_new_capteur(self):
 		print("kkkk test")
+		toniolo = Add_new_capteur_window()
+
+	def next_page(self):
+		### go to next page
+		if(self.current_page=="StartPage"):
+			self.show_frame("NumComposantsPage")
+		elif(self.current_page=="NumComposantsPage"):
+			self.show_frame("ProblemePage")
+		elif(self.current_page=="ProblemePage"):
+			self.show_frame("TestPage")
+		elif(self.current_page=="TestPage"):
+			self.show_frame("EndPage")
+
+	def previous_page(self):
+		### go to previous page
+		if(self.current_page=="NumComposantsPage"):
+			self.show_frame("StartPage")
+		elif(self.current_page=="ProblemePage"):
+			self.show_frame("NumComposantsPage")
+		elif(self.current_page=="TestPage"):
+			self.show_frame("ProblemePage")
+		elif(self.current_page=="EndPage"):
+			self.show_frame("TestPage")
 
 	def quit(self):
 
