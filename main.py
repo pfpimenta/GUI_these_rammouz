@@ -20,7 +20,6 @@ print("...initializing interface")
 #cucu = Probleme_window()
 toniolo = window()
 
-print("...saving simulation parameters")
 # TODO
 print("...starting simulation")
 # TODO

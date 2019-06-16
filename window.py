@@ -6,7 +6,7 @@
 ###
 from tkinter import *
 from tkinter import font  as tkfont # python 3
-from pages import *
+from convenience import *
 
 
 DEFAULT_NUM_CAP = 1 # capteurs
@@ -20,12 +20,14 @@ START_PAGE_TEXT = "start page aeaeae\n\naqui vo deixar uma descricao\nblablablab
 END_PAGE_TEXT =  "Press \"Done\" to start simulation"
 
 
+# global variable with the simulation parameters 
 params = {}
 params['numCapteurs'] = 0
 params['numADCs'] = 0
 params['numMicroprocesseurs'] = 0
 params['numMemoires'] = 0
 params['numModulesRadiofrequence'] = 0
+
 
 
 class window():
@@ -116,12 +118,13 @@ class window():
 			self.next_button.config(text="Next", command=self.next_page)
 		
 	def init_probleme_page(self):
-
+		
+		# create page
 		frame = Frame(self.central_frame)#, controller=self)
 		self.frames["ProblemePage"] = frame
 		frame.grid(row=0, column=0, sticky="nsew")
 
-		text = "Probleme page \n #TODO"
+		text = "Add new capteur \n #TODO"
 		self.test_lbl = Label(self.frames["ProblemePage"] , text=text, font=self.text_font)
 		self.test_lbl.grid(row=0, column=0)
 
@@ -131,14 +134,19 @@ class window():
 		frame_for_entries = Frame(self.frames["ProblemePage"])
 		frame_for_entries.grid(row=2, column=0)
 
+		self.add_capteur_button = Button(self.frames["ProblemePage"], text = "Add new capteur", command=self.add_new_capteur)
+		self.add_capteur_button.grid(column=1, row=1, sticky=E)
+
 
 
 	def init_composants_page(self):
 
+		# create page
 		frame = Frame(self.central_frame)#, controller=self)
 		self.frames["NumComposantsPage"] = frame
 		frame.grid(row=0, column=0, sticky="nsew")
 
+		# text
 		text = "Saisissez le nombre de chaque composant, svp"
 		self.composants_lbl = Label(self.frames["NumComposantsPage"] , text=text, font=self.text_font)
 		self.composants_lbl.grid(row=0, column=0)
@@ -146,12 +154,10 @@ class window():
 		pad_frame = Frame(self.frames["NumComposantsPage"], height=30, bg="", colormap="new")
 		pad_frame.grid(row=1, column=0)
 
-
 		frame_for_entries = Frame(self.frames["NumComposantsPage"])
 		frame_for_entries.grid(row=2, column=0)
 
 		### NUM CAPTEURS
-
 		lbl_numCapteurs = Label(frame_for_entries, text="num. de Capteurs:")
 		lbl_numCapteurs.grid(column=1, row=1)
 
@@ -159,10 +165,8 @@ class window():
 		self.entry_numCapteurs = Entry(frame_for_entries, textvariable=s_numCapteurs)
 		self.entry_numCapteurs.grid(column=2, row=1)
 		s_numCapteurs.set(str(DEFAULT_NUM_CAP))
-		#self.entry_numCapteurs.set("1") # default value
 
 		### NUM ADCs
-
 		lbl_numADCs = Label(frame_for_entries, text="num. de ADCs:")
 		lbl_numADCs.grid(column=1, row=2)
 
@@ -172,7 +176,6 @@ class window():
 		s_numADCs.set(str(DEFAULT_NUM_ADC))
 
 		### NUM microprocesseurs
-
 		lbl_numMSPs = Label(frame_for_entries, text="num. de microprocesseurs:")
 		lbl_numMSPs.grid(column=1, row=3)
 
@@ -182,7 +185,6 @@ class window():
 		s_numMSPs.set(str(DEFAULT_NUM_MSP))
 
 		### NUM memoires
-
 		lbl_numADCs = Label(frame_for_entries, text="num. de memoires:")
 		lbl_numADCs.grid(column=1, row=4)
 
@@ -192,7 +194,6 @@ class window():
 		s_numMems.set(str(DEFAULT_NUM_MEM))
 
 		### NUM modules radiofrequence
-
 		lbl_numRFs = Label(frame_for_entries, text="num. de modules radiofrequence:")
 		lbl_numRFs.grid(column=1, row=5)
 
@@ -208,26 +209,41 @@ class window():
 		pass
 		#for i in range(numCapteurs):
 
+	def init_start_page(self):
+
+		# create page
+		frame = Frame(self.central_frame)
+		self.frames["StartPage"] = frame
+		frame.grid(row=0, column=0, sticky="nsew")
+
+		# text
+		self.start_lbl = Label(self.frames["StartPage"] , text=START_PAGE_TEXT, font=self.text_font)
+		self.start_lbl.pack()
+
+	def init_end_page(self):
+
+		# create page
+		frame = Frame(self.central_frame)
+		self.frames["EndPage"] = frame
+		frame.grid(row=0, column=0, sticky="nsew")
+
+		# text
+		end_text = END_PAGE_TEXT
+		self.end_lbl = Label(self.frames["EndPage"] , text=end_text, font=self.text_font)
+		self.end_lbl.pack()
+
 	def init_pages(self):
 		self.frames = {}
 		#frame_names = ["StartPage", "NumComposantsPage", "ProblemePage", "EndPage"]
 
-		# start page
-		frame = Frame(self.central_frame)#, controller=self)
-		self.frames["StartPage"] = frame
-		frame.grid(row=0, column=0, sticky="nsew")
 		# put all of the pages in the same location;
 		# the one on the top of the stacking order
 		# will be the one that is visible.
 
-		# start page
-		#start_text = "Start page"
-		start_text = START_PAGE_TEXT
-		self.start_lbl = Label(self.frames["StartPage"] , text=start_text, font=self.text_font)
-		self.start_lbl.pack()
-
+		self.init_start_page()
 		self.init_composants_page()
 		self.init_probleme_page()
+		self.init_end_page()
 
 		# test page
 		frame = Frame(self.central_frame)#, controller=self)
@@ -236,22 +252,19 @@ class window():
 
 		# test page
 		test_text = "testy page"
+		# text
 		self.test_lbl = Label(self.frames["TestPage"] , text=test_text, font=self.text_font)
 		self.test_lbl.pack()
 
-		# end page
-		frame = Frame(self.central_frame)#, controller=self)
-		self.frames["EndPage"] = frame
-		frame.grid(row=0, column=0, sticky="nsew")
-
-		# end page
-		#end_text = "end page xD"
-		end_text = END_PAGE_TEXT
-		self.end_lbl = Label(self.frames["EndPage"] , text=end_text, font=self.text_font)
-		self.end_lbl.pack()
 
 
 
+	def add_new_capteur(self):
+		print("kkkk test")
 
 	def quit(self):
+
+		#  save simulation parameters
+		save_parameters(params)
+		# close window
 		self.root.destroy()
