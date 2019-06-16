@@ -9,50 +9,198 @@ from tkinter import font  as tkfont # python 3
 from pages import *
 
 
+DEFAULT_NUM_CAP = 1 # capteurs
+DEFAULT_NUM_ADC = 1 # ADCs
+DEFAULT_NUM_MSP = 1 # microprocesseurs
+DEFAULT_NUM_MEM = 1 # memoires
+DEFAULT_NUM_RF = 1 # modules radiofrequence
+
+
+START_PAGE_TEXT = "start page aeaeae\n\naqui vo deixar uma descricao\nblablablabla\n\nGUI coded by Pedro FOLETTO PIMENTA"
+END_PAGE_TEXT =  "Press \"Done\" to start simulation"
+
+
+params = {}
+params['numCapteurs'] = 0
+params['numADCs'] = 0
+params['numMicroprocesseurs'] = 0
+params['numMemoires'] = 0
+params['numModulesRadiofrequence'] = 0
+
+
 class window():
 
 	def __init__(self):
+		
+		self.flag=1 # temporary
+		
+		# windows general layout
+		self.init_main_layout()
+
+		# init pages (start, composants, probleme, end)
+		self.init_pages()
+
+		# begin by start page
+		self.show_frame("StartPage")
+		
+		# run mainloop
+		self.root.mainloop()
+
+	def init_main_layout(self):
+		### init window:
 		self.root = Tk()
 		self.root.title("NOME DO PROGRAMA? tem q ver dps") # "GUI - these Rammouz"
 		#self.root.geometry('800x600')
 		#self.root.configure(background="black")
+		### set text font:
 		self.text_font = tkfont.Font(family='Verdana', size=13)#, weight="bold", slant="italic")
-		
-		self.flag=1
-	
-
-
-		corner_frame_top = Frame(width=40, height=20, bg="", colormap="new")
-		corner_frame_top.grid(column=0, row=0)
-		self.central_frame = Frame(width=500, height=500, bg="", colormap="new")
-		self.central_frame.grid(column=1, row=1)
-		corner_frame_bottom = Frame(width=40, height=20, bg="", colormap="new")
-		corner_frame_bottom.grid(column=3, row=3)
-
-		self.init_pages()
-
-		self.show_frame("StartPage")
-		
+		### central frame (where the pages are placed)
+		self.central_frame = Frame(self.root, width=500, height=500, bg="", colormap="new")
+		self.central_frame.grid(column=2, row=2)
+		### Next/Done button
 		self.next_button = Button(self.root, text = "Next", command=self.next_page)
-		self.next_button.grid(column=7, row=7, sticky=E)
-		
-		self.root.mainloop()
+		self.next_button.grid(column=4, row=4, sticky=E)
+		### Back button (previous page)
+		self.back_button = Button(self.root, text = "Back", command=self.previous_page)
+		self.back_button.grid(column=1, row=4, sticky=E)
+		### padding
+		pad_frame_top_1 = Frame(self.root,width=50, height=30, bg="", colormap="new")
+		pad_frame_top_1.grid(column=0, row=0)
+		pad_frame_top_2 = Frame(self.root, width=50, height=30, bg="", colormap="new")
+		pad_frame_top_2.grid(column=1, row=1)
+		pad_frame_mid = Frame(self.root, width=50, height=30, bg="", colormap="new")
+		pad_frame_mid.grid(column=3, row=3)
+		pad_frame_bottom = Frame(self.root, width=30, height=25, bg="", colormap="new")
+		pad_frame_bottom.grid(column=10, row=10)
 
 	def next_page(self):
-
-		# test
-		if(self.flag==1):
+		### go to next page
+		if(self.current_page=="StartPage"):
+			self.show_frame("ComposantsPage")
+		elif(self.current_page=="ComposantsPage"):
+			self.show_frame("ProblemePage")
+		elif(self.current_page=="ProblemePage"):
 			self.show_frame("TestPage")
-			self.flag = 2
-		elif(self.flag==2):
+		elif(self.current_page=="TestPage"):
 			self.show_frame("EndPage")
-			self.flag = 1
-			self.next_button.config(text="Done", command=self.quit)
+			#self.next_button.config(text="Done", command=self.quit)
+
+	def previous_page(self):
+		### go to previous page
+		if(self.current_page=="ComposantsPage"):
+			self.show_frame("StartPage")
+		elif(self.current_page=="ProblemePage"):
+			self.show_frame("ComposantsPage")
+		elif(self.current_page=="TestPage"):
+			self.show_frame("ProblemePage")
+		elif(self.current_page=="EndPage"):
+			self.show_frame("TestPage")
+			#self.next_button.config(text="Next", command=self.next_page)
 
 	def show_frame(self, page_name):
 		'''Show a frame for the given page name'''
 		frame = self.frames[page_name]
 		frame.tkraise()
+		self.current_page = page_name
+		
+		if(self.current_page=="StartPage"):
+			self.next_button.config(text="Next", command=self.next_page)
+			self.back_button.grid_forget()
+		else:
+			self.back_button.grid(column=1, row=4, sticky=E)
+
+		if(self.current_page=="EndPage"):
+			self.next_button.config(text="Done", command=self.quit)
+		else:
+			self.next_button.config(text="Next", command=self.next_page)
+		
+	def init_probleme_page(self):
+
+		frame = Frame(self.central_frame)#, controller=self)
+		self.frames["ProblemePage"] = frame
+		frame.grid(row=0, column=0, sticky="nsew")
+
+		text = "Probleme page \n #TODO"
+		self.test_lbl = Label(self.frames["ProblemePage"] , text=text, font=self.text_font)
+		self.test_lbl.grid(row=0, column=0)
+
+		pad_frame = Frame(self.frames["ProblemePage"], height=30, bg="", colormap="new")
+		pad_frame.grid(row=1, column=0)
+
+		frame_for_entries = Frame(self.frames["ProblemePage"])
+		frame_for_entries.grid(row=2, column=0)
+
+
+
+	def init_composants_page(self):
+
+		frame = Frame(self.central_frame)#, controller=self)
+		self.frames["ComposantsPage"] = frame
+		frame.grid(row=0, column=0, sticky="nsew")
+
+		text = "Saisissez le nombre de chaque composant, svp"
+		self.composants_lbl = Label(self.frames["ComposantsPage"] , text=text, font=self.text_font)
+		self.composants_lbl.grid(row=0, column=0)
+
+		pad_frame = Frame(self.frames["ComposantsPage"], height=30, bg="", colormap="new")
+		pad_frame.grid(row=1, column=0)
+
+
+		frame_for_entries = Frame(self.frames["ComposantsPage"])
+		frame_for_entries.grid(row=2, column=0)
+
+		### NUM CAPTEURS
+
+		lbl_numCapteurs = Label(frame_for_entries, text="num. de Capteurs:")
+		lbl_numCapteurs.grid(column=1, row=1)
+
+		s_numCapteurs = StringVar()
+		self.entry_numCapteurs = Entry(frame_for_entries, textvariable=s_numCapteurs)
+		self.entry_numCapteurs.grid(column=2, row=1)
+		s_numCapteurs.set(str(DEFAULT_NUM_CAP))
+		#self.entry_numCapteurs.set("1") # default value
+
+		### NUM ADCs
+
+		lbl_numADCs = Label(frame_for_entries, text="num. de ADCs:")
+		lbl_numADCs.grid(column=1, row=2)
+
+		s_numADCs = StringVar()
+		self.entry_numADCs = Entry(frame_for_entries, textvariable=s_numADCs)
+		self.entry_numADCs.grid(column=2, row=2)
+		s_numADCs.set(str(DEFAULT_NUM_ADC))
+
+		### NUM microprocesseurs
+
+		lbl_numMSPs = Label(frame_for_entries, text="num. de microprocesseurs:")
+		lbl_numMSPs.grid(column=1, row=3)
+
+		s_numMSPs = StringVar()
+		self.entry_numMSPs = Entry(frame_for_entries, textvariable=s_numMSPs)
+		self.entry_numMSPs.grid(column=2, row=3)
+		s_numMSPs.set(str(DEFAULT_NUM_MSP))
+
+		### NUM memoires
+
+		lbl_numADCs = Label(frame_for_entries, text="num. de memoires:")
+		lbl_numADCs.grid(column=1, row=4)
+
+		s_numMems = StringVar()
+		self.entry_numMems = Entry(frame_for_entries, textvariable=s_numMems)
+		self.entry_numMems.grid(column=2, row=4)
+		s_numMems.set(str(DEFAULT_NUM_MEM))
+
+		### NUM modules radiofrequence
+
+		lbl_numRFs = Label(frame_for_entries, text="num. de modules radiofrequence:")
+		lbl_numRFs.grid(column=1, row=5)
+
+		s_numRFs = StringVar()
+		self.entry_numRFs = Entry(frame_for_entries, textvariable=s_numRFs)
+		self.entry_numRFs.grid(column=2, row=5)
+		s_numRFs.set(str(DEFAULT_NUM_RF))
+
+
 
 	def init_capteurs_pages(self, numCapteurs):
 		# TODO
@@ -72,9 +220,13 @@ class window():
 		# will be the one that is visible.
 
 		# start page
-		start_text = "Start page"
+		#start_text = "Start page"
+		start_text = START_PAGE_TEXT
 		self.start_lbl = Label(self.frames["StartPage"] , text=start_text, font=self.text_font)
 		self.start_lbl.pack()
+
+		self.init_composants_page()
+		self.init_probleme_page()
 
 		# test page
 		frame = Frame(self.central_frame)#, controller=self)
@@ -82,7 +234,7 @@ class window():
 		frame.grid(row=0, column=0, sticky="nsew")
 
 		# test page
-		test_text = "testy"
+		test_text = "testy page"
 		self.test_lbl = Label(self.frames["TestPage"] , text=test_text, font=self.text_font)
 		self.test_lbl.pack()
 
@@ -92,7 +244,8 @@ class window():
 		frame.grid(row=0, column=0, sticky="nsew")
 
 		# end page
-		end_text = "end page xD"
+		#end_text = "end page xD"
+		end_text = END_PAGE_TEXT
 		self.end_lbl = Label(self.frames["EndPage"] , text=end_text, font=self.text_font)
 		self.end_lbl.pack()
 
