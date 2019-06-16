@@ -9,14 +9,16 @@
 from tkinter import *
 from starting_window import *
 from composants_window import *
+from window import *
 
 ###
 
 print("...initializing interface")
 # TODO
-coco = Starting_window()
-caca = Composants_window()
+#coco = Starting_window()
+#caca = Composants_window()
 #cucu = Probleme_window()
+toniolo = window()
 
 print("...saving simulation parameters")
 # TODO
