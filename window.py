@@ -76,39 +76,40 @@ class window():
 	def next_page(self):
 		### go to next page
 		if(self.current_page=="StartPage"):
-			self.show_frame("ComposantsPage")
-		elif(self.current_page=="ComposantsPage"):
+			self.show_frame("NumComposantsPage")
+		elif(self.current_page=="NumComposantsPage"):
 			self.show_frame("ProblemePage")
 		elif(self.current_page=="ProblemePage"):
 			self.show_frame("TestPage")
 		elif(self.current_page=="TestPage"):
 			self.show_frame("EndPage")
-			#self.next_button.config(text="Done", command=self.quit)
 
 	def previous_page(self):
 		### go to previous page
-		if(self.current_page=="ComposantsPage"):
+		if(self.current_page=="NumComposantsPage"):
 			self.show_frame("StartPage")
 		elif(self.current_page=="ProblemePage"):
-			self.show_frame("ComposantsPage")
+			self.show_frame("NumComposantsPage")
 		elif(self.current_page=="TestPage"):
 			self.show_frame("ProblemePage")
 		elif(self.current_page=="EndPage"):
 			self.show_frame("TestPage")
-			#self.next_button.config(text="Next", command=self.next_page)
 
 	def show_frame(self, page_name):
 		'''Show a frame for the given page name'''
 		frame = self.frames[page_name]
 		frame.tkraise()
 		self.current_page = page_name
+		self.update_buttons()
 		
+	def update_buttons(self):
+		# no back button in start page
 		if(self.current_page=="StartPage"):
-			self.next_button.config(text="Next", command=self.next_page)
 			self.back_button.grid_forget()
 		else:
 			self.back_button.grid(column=1, row=4, sticky=E)
 
+		# next button becomes Done button in end page
 		if(self.current_page=="EndPage"):
 			self.next_button.config(text="Done", command=self.quit)
 		else:
@@ -135,18 +136,18 @@ class window():
 	def init_composants_page(self):
 
 		frame = Frame(self.central_frame)#, controller=self)
-		self.frames["ComposantsPage"] = frame
+		self.frames["NumComposantsPage"] = frame
 		frame.grid(row=0, column=0, sticky="nsew")
 
 		text = "Saisissez le nombre de chaque composant, svp"
-		self.composants_lbl = Label(self.frames["ComposantsPage"] , text=text, font=self.text_font)
+		self.composants_lbl = Label(self.frames["NumComposantsPage"] , text=text, font=self.text_font)
 		self.composants_lbl.grid(row=0, column=0)
 
-		pad_frame = Frame(self.frames["ComposantsPage"], height=30, bg="", colormap="new")
+		pad_frame = Frame(self.frames["NumComposantsPage"], height=30, bg="", colormap="new")
 		pad_frame.grid(row=1, column=0)
 
 
-		frame_for_entries = Frame(self.frames["ComposantsPage"])
+		frame_for_entries = Frame(self.frames["NumComposantsPage"])
 		frame_for_entries.grid(row=2, column=0)
 
 		### NUM CAPTEURS
@@ -209,7 +210,7 @@ class window():
 
 	def init_pages(self):
 		self.frames = {}
-		#frame_names = ["StartPage", "ComposantsPage", "ProblemePage", "EndPage"]
+		#frame_names = ["StartPage", "NumComposantsPage", "ProblemePage", "EndPage"]
 
 		# start page
 		frame = Frame(self.central_frame)#, controller=self)
