@@ -30,8 +30,11 @@ class Add_new_capteur_window():
 		### central frame (where the parameter entries are placed)
 		self.central_frame = Frame(self.root, width=400, height=300, bg="", colormap="new", relief=SUNKEN)
 		self.central_frame.grid(column=2, row=2)
+		### Cancel button
+		self.cancel_button = Button(self.root, text = "Cancel", command=self.cancel)
+		self.cancel_button.grid(column=1, row=4, sticky=E)
 		### Done button
-		self.done_button = Button(self.root, text = "Done", command=self.quit)
+		self.done_button = Button(self.root, text = "Done", command=self.done)
 		self.done_button.grid(column=4, row=4, sticky=E)
 		### padding
 		pad_frame_top_1 = Frame(self.root,width=50, height=30, bg="", colormap="new")
@@ -55,6 +58,30 @@ class Add_new_capteur_window():
 		frame_for_entries = Frame(self.central_frame)
 		frame_for_entries.grid(row=2, column=0)
 
+		### duree de conversion
+		lbl_duree = Label(frame_for_entries, text="duree de conversion:")
+		lbl_duree.grid(column=1, row=1)
 
-	def quit(self):
+		s_duree = StringVar()
+		self.entry_duree = Entry(frame_for_entries, textvariable=s_duree)
+		self.entry_duree.grid(column=2, row=1)
+		s_duree.set("huehuehue")
+
+		### transition basse consomation -> actif
+		lbl_trans_basse_actif = Label(frame_for_entries, text="transition basse consomation -> actif:")
+		lbl_trans_basse_actif.grid(column=1, row=2)
+
+		s_trans_basse_actif = StringVar()
+		self.entry_trans_basse_actif = Entry(frame_for_entries, textvariable=s_trans_basse_actif)
+		self.entry_trans_basse_actif.grid(column=2, row=2)
+		s_trans_basse_actif.set("sagagadga")
+
+	def save_capteur(self):
+		pass # TODO
+
+	def cancel(self):
+		self.root.destroy()
+
+	def done(self):
+		self.save_capteur()		
 		self.root.destroy()

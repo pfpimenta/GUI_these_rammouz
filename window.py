@@ -58,7 +58,7 @@ class window():
 		### set text font:
 		self.text_font = tkfont.Font(family='Verdana', size=13)#, weight="bold", slant="italic")
 		### central frame (where the pages are placed)
-		self.central_frame = Frame(self.root, width=500, height=500, bg="", colormap="new")
+		self.central_frame = Frame(self.root, width=500, height=500)#, bg="", colormap="new")
 		self.central_frame.grid(column=2, row=2)
 		### Next/Done button
 		self.next_button = Button(self.root, text = "Next", command=self.next_page)
@@ -67,13 +67,13 @@ class window():
 		self.back_button = Button(self.root, text = "Back", command=self.previous_page)
 		self.back_button.grid(column=1, row=4, sticky=E)
 		### padding
-		pad_frame_top_1 = Frame(self.root,width=50, height=30, bg="", colormap="new")
+		pad_frame_top_1 = Frame(self.root,width=50, height=30)#, bg="", colormap="new")
 		pad_frame_top_1.grid(column=0, row=0)
-		pad_frame_top_2 = Frame(self.root, width=50, height=30, bg="", colormap="new")
+		pad_frame_top_2 = Frame(self.root, width=50, height=30)#, bg="", colormap="new")
 		pad_frame_top_2.grid(column=1, row=1)
-		pad_frame_mid = Frame(self.root, width=50, height=30, bg="", colormap="new")
+		pad_frame_mid = Frame(self.root, width=50, height=30)#, bg="", colormap="new")
 		pad_frame_mid.grid(column=3, row=3)
-		pad_frame_bottom = Frame(self.root, width=30, height=25, bg="", colormap="new")
+		pad_frame_bottom = Frame(self.root, width=30, height=25)#, bg="", colormap="new")
 		pad_frame_bottom.grid(column=10, row=10)
 
 	def show_frame(self, page_name):

@@ -7,8 +7,6 @@
 
 #import tkinter
 from tkinter import *
-from starting_window import *
-from composants_window import *
 from window import *
 
 ###
