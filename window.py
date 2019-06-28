@@ -10,16 +10,6 @@ from convenience import *
 from Add_new_capteur_window import *
 
 
-DEFAULT_NUM_CAP = 1 # capteurs
-DEFAULT_NUM_ADC = 1 # ADCs
-DEFAULT_NUM_MSP = 1 # microprocesseurs
-DEFAULT_NUM_MEM = 1 # memoires
-DEFAULT_NUM_RF = 1 # modules radiofrequence
-
-
-START_PAGE_TEXT = "start page aeaeae\n\naqui vo deixar uma descricao\nblablablabla\n\nGUI coded by Pedro FOLETTO PIMENTA"
-END_PAGE_TEXT =  "Press \"Done\" to start simulation"
-
 
 # global variable with the simulation parameters 
 params = {}
@@ -227,8 +217,10 @@ class window():
 		self.test_lbl.pack()
 
 	def add_new_capteur(self):
-		print("kkkk test")
-		toniolo = Add_new_capteur_window()
+		print("kkkk test 1")
+		toniolow = Add_new_capteur_window()
+		print("kkkk test 2")
+
 
 	def next_page(self):
 		### go to next page
