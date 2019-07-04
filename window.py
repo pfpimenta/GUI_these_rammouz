@@ -70,40 +70,71 @@ class window():
 		'''Show a frame for the given page name'''
 		frame = self.frames[page_name]
 		frame.tkraise()
-		self.current_page = page_name
+		#self.current_page = page_name
 		self.update_buttons()
 		
 	def update_buttons(self):
 		# no back button in start page
-		if(self.current_page=="StartPage"):
+		if(self.frame_names[self.current_page]=="StartPage"):
 			self.back_button.grid_forget()
 		else:
 			self.back_button.grid(column=1, row=4, sticky=E)
 
 		# next button becomes Done button in end page
-		if(self.current_page=="EndPage"):
+		if(self.frame_names[self.current_page]=="EndPage"):
 			self.next_button.config(text="Done", command=self.quit)
 		else:
 			self.next_button.config(text="Next", command=self.next_page)
 		
-	def init_probleme_page(self):
+	def init_choose_scenario_page(self):
+		# TODO TO DO
+		
+		# scenario 1
+		## variables : Autonomie, Source d’énergie
+		## parametres : Périodes de déconnexion, Composants, Configuration
+		# scenario 2
+		## variables : Autonomie
+		## parametres : Périodes de déconnexion, Source d’énergie, Composants, Configuration
+		# scenario 3
+		## variables : Périodes de déconnexion
+		## parametres : Autonomie, Source d’énergie, Composants, Configuration
+		# scenario 4
+		## variables : Source d’énergie, Composants, Configuration
+		## parametres : Autonomie, Périodes de déconnexion 
+
+		# create page
+		frame = Frame(self.central_frame)#, controller=self)
+		self.frames["scenariosPage"] = frame
+		frame.grid(row=0, column=0, sticky="nsew")
+
+		text = "Choose scenario to simulate"
+		self.test_lbl = Label(self.frames["scenariosPage"] , text=text, font=self.text_font)
+		self.test_lbl.grid(row=0, column=0)
+
+		pad_frame = Frame(self.frames["scenariosPage"], height=30, bg="", colormap="new")
+		pad_frame.grid(row=1, column=0)
+
+		frame_for_entries = Frame(self.frames["scenariosPage"])
+		frame_for_entries.grid(row=2, column=0)
+
+	def init_capteurs_page(self):
 		
 		# create page
 		frame = Frame(self.central_frame)#, controller=self)
-		self.frames["ProblemePage"] = frame
+		self.frames["CapteursPage"] = frame
 		frame.grid(row=0, column=0, sticky="nsew")
 
 		text = "Add new capteur \n #TODO"
-		self.test_lbl = Label(self.frames["ProblemePage"] , text=text, font=self.text_font)
+		self.test_lbl = Label(self.frames["CapteursPage"] , text=text, font=self.text_font)
 		self.test_lbl.grid(row=0, column=0)
 
-		pad_frame = Frame(self.frames["ProblemePage"], height=30, bg="", colormap="new")
+		pad_frame = Frame(self.frames["CapteursPage"], height=30, bg="", colormap="new")
 		pad_frame.grid(row=1, column=0)
 
-		frame_for_entries = Frame(self.frames["ProblemePage"])
+		frame_for_entries = Frame(self.frames["CapteursPage"])
 		frame_for_entries.grid(row=2, column=0)
 
-		self.add_capteur_button = Button(self.frames["ProblemePage"], text = "Add new capteur", command=self.add_new_capteur)
+		self.add_capteur_button = Button(self.frames["CapteursPage"], text = "Add new capteur", command=self.add_new_capteur)
 		self.add_capteur_button.grid(column=1, row=1, sticky=E)
 
 	def init_composants_page(self):
@@ -194,55 +225,49 @@ class window():
 
 	def init_pages(self):
 		self.frames = {}
-		#frame_names = ["StartPage", "NumComposantsPage", "ProblemePage", "EndPage"]
+		self.frame_names = ["StartPage", "CapteursPage", "EndPage"] # ordered
+		# "TestPage",
+		self.current_page = 0
+		self.numPages = len(self.frame_names)
+		print(self.numPages)
 
 		# put all of the pages in the same location;
 		# the one on the top of the stacking order
 		# will be the one that is visible.
 
 		self.init_start_page()
-		self.init_composants_page()
-		self.init_probleme_page()
+		self.init_capteurs_page()
 		self.init_end_page()
-
-		# test page
-		frame = Frame(self.central_frame)#, controller=self)
-		self.frames["TestPage"] = frame
-		frame.grid(row=0, column=0, sticky="nsew")
-
-		# test page
-		test_text = "testy page"
-		# text
-		self.test_lbl = Label(self.frames["TestPage"] , text=test_text, font=self.text_font)
-		self.test_lbl.pack()
 
 	def add_new_capteur(self):
 		print("kkkk test 1")
 		toniolow = Add_new_capteur_window()
 		print("kkkk test 2")
 
-
 	def next_page(self):
 		### go to next page
-		if(self.current_page=="StartPage"):
-			self.show_frame("NumComposantsPage")
-		elif(self.current_page=="NumComposantsPage"):
-			self.show_frame("ProblemePage")
-		elif(self.current_page=="ProblemePage"):
-			self.show_frame("TestPage")
-		elif(self.current_page=="TestPage"):
-			self.show_frame("EndPage")
+
+		if(self.current_page == self.numPages-1):
+			# is already in last page
+			print("ERROR: already in last page")
+			pass
+		else:
+			self.current_page = self.current_page + 1
+			self.show_frame(self.frame_names[self.current_page])
+
+
 
 	def previous_page(self):
 		### go to previous page
-		if(self.current_page=="NumComposantsPage"):
-			self.show_frame("StartPage")
-		elif(self.current_page=="ProblemePage"):
-			self.show_frame("NumComposantsPage")
-		elif(self.current_page=="TestPage"):
-			self.show_frame("ProblemePage")
-		elif(self.current_page=="EndPage"):
-			self.show_frame("TestPage")
+
+		if(self.current_page == 0):
+			# is already in first page
+			print("ERROR: already in first page")
+			pass
+		else:
+			self.current_page = self.current_page - 1
+			self.show_frame(self.frame_names[self.current_page])
+
 
 	def quit(self):
 
