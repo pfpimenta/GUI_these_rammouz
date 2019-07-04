@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-# ??????????
+# window to enter the parameters of a new capteur
 # Pedro Foletto Pimenta, june-2019
 ###
 from tkinter import *
