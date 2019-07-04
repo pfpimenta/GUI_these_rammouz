@@ -8,6 +8,7 @@ from tkinter import *
 from tkinter import font  as tkfont # python 3
 from convenience import *
 from Add_new_capteur_window import *
+from Error_window import *
 
 
 
@@ -89,18 +90,6 @@ class window():
 	def init_choose_scenario_page(self):
 		# TODO TO DO
 		
-		# scenario 1
-		## variables : Autonomie, Source d’énergie
-		## parametres : Périodes de déconnexion, Composants, Configuration
-		# scenario 2
-		## variables : Autonomie
-		## parametres : Périodes de déconnexion, Source d’énergie, Composants, Configuration
-		# scenario 3
-		## variables : Périodes de déconnexion
-		## parametres : Autonomie, Source d’énergie, Composants, Configuration
-		# scenario 4
-		## variables : Source d’énergie, Composants, Configuration
-		## parametres : Autonomie, Périodes de déconnexion 
 
 		# create page
 		frame = Frame(self.central_frame)#, controller=self)
@@ -125,12 +114,12 @@ class window():
 			("Scenario 4", "4")
 		]
 
-		v = StringVar()
-		v.set("1") # initialize
+		self.scenarioString = StringVar()
+		self.scenarioString.set("1") # initialize
 
 		for text, mode in MODES:
 			b = Radiobutton(frame_for_entries, text=text,
-							variable=v, value=mode)
+							variable=self.scenarioString, value=mode)
 			b.pack(anchor=W)
 
 	def init_capteurs_page(self):
@@ -252,8 +241,8 @@ class window():
 		# will be the one that is visible.
 
 		self.init_start_page()
-		self.init_capteurs_page()
 		self.init_choose_scenario_page()
+		self.init_capteurs_page()
 		self.init_end_page()
 
 	def add_new_capteur(self):
@@ -261,13 +250,59 @@ class window():
 		toniolow = Add_new_capteur_window()
 		print("kkkk test 2")
 
+	def changeScenario(self):
+		scenario = self.scenarioString.get()
+
+		if(scenario == "1"):
+			# scenario 1
+			## variables : Autonomie, Source d’énergie
+			## parametres : Périodes de déconnexion, Composants, Configuration
+			self.frame_names = ["StartPage", "ScenariosPage", "CapteursPage",  "EndPage"] # ordered
+
+		elif(scenario == "2"):
+			# TODO TO DO 
+
+			# scenario 2
+			## variables : Autonomie
+			## parametres : Périodes de déconnexion, Source d’énergie, Composants, Configuration
+			#self.frame_names = ["StartPage", "ScenariosPage", "????"] # ordered
+			toniolo_error = Error_window()
+
+		elif(scenario == "3"):
+			# TODO TO DO 
+
+			# scenario 3
+			## variables : Périodes de déconnexion
+			## parametres : Autonomie, Source d’énergie, Composants, Configuration
+			#self.frame_names = ["StartPage", "ScenariosPage", "????"] # ordered
+			toniolo_error = Error_window()
+
+		elif(scenario == "4"):
+			# TODO TO DO 
+
+			# scenario 4
+			## variables : Source d’énergie, Composants, Configuration
+			## parametres : Autonomie, Périodes de déconnexion 
+			#self.frame_names = ["StartPage", "ScenariosPage", "????"] # ordered
+			toniolo_error = Error_window()
+
+		else:
+			print("ERROR : scenario not recoognized")
+
+		# update numPages
+		self.numPages = len(self.frame_names)
+
 	def next_page(self):
 		### go to next page
 
+		#print("DEBUG next page... current_page: {}, current_page name: {}".format(self.current_page, self.frame_names[self.current_page]))
+		if(self.frame_names[self.current_page] == "ScenariosPage"):
+			print("DEBUG change scenario... self.scenarioString: {}".format(self.scenarioString.get()))
+			self.changeScenario()
+
 		if(self.current_page == self.numPages-1):
 			# is already in last page
-			print("ERROR: already in last page")
-			pass
+			print("ERROR: already in last page: {} == {}".format(self.current_page, self.numPages-1))
 		else:
 			self.current_page = self.current_page + 1
 			self.show_frame(self.frame_names[self.current_page])
