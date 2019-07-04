@@ -104,18 +104,34 @@ class window():
 
 		# create page
 		frame = Frame(self.central_frame)#, controller=self)
-		self.frames["scenariosPage"] = frame
+		self.frames["ScenariosPage"] = frame
 		frame.grid(row=0, column=0, sticky="nsew")
 
 		text = "Choose scenario to simulate"
-		self.test_lbl = Label(self.frames["scenariosPage"] , text=text, font=self.text_font)
+		self.test_lbl = Label(self.frames["ScenariosPage"] , text=text, font=self.text_font)
 		self.test_lbl.grid(row=0, column=0)
 
-		pad_frame = Frame(self.frames["scenariosPage"], height=30, bg="", colormap="new")
+		pad_frame = Frame(self.frames["ScenariosPage"], height=30, bg="", colormap="new")
 		pad_frame.grid(row=1, column=0)
 
-		frame_for_entries = Frame(self.frames["scenariosPage"])
+		frame_for_entries = Frame(self.frames["ScenariosPage"])
 		frame_for_entries.grid(row=2, column=0)
+
+		# radio button to choose scenario
+		MODES = [
+			("Scenario 1", "1"),
+			("Scenario 2", "2"),
+			("Scenario 3", "3"),
+			("Scenario 4", "4")
+		]
+
+		v = StringVar()
+		v.set("1") # initialize
+
+		for text, mode in MODES:
+			b = Radiobutton(frame_for_entries, text=text,
+							variable=v, value=mode)
+			b.pack(anchor=W)
 
 	def init_capteurs_page(self):
 		
@@ -225,7 +241,7 @@ class window():
 
 	def init_pages(self):
 		self.frames = {}
-		self.frame_names = ["StartPage", "CapteursPage", "EndPage"] # ordered
+		self.frame_names = ["StartPage", "ScenariosPage", "CapteursPage",  "EndPage"] # ordered
 		# "TestPage",
 		self.current_page = 0
 		self.numPages = len(self.frame_names)
@@ -237,6 +253,7 @@ class window():
 
 		self.init_start_page()
 		self.init_capteurs_page()
+		self.init_choose_scenario_page()
 		self.init_end_page()
 
 	def add_new_capteur(self):
@@ -255,8 +272,6 @@ class window():
 			self.current_page = self.current_page + 1
 			self.show_frame(self.frame_names[self.current_page])
 
-
-
 	def previous_page(self):
 		### go to previous page
 
@@ -267,7 +282,6 @@ class window():
 		else:
 			self.current_page = self.current_page - 1
 			self.show_frame(self.frame_names[self.current_page])
-
 
 	def quit(self):
 
