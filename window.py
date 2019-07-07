@@ -136,23 +136,24 @@ class window():
 		pad_frame = Frame(self.frames["CapteursPage"], height=30, bg="", colormap="new")
 		pad_frame.grid(row=1, column=0)
 
+		self.capteur_listbox = Listbox(self.frames["CapteursPage"])
+		self.capteur_listbox.grid(column=1, row=1)
+		#self.capteur_listbox.pack()
+		self.capteur_listbox.insert(END, "graforreia xilarmonica")
+		for item in ["one", "two", "three", "four"]:
+			self.capteur_listbox.insert(END, item)
+
 		buttons_frame = Frame(self.frames["CapteursPage"])
 		buttons_frame.grid(row=1, column=2)
 
 		self.add_capteur_button = Button(buttons_frame, text = "Add new capteur", command=self.add_new_capteur)
 		self.add_capteur_button.grid(column=1, row=1, sticky='news')
 
-		self.remove_capteur_button = Button(buttons_frame, text = "Remove selected capteur", command=self.remove_selected_capteur)
+		#self.remove_capteur_button = Button(buttons_frame, text = "Remove selected capteur", command=self.remove_selected_capteur)
+		self.remove_capteur_button = Button(buttons_frame, text = "Remove selected capteur", command=lambda lb=self.capteur_listbox: lb.delete(ANCHOR))
 		self.remove_capteur_button.grid(column=1, row=2, sticky='news')
 
 
-		self.capteur_listbox = Listbox(self.frames["CapteursPage"])
-		self.capteur_listbox.grid(column=1, row=1)
-		#self.capteur_listbox.pack()
-		self.capteur_listbox.insert(END, "graforreia xilarmonica")
-
-		for item in ["one", "two", "three", "four"]:
-			self.capteur_listbox.insert(END, item)
 
 
 	def init_composants_page(self):
@@ -263,12 +264,11 @@ class window():
 		pass # TO DO TODO
 
 	def add_new_capteur(self):
+		# (self.add_capteur_button command)
+		# opens window to add item to the capteur list in the CapteursPages
 		print("kkkk test 1")
 		toniolow = Add_new_capteur_window()
 		print("kkkk test 2")
-
-	def remove_selected_capteur(self):
-		print("testee")
 
 	def changeScenario(self):
 		scenario = self.scenarioString.get()
