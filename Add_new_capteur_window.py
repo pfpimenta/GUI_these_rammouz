@@ -6,10 +6,12 @@
 ###
 from tkinter import *
 from tkinter import font  as tkfont # python 3
+import pickle
 
 
 class Add_new_capteur_window():
-# 
+# window for entering the characteristics of a new capteur
+# when the Done button is clicked, the capteur is saved in a .pickle file
 
 	def __init__(self):
 		# windows general layout
@@ -62,49 +64,50 @@ class Add_new_capteur_window():
 		lbl_duree = Label(frame_for_entries, text="duree de conversion:")
 		lbl_duree.grid(column=1, row=1)
 
-		s_duree = StringVar()
-		self.entry_duree = Entry(frame_for_entries, textvariable=s_duree)
+		self.entry_duree = Entry(frame_for_entries)#, textvariable=self.s_duree)
 		self.entry_duree.grid(column=2, row=1)
-		s_duree.set("huehuehue")
 
 		### transition basse consomation -> actif
 		lbl_trans_basse_actif = Label(frame_for_entries, text="transition basse consomation -> actif:")
 		lbl_trans_basse_actif.grid(column=1, row=2)
 
-		s_trans_basse_actif = StringVar()
-		self.entry_trans_basse_actif = Entry(frame_for_entries, textvariable=s_trans_basse_actif)
+		self.entry_trans_basse_actif = Entry(frame_for_entries)
 		self.entry_trans_basse_actif.grid(column=2, row=2)
-		s_trans_basse_actif.set("sagagadga")
 
 		### transition actif -> basse consomation
 		lbl_trans_actif_basse = Label(frame_for_entries, text="transition actif -> basse consomation:")
 		lbl_trans_actif_basse.grid(column=1, row=3)
 
-		s_trans_actif_basse = StringVar()
-		self.entry_trans_actif_basse = Entry(frame_for_entries, textvariable=s_trans_actif_basse)
+		self.entry_trans_actif_basse = Entry(frame_for_entries)
 		self.entry_trans_actif_basse.grid(column=2, row=3)
-		s_trans_actif_basse.set("5050")
 
 		### consomation mode actif
 		lbl_conso_actif = Label(frame_for_entries, text="consomation mode actif:")
 		lbl_conso_actif.grid(column=1, row=4)
 
-		s_conso_actif = StringVar()
-		self.entry_conso_actif = Entry(frame_for_entries, textvariable=s_conso_actif)
+		self.entry_conso_actif = Entry(frame_for_entries)
 		self.entry_conso_actif.grid(column=2, row=4)
-		s_conso_actif.set("1111")
 
 		### consomation mode basse consomation
 		lbl_conso_basse = Label(frame_for_entries, text="consomation mode basse consomation:")
 		lbl_conso_basse.grid(column=1, row=5)
 
-		s_conso_basse = StringVar()
-		self.entry_conso_basse = Entry(frame_for_entries, textvariable=s_conso_basse)
+		self.entry_conso_basse = Entry(frame_for_entries)
 		self.entry_conso_basse.grid(column=2, row=5)
-		s_conso_basse.set("222222")
 
 	def save_capteur(self):
-		pass # TODO
+		# TODO
+		duree =  self.entry_duree.get()
+		trans_basse_actif =  self.entry_trans_basse_actif.get()
+		trans_actif_basse =  self.entry_trans_actif_basse.get()
+		conso_actif =  self.entry_conso_actif.get()
+		conso_basse =  self.entry_conso_basse.get()
+		print(duree)
+		print(trans_basse_actif)
+		print(trans_actif_basse)
+		print(conso_actif)
+		print(conso_basse)
+		# picklestring = pickle.dumps(capteur_params)
 
 	def cancel(self):
 		self.root.destroy()
