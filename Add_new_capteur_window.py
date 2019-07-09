@@ -15,19 +15,21 @@ class Add_new_capteur_window():
 # window for entering the characteristics of a new capteur
 # when the Done button is clicked, the capteur is saved in a .pickle file
 
-	def __init__(self):
+	def __init__(self, parent):
+		self.parent = parent
+
 		# windows general layout
-		self.init_main_layout()
+		self.init_main_layout(parent.root)
 
 		# init central frame (where are the parameter entries)
 		self.init_central_frame()
 		
 		# run mainloop
-		self.root.mainloop()
+		#self.root.mainloop()
 
-	def init_main_layout(self):
+	def init_main_layout(self, parent_window):
 		### init window:
-		self.root = Tk()
+		self.root = Toplevel(parent_window)
 		self.root.title("Add new capteur") # "GUI - these Rammouz"
 		### set text font:
 		self.text_font = tkfont.Font(family='Verdana', size=13)#, weight="bold", slant="italic")
@@ -148,5 +150,6 @@ class Add_new_capteur_window():
 		self.root.destroy()
 
 	def done(self):
-		self.save_capteur()		
+		self.save_capteur()
+		self.parent.update_capteur_list()
 		self.root.destroy()

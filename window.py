@@ -36,7 +36,7 @@ class window():
 
 		# begin by start page
 		self.show_frame("StartPage")
-		
+
 		# run mainloop
 		self.root.mainloop()
 
@@ -139,9 +139,15 @@ class window():
 		self.capteur_listbox = Listbox(self.frames["CapteursPage"])
 		self.capteur_listbox.grid(column=1, row=1)
 		#self.capteur_listbox.pack()
-		self.capteur_listbox.insert(END, "graforreia xilarmonica")
-		for item in ["one", "two", "three", "four"]:
-			self.capteur_listbox.insert(END, item)
+
+		self.update_capteur_list()
+
+		# self.capteur_listbox.insert(END, "graforreia xilarmonica")
+		# for item in ["one", "two", "three", "four"]:
+		# 	self.capteur_listbox.insert(END, item)
+
+		#print("DEBUG capteur_listbox items:") # DEBUG
+		#print(self.capteur_listbox.get(0, END)) # DEBUG
 
 		buttons_frame = Frame(self.frames["CapteursPage"])
 		buttons_frame.grid(row=1, column=2)
@@ -194,19 +200,32 @@ class window():
 		self.init_end_page()
 
 	def update_capteur_list(self):
+		print("\nDEBUG update_capteur_list called\n")
 		# to be called when loading CapteursPage or after adding/removing a new capteur
 		components_folder_path = os.getcwd() + "/components/"
 		files = os.listdir(components_folder_path) # list of files in 'data_path' folder
-		print("files in components folder : {}".format(files))
+		#print("files in components folder : {}".format(files))
+
+		capteur_files = [ f for f in files if 'capteur' in f] # get only .nii files
+
+		print("DEBUG capteur_listbox items:") # DEBUG
+		print(self.capteur_listbox.get(0, END)) # DEBUG
+
+		for capteur_filename in capteur_files:
+			capteur_name = capteur_filename[8:-7] # ex: "capteur_example.pickle" -> "example"
+
+			if(capteur_name not in self.capteur_listbox.get(0, END)):
+				self.capteur_listbox.insert(END, capteur_name)
+
+		# pickle_off = open("Emp.pickle","rb")
+		# emp = pickle.load(pickle_off)
+		# print(emp)
 
 
 	def add_new_capteur(self):
 		# (self.add_capteur_button command)
 		# opens window to add item to the capteur list in the CapteursPages
-		toniolow = Add_new_capteur_window()
-
-		# after clicking Done or Cancel, update capteur list
-		self.update_capteur_list()
+		toniolow = Add_new_capteur_window(parent=self)
 
 	def changeScenario(self):
 		scenario = self.scenarioString.get()
