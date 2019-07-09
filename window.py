@@ -9,6 +9,10 @@ from tkinter import font  as tkfont # python 3
 from send2trash import send2trash
 from convenience import *
 from Add_new_capteur_window import *
+from Add_new_ADC_window import *
+#from Add_new_MSP_window import *
+#from Add_new_memory_window import *
+#from Add_new_MRF_window import *
 from Error_window import *
 
 
@@ -42,7 +46,7 @@ class window():
 	def init_main_layout(self):
 		### init window:
 		self.root = Tk()
-		self.root.title("NOME DO PROGRAMA? tem q ver dps") # "GUI - these Rammouz"
+		self.root.title("GUI - these Rammouz") # TODO : mudar nome?
 		#self.root.geometry('800x600')
 		#self.root.configure(background="black")
 		### set text font:
@@ -126,27 +130,62 @@ class window():
 		self.frames["CapteursPage"] = frame
 		frame.grid(row=0, column=0, sticky="nsew")
 
-		text = "Add new capteur \n #TODO"
+		text = "Add new capteur \n (texto explicando algo? sei la)\n #TODO "
 		self.test_lbl = Label(self.frames["CapteursPage"] , text=text, font=self.text_font)
-		self.test_lbl.grid(row=0, column=0)
+		self.test_lbl.pack()
 
-		pad_frame = Frame(self.frames["CapteursPage"], height=30, bg="", colormap="new")
-		pad_frame.grid(row=1, column=0)
+		pad_frame = Frame(self.frames["CapteursPage"], height=30)
+		pad_frame.pack()
 
-		self.capteur_listbox = Listbox(self.frames["CapteursPage"])
-		self.capteur_listbox.grid(column=1, row=1)
-		#self.capteur_listbox.pack()
+
+		listbox_buttons_frame = Frame(self.frames["CapteursPage"])
+		listbox_buttons_frame.pack()
+
+		self.capteur_listbox = Listbox(listbox_buttons_frame, height=15, width=20)
+		self.capteur_listbox.grid(column=0, row=0)
 
 		self.update_capteur_list()
 
-		buttons_frame = Frame(self.frames["CapteursPage"])
-		buttons_frame.grid(row=1, column=2)
+		buttons_frame = Frame(listbox_buttons_frame)#(self.frames["CapteursPage"])
+		buttons_frame.grid(column=1, row=0)
 
-		self.add_capteur_button = Button(buttons_frame, text = "Add new capteur", command=self.add_new_capteur)
+		self.add_capteur_button = Button(buttons_frame, text = "Add new capteur_", command=self.add_new_capteur)
 		self.add_capteur_button.grid(column=1, row=1, sticky='news')
 
 		self.remove_capteur_button = Button(buttons_frame, text = "Remove selected capteur", command=self.remove_selected_capteur)
 		self.remove_capteur_button.grid(column=1, row=2, sticky='news')
+
+	def init_ADC_page(self):
+		
+		# create page
+		frame = Frame(self.central_frame)#, controller=self)
+		self.frames["ADCPage"] = frame
+		frame.grid(row=0, column=0, sticky="nsew")
+
+		text = "Add new ADC \n (texto explicando algo? sei la)\n #TODO "
+		self.test_lbl = Label(self.frames["ADCPage"] , text=text, font=self.text_font)
+		self.test_lbl.pack()
+
+		pad_frame = Frame(self.frames["ADCPage"], height=30)
+		pad_frame.pack()
+
+
+		listbox_buttons_frame = Frame(self.frames["ADCPage"])
+		listbox_buttons_frame.pack()
+
+		self.ADC_listbox = Listbox(listbox_buttons_frame, height=15, width=20)
+		self.ADC_listbox.grid(column=0, row=0)
+
+		self.update_ADC_list()
+
+		buttons_frame = Frame(listbox_buttons_frame)#(self.frames["ADCPage"])
+		buttons_frame.grid(column=1, row=0)
+
+		self.add_ADC_button = Button(buttons_frame, text = "Add new ADC", command=self.add_new_ADC)
+		self.add_ADC_button.grid(column=1, row=1, sticky='news')
+
+		self.remove_ADC_button = Button(buttons_frame, text = "Remove selected ADC", command=self.remove_selected_ADC)
+		self.remove_ADC_button.grid(column=1, row=2, sticky='news')
 
 	def init_start_page(self):
 
@@ -158,6 +197,11 @@ class window():
 		# text
 		self.start_lbl = Label(self.frames["StartPage"] , text=START_PAGE_TEXT, font=self.text_font)
 		self.start_lbl.pack()
+		pad_frame_top_1 = Frame(self.frames["StartPage"], height=100)
+		pad_frame_top_1.pack() #.grid(column=0, row=0)
+
+		self.thesis_link_lbl = Label(self.frames["StartPage"] , text=THESIS_LINK, font=self.text_font)
+		self.thesis_link_lbl.pack()
 
 	def init_end_page(self):
 
@@ -173,7 +217,7 @@ class window():
 
 	def init_pages(self):
 		self.frames = {}
-		self.frame_names = ["StartPage", "ScenariosPage", "CapteursPage",  "EndPage"] # ordered
+		self.frame_names = ["StartPage", "ScenariosPage", "CapteursPage", "ADCPage",  "EndPage"] # ordered
 		# "TestPage",
 		self.current_page = 0
 		self.numPages = len(self.frame_names)
@@ -186,6 +230,7 @@ class window():
 		self.init_start_page()
 		self.init_choose_scenario_page()
 		self.init_capteurs_page()
+		self.init_ADC_page()
 		self.init_end_page()
 
 	def update_capteur_list(self):
@@ -208,10 +253,53 @@ class window():
 			if(capteur_name not in self.capteur_listbox.get(0, END)):
 				self.capteur_listbox.insert(END, capteur_name)
 
+	def update_ADC_list(self):
+		# to be called when loading ADCPage or after adding/removing a new ADC
+		
+		#print("\nDEBUG update_ADC_list called\n")
+		components_folder_path = os.getcwd() + "/components/"
+		files = os.listdir(components_folder_path) # list of files in 'data_path' folder
+		#print("files in components folder : {}".format(files))
+		ADC_files = [ f for f in files if 'ADC' in f] # get only ADC files
+
+		# print("DEBUG ADC_listbox items:") # DEBUG
+		# print(self.ADC_listbox.get(0, END)) # DEBUG
+
+		# iterate through all ADC files saved in the components folder
+		for ADC_filename in ADC_files:
+			ADC_name = ADC_filename[4:-7] # ex: "capteur_example.pickle" -> "example"
+
+			# if a ACC is saved but not on the list, add it to the list
+			if(ADC_name not in self.ADC_listbox.get(0, END)):
+				self.ADC_listbox.insert(END, ADC_name)
+
 	def add_new_capteur(self):
 		# (self.add_capteur_button command)
-		# opens window to add item to the capteur list in the CapteursPages
+		# opens window to add item to the capteur list in the CapteursPage
 		toniolow = Add_new_capteur_window(parent=self)
+
+	def add_new_ADC(self):
+		# (self.add_ADC_button command)
+		# opens window to add item to the ADC list in the ADCPage
+		toniolow = Add_new_ADC_window(parent=self)
+
+	def add_new_MSP(self):
+		# (self.add_MSP_button command)
+		# opens window to add item to the microprocessers list in the MSPPage
+		#toniolow = Add_new_MSP_window(parent=self)
+		pass #TODO
+
+	def add_new_memory(self):
+		# (self.add_memory_button command)
+		# opens window to add item to the memory list in the MemoriesPage
+		#toniolow = Add_new_memory_window(parent=self)
+		pass #TODO
+
+	def add_new_MRF(self):
+		# (self.add_MRF_button command)
+		# opens window to add item to the module_radio_frequence list in the MRFPage
+		#toniolow = Add_new_MRF_window(parent=self)
+		pass #TODO
 
 	def remove_selected_capteur(self):
 		# (self.remove_capteur_button command)
@@ -231,6 +319,24 @@ class window():
 		
 		print("DEBUG (remove_selected_capteur) removed : {}".format(capteur_filename)) # DEBUG
 		
+	def remove_selected_ADC(self):
+		# (self.remove_ADC_button command)
+		# removes selected ADC in the list and deletes its file
+		
+		# get name of ADC and corresponding filename
+		ADC_name = self.ADC_listbox.get(ANCHOR)
+		components_folder_path = os.getcwd() + "/components/"
+		ADC_filename = components_folder_path + "ADC_"+ ADC_name + ".pickle"
+
+		# delete file containing the ADC parameters
+		#os.remove(ADC_filename)
+		send2trash(ADC_filename)
+
+		# delete item from listbox
+		self.ADC_listbox.delete(ANCHOR)
+		
+		print("DEBUG (remove_selected_ADC) removed : {}".format(ADC_filename)) # DEBUG
+		
 	def changeScenario(self):
 		scenario = self.scenarioString.get()
 
@@ -238,7 +344,7 @@ class window():
 			# scenario 1
 			## variables : Autonomie, Source d’énergie
 			## parametres : Périodes de déconnexion, Composants, Configuration
-			self.frame_names = ["StartPage", "ScenariosPage", "CapteursPage",  "EndPage"] # ordered
+			self.frame_names = ["StartPage", "ScenariosPage", "CapteursPage", "ADCPage",  "EndPage"] # ordered
 
 		elif(scenario == "2"):
 			# TODO TO DO 
