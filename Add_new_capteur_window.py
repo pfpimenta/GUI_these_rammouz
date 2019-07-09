@@ -60,11 +60,18 @@ class Add_new_capteur_window():
 		frame_for_entries = Frame(self.central_frame)
 		frame_for_entries.grid(row=2, column=0)
 
+		### capteur name
+		lbl_duree = Label(frame_for_entries, text="name:")
+		lbl_duree.grid(column=1, row=0)
+
+		self.entry_name = Entry(frame_for_entries)
+		self.entry_name.grid(column=2, row=0)
+
 		### duree de conversion
 		lbl_duree = Label(frame_for_entries, text="duree de conversion:")
 		lbl_duree.grid(column=1, row=1)
 
-		self.entry_duree = Entry(frame_for_entries)#, textvariable=self.s_duree)
+		self.entry_duree = Entry(frame_for_entries)
 		self.entry_duree.grid(column=2, row=1)
 
 		### transition basse consomation -> actif
@@ -96,18 +103,22 @@ class Add_new_capteur_window():
 		self.entry_conso_basse.grid(column=2, row=5)
 
 	def save_capteur(self):
-		# TODO
-		duree =  self.entry_duree.get()
-		trans_basse_actif =  self.entry_trans_basse_actif.get()
-		trans_actif_basse =  self.entry_trans_actif_basse.get()
-		conso_actif =  self.entry_conso_actif.get()
-		conso_basse =  self.entry_conso_basse.get()
-		print(duree)
-		print(trans_basse_actif)
-		print(trans_actif_basse)
-		print(conso_actif)
-		print(conso_basse)
-		# picklestring = pickle.dumps(capteur_params)
+		
+		# put params into a dict
+		capteur_params = {}
+		capteur_params["name"] =  self.entry_name.get()
+		capteur_params["duree"] =  self.entry_duree.get()
+		capteur_params["trans_basse_actif"] =  self.entry_trans_basse_actif.get()
+		capteur_params["trans_actif_basse"] =  self.entry_trans_actif_basse.get()
+		capteur_params["conso_actif"] =  self.entry_conso_actif.get()
+		capteur_params["conso_basse"] =  self.entry_conso_basse.get()
+		print("debug capteur_params : {}".format(capteur_params))
+		
+		# create pickle file to save capteur params
+		capteur_filename = "capteur_" + capteur_params["name"] + ".pickle"
+		pickling_on = open(capteur_filename,"wb")
+		pickle.dump(capteur_params, pickling_on)
+		pickling_on.close()
 
 	def cancel(self):
 		self.root.destroy()

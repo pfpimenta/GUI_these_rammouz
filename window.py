@@ -182,7 +182,7 @@ class window():
 		# "TestPage",
 		self.current_page = 0
 		self.numPages = len(self.frame_names)
-		print(self.numPages)
+		#print("DEBUG numPages: {}".format(self.numPages)) #DEBUG
 
 		# put all of the pages in the same location;
 		# the one on the top of the stacking order
@@ -200,9 +200,7 @@ class window():
 	def add_new_capteur(self):
 		# (self.add_capteur_button command)
 		# opens window to add item to the capteur list in the CapteursPages
-		print("kkkk test 1")
 		toniolow = Add_new_capteur_window()
-		print("kkkk test 2")
 
 	def changeScenario(self):
 		scenario = self.scenarioString.get()
@@ -251,7 +249,7 @@ class window():
 
 		#print("DEBUG next page... current_page: {}, current_page name: {}".format(self.current_page, self.frame_names[self.current_page]))
 		if(self.frame_names[self.current_page] == "ScenariosPage"):
-			print("DEBUG change scenario... self.scenarioString: {}".format(self.scenarioString.get()))
+			#print("DEBUG change scenario... self.scenarioString: {}".format(self.scenarioString.get())) # DEBUG
 			self.changeScenario()
 
 		if(self.current_page == self.numPages-1):
