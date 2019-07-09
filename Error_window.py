@@ -20,7 +20,7 @@ class Error_window():
 
 	def init_main_layout(self):
 		### init window:
-		self.root = Tk()
+		self.root = Toplevel()
 		self.root.title("Error") # "GUI - these Rammouz"
 		### set text font:
 		self.text_font = tkfont.Font(family='Verdana', size=13)#, weight="bold", slant="italic")

@@ -32,8 +32,12 @@ def save_parameters(params):
 	# TODO
 	print("...saving simulation parameters")
 
-	# put parameters in a .mat file and save it
 
+	# pickle_off = open("Emp.pickle","rb")
+	# emp = pickle.load(pickle_off)
+	# print(emp)
+
+	# put parameters in a .mat file and save it
 
 
 def is_number(s):
@@ -43,6 +47,3 @@ def is_number(s):
         return True
     except ValueError:
         return False
-
-
-

@@ -6,6 +6,7 @@
 ###
 from tkinter import *
 from tkinter import font  as tkfont # python 3
+from send2trash import send2trash
 from convenience import *
 from Add_new_capteur_window import *
 from Error_window import *
@@ -25,8 +26,6 @@ params['numModulesRadiofrequence'] = 0
 class window():
 
 	def __init__(self):
-		
-		self.flag=1 # temporary
 		
 		# windows general layout
 		self.init_main_layout()
@@ -88,8 +87,6 @@ class window():
 			self.next_button.config(text="Next", command=self.next_page)
 		
 	def init_choose_scenario_page(self):
-		# TODO TO DO
-		
 
 		# create page
 		frame = Frame(self.central_frame)#, controller=self)
@@ -142,21 +139,13 @@ class window():
 
 		self.update_capteur_list()
 
-		# self.capteur_listbox.insert(END, "graforreia xilarmonica")
-		# for item in ["one", "two", "three", "four"]:
-		# 	self.capteur_listbox.insert(END, item)
-
-		#print("DEBUG capteur_listbox items:") # DEBUG
-		#print(self.capteur_listbox.get(0, END)) # DEBUG
-
 		buttons_frame = Frame(self.frames["CapteursPage"])
 		buttons_frame.grid(row=1, column=2)
 
 		self.add_capteur_button = Button(buttons_frame, text = "Add new capteur", command=self.add_new_capteur)
 		self.add_capteur_button.grid(column=1, row=1, sticky='news')
 
-		#self.remove_capteur_button = Button(buttons_frame, text = "Remove selected capteur", command=self.remove_selected_capteur)
-		self.remove_capteur_button = Button(buttons_frame, text = "Remove selected capteur", command=lambda lb=self.capteur_listbox: lb.delete(ANCHOR))
+		self.remove_capteur_button = Button(buttons_frame, text = "Remove selected capteur", command=self.remove_selected_capteur)
 		self.remove_capteur_button.grid(column=1, row=2, sticky='news')
 
 	def init_start_page(self):
@@ -200,33 +189,48 @@ class window():
 		self.init_end_page()
 
 	def update_capteur_list(self):
-		print("\nDEBUG update_capteur_list called\n")
 		# to be called when loading CapteursPage or after adding/removing a new capteur
+		
+		#print("\nDEBUG update_capteur_list called\n")
 		components_folder_path = os.getcwd() + "/components/"
 		files = os.listdir(components_folder_path) # list of files in 'data_path' folder
 		#print("files in components folder : {}".format(files))
+		capteur_files = [ f for f in files if 'capteur' in f] # get only capteur files
 
-		capteur_files = [ f for f in files if 'capteur' in f] # get only .nii files
+		# print("DEBUG capteur_listbox items:") # DEBUG
+		# print(self.capteur_listbox.get(0, END)) # DEBUG
 
-		print("DEBUG capteur_listbox items:") # DEBUG
-		print(self.capteur_listbox.get(0, END)) # DEBUG
-
+		# iterate through all capteur files saved in the components folder
 		for capteur_filename in capteur_files:
 			capteur_name = capteur_filename[8:-7] # ex: "capteur_example.pickle" -> "example"
 
+			# if a capteur is saved but not on the list, add it to the list
 			if(capteur_name not in self.capteur_listbox.get(0, END)):
 				self.capteur_listbox.insert(END, capteur_name)
-
-		# pickle_off = open("Emp.pickle","rb")
-		# emp = pickle.load(pickle_off)
-		# print(emp)
-
 
 	def add_new_capteur(self):
 		# (self.add_capteur_button command)
 		# opens window to add item to the capteur list in the CapteursPages
 		toniolow = Add_new_capteur_window(parent=self)
 
+	def remove_selected_capteur(self):
+		# (self.remove_capteur_button command)
+		# removes selected capteur in the list and deletes its file
+		
+		# get name of capteur and corresponding filename
+		capteur_name = self.capteur_listbox.get(ANCHOR)
+		components_folder_path = os.getcwd() + "/components/"
+		capteur_filename = components_folder_path + "capteur_"+ capteur_name + ".pickle"
+
+		# delete file containing the capteur parameters
+		#os.remove(capteur_filename)
+		send2trash(capteur_filename)
+
+		# delete item from listbox
+		self.capteur_listbox.delete(ANCHOR)
+		
+		print("DEBUG (remove_selected_capteur) removed : {}".format(capteur_filename)) # DEBUG
+		
 	def changeScenario(self):
 		scenario = self.scenarioString.get()
 
