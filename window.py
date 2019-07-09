@@ -195,12 +195,18 @@ class window():
 
 	def update_capteur_list(self):
 		# to be called when loading CapteursPage or after adding/removing a new capteur
-		pass # TO DO TODO
+		components_folder_path = os.getcwd() + "/components/"
+		files = os.listdir(components_folder_path) # list of files in 'data_path' folder
+		print("files in components folder : {}".format(files))
+
 
 	def add_new_capteur(self):
 		# (self.add_capteur_button command)
 		# opens window to add item to the capteur list in the CapteursPages
 		toniolow = Add_new_capteur_window()
+
+		# after clicking Done or Cancel, update capteur list
+		self.update_capteur_list()
 
 	def changeScenario(self):
 		scenario = self.scenarioString.get()

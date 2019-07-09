@@ -6,8 +6,10 @@
 ###
 from tkinter import *
 from tkinter import font  as tkfont # python 3
+import os
 import pickle
-
+from convenience import *
+import sys
 
 class Add_new_capteur_window():
 # window for entering the characteristics of a new capteur
@@ -102,6 +104,22 @@ class Add_new_capteur_window():
 		self.entry_conso_basse = Entry(frame_for_entries)
 		self.entry_conso_basse.grid(column=2, row=5)
 
+	def verify_capteur_params(self, capteur_params):
+		# verify if the parameters of the capteur are valid
+		if(isinstance(capteur_params["name"], str) == False):
+			return False
+		if(is_number(capteur_params["duree"]) == False):
+			return False
+		if(is_number(capteur_params["trans_basse_actif"]) == False):
+			return False
+		if(is_number(capteur_params["trans_actif_basse"]) == False):
+			return False
+		if(is_number(capteur_params["conso_actif"]) == False):
+			return False
+		if(is_number(capteur_params["conso_basse"]) == False):
+			return False
+		return True # no problems
+
 	def save_capteur(self):
 		
 		# put params into a dict
@@ -112,13 +130,19 @@ class Add_new_capteur_window():
 		capteur_params["trans_actif_basse"] =  self.entry_trans_actif_basse.get()
 		capteur_params["conso_actif"] =  self.entry_conso_actif.get()
 		capteur_params["conso_basse"] =  self.entry_conso_basse.get()
-		print("debug capteur_params : {}".format(capteur_params))
-		
-		# create pickle file to save capteur params
-		capteur_filename = "capteur_" + capteur_params["name"] + ".pickle"
-		pickling_on = open(capteur_filename,"wb")
-		pickle.dump(capteur_params, pickling_on)
-		pickling_on.close()
+		#print("debug capteur_params : {}".format(capteur_params)) # DEBUG
+
+		if(self.verify_capteur_params(capteur_params) == False):
+			# parameters not valid !
+			print("ERROR : capteur parameters not valid")
+			#sys.exit("ERROR : capteur parameters not valid")
+		else:
+			# create pickle file to save capteur params
+			components_folder_path = os.getcwd() + "/components/"
+			capteur_filename = components_folder_path + "capteur_" + capteur_params["name"] + ".pickle"
+			pickling_on = open(capteur_filename,"wb")
+			pickle.dump(capteur_params, pickling_on)
+			pickling_on.close()
 
 	def cancel(self):
 		self.root.destroy()

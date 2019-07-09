@@ -36,3 +36,13 @@ def save_parameters(params):
 
 
 
+def is_number(s):
+	# check if a string is a number (float)
+    try:
+        float(s)
+        return True
+    except ValueError:
+        return False
+
+
+
