@@ -10,7 +10,7 @@ from send2trash import send2trash
 from convenience import *
 from Add_new_capteur_window import *
 from Add_new_ADC_window import *
-#from Add_new_MSP_window import *
+from Add_new_MSP_window import *
 from Add_new_memory_window import *
 #from Add_new_MRF_window import *
 from Error_window import *
@@ -219,6 +219,38 @@ class window():
 		self.remove_memory_button = Button(buttons_frame, text = "Remove selected memory", command=self.remove_selected_memory)
 		self.remove_memory_button.grid(column=1, row=2, sticky='news')
 
+	def init_MSP_page(self):
+		
+		# create page
+		frame = Frame(self.central_frame)#, controller=self)
+		self.frames["MSPPage"] = frame
+		frame.grid(row=0, column=0, sticky="nsew")
+
+		text = "Add new MSP \n (texto explicando algo? sei la)\n #TODO "
+		self.test_lbl = Label(self.frames["MSPPage"] , text=text, font=self.text_font)
+		self.test_lbl.pack()
+
+		pad_frame = Frame(self.frames["MSPPage"], height=30)
+		pad_frame.pack()
+
+
+		listbox_buttons_frame = Frame(self.frames["MSPPage"])
+		listbox_buttons_frame.pack()
+
+		self.MSP_listbox = Listbox(listbox_buttons_frame, height=15, width=20)
+		self.MSP_listbox.grid(column=0, row=0)
+
+		self.update_MSP_list()
+
+		buttons_frame = Frame(listbox_buttons_frame)#(self.frames["MSPPage"])
+		buttons_frame.grid(column=1, row=0)
+
+		self.add_MSP_button = Button(buttons_frame, text = "Add new MSP", command=self.add_new_MSP)
+		self.add_MSP_button.grid(column=1, row=1, sticky='news')
+
+		self.remove_MSP_button = Button(buttons_frame, text = "Remove selected MSP", command=self.remove_selected_MSP)
+		self.remove_MSP_button.grid(column=1, row=2, sticky='news')
+
 	def init_start_page(self):
 
 		# create page
@@ -249,7 +281,7 @@ class window():
 
 	def init_pages(self):
 		self.frames = {}
-		self.frame_names = ["StartPage", "ScenariosPage", "CapteursPage", "ADCPage", "MemoryPage", "EndPage"] # ordered
+		self.frame_names = ["StartPage", "ScenariosPage", "CapteursPage", "ADCPage", "MemoryPage","MSPPage", "EndPage"] # ordered
 		# "TestPage",
 		self.current_page = 0
 		self.numPages = len(self.frame_names)
@@ -264,6 +296,7 @@ class window():
 		self.init_capteurs_page()
 		self.init_ADC_page()
 		self.init_memory_page()
+		self.init_MSP_page()
 		self.init_end_page()
 
 	def update_capteur_list(self):
@@ -326,6 +359,26 @@ class window():
 			if(memory_name not in self.memory_listbox.get(0, END)):
 				self.memory_listbox.insert(END, memory_name)
 
+	def update_MSP_list(self):
+		# to be called when loading MSPPage or after adding/removing a new MSP (microprocesseur)
+		
+		#print("\nDEBUG update_MSP_list called\n")
+		components_folder_path = os.getcwd() + "/components/"
+		files = os.listdir(components_folder_path) # list of files in 'data_path' folder
+		#print("files in components folder : {}".format(files))
+		MSP_files = [ f for f in files if 'MSP' in f] # get only MSP files
+
+		# print("DEBUG MSP_listbox items:") # DEBUG
+		# print(self.MSP_listbox.get(0, END)) # DEBUG
+
+		# iterate through all MSP files saved in the components folder
+		for MSP_filename in MSP_files:
+			MSP_name = MSP_filename[4:-7] # ex: "MSP_example.pickle" -> "example"
+
+			# if a MSP is saved but not on the list, add it to the list
+			if(MSP_name not in self.MSP_listbox.get(0, END)):
+				self.MSP_listbox.insert(END, MSP_name)
+
 	def add_new_capteur(self):
 		# (self.add_capteur_button command)
 		# opens window to add item to the capteur list in the CapteursPage
@@ -339,8 +392,7 @@ class window():
 	def add_new_MSP(self):
 		# (self.add_MSP_button command)
 		# opens window to add item to the microprocessers list in the MSPPage
-		#toniolow = Add_new_MSP_window(parent=self)
-		pass #TODO
+		MSP_window = Add_new_MSP_window(parent=self)
 
 	def add_new_memory(self):
 		# (self.add_memory_button command)
@@ -406,6 +458,24 @@ class window():
 		self.memory_listbox.delete(ANCHOR)
 		
 		print("DEBUG (remove_selected_memory) removed : {}".format(memory_filename)) # DEBUG
+
+	def remove_selected_MSP(self):
+		# (self.remove_MSP_button command)
+		# removes selected MSP in the list and deletes its file
+		
+		# get name of MSP and corresponding filename
+		MSP_name = self.MSP_listbox.get(ANCHOR)
+		components_folder_path = os.getcwd() + "/components/"
+		MSP_filename = components_folder_path + "MSP_"+ MSP_name + ".pickle"
+
+		# delete file containing the MSP parameters
+		#os.remove(MSP_filename)
+		send2trash(MSP_filename)
+
+		# delete item from listbox
+		self.MSP_listbox.delete(ANCHOR)
+		
+		print("DEBUG (remove_selected_MSP) removed : {}".format(MSP_filename)) # DEBUG
 		
 	def changeScenario(self):
 		scenario = self.scenarioString.get()
@@ -414,7 +484,7 @@ class window():
 			# scenario 1
 			## variables : Autonomie, Source d’énergie
 			## parametres : Périodes de déconnexion, Composants, Configuration
-			self.frame_names = ["StartPage", "ScenariosPage", "CapteursPage", "ADCPage", "MemoryPage", "EndPage"] # ordered
+			self.frame_names = ["StartPage", "ScenariosPage", "CapteursPage", "ADCPage", "MemoryPage", "MSPPage", "EndPage"] # ordered
 
 		elif(scenario == "2"):
 			# TODO TO DO 

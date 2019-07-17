@@ -13,6 +13,20 @@ Graphical User Interface (GUI) made in python for the MATLAB simulation code of 
 - allows to add/remove new components to the system, saving them for future simulations
 - does not allow invalid inputs for new components added to the system
 
+### TO DO
+
+There is still a lot to do to complete this interface:
+- complete this README file
+- save simulation parameters into a .mat file
+- start simulation (MATLAB)
+- recover simulation results from a .mat file
+- show results in a clear fashion
+- allow other "puissances de transmission" to be configured in the add_MRF_window
+- allow other "frequences de traitement" to be configured in the add_MSP_window
+- Scenario 2
+- Scenario 3
+- Scenario 4
+
 ### Context
 In a project of improving the work done by RAMMOUZ Ramzy in his thesis "Optimisation de la gestion d’énergie dans les systèmes embarqués", I will develop an interface to simplify the execution of the simulation, thus facilitating future reuse and continuation of this work.
 

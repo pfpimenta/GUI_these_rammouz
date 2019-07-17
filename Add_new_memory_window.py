@@ -24,9 +24,6 @@ class Add_new_memory_window():
 		# init central frame (where are the parameter entries)
 		self.init_central_frame()
 		
-		# run mainloop
-		#self.root.mainloop()
-
 	def init_main_layout(self, parent_window):
 		### init window:
 		self.root = Toplevel(parent_window)
