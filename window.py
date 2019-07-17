@@ -11,7 +11,7 @@ from convenience import *
 from Add_new_capteur_window import *
 from Add_new_ADC_window import *
 #from Add_new_MSP_window import *
-#from Add_new_memory_window import *
+from Add_new_memory_window import *
 #from Add_new_MRF_window import *
 from Error_window import *
 
@@ -187,6 +187,38 @@ class window():
 		self.remove_ADC_button = Button(buttons_frame, text = "Remove selected ADC", command=self.remove_selected_ADC)
 		self.remove_ADC_button.grid(column=1, row=2, sticky='news')
 
+	def init_memory_page(self):
+		
+		# create page
+		frame = Frame(self.central_frame)#, controller=self)
+		self.frames["MemoryPage"] = frame
+		frame.grid(row=0, column=0, sticky="nsew")
+
+		text = "Add new memory \n (texto explicando algo? sei la)\n #TODO "
+		self.test_lbl = Label(self.frames["MemoryPage"] , text=text, font=self.text_font)
+		self.test_lbl.pack()
+
+		pad_frame = Frame(self.frames["MemoryPage"], height=30)
+		pad_frame.pack()
+
+
+		listbox_buttons_frame = Frame(self.frames["MemoryPage"])
+		listbox_buttons_frame.pack()
+
+		self.memory_listbox = Listbox(listbox_buttons_frame, height=15, width=20)
+		self.memory_listbox.grid(column=0, row=0)
+
+		self.update_memory_list()
+
+		buttons_frame = Frame(listbox_buttons_frame)#(self.frames["MemoryPage"])
+		buttons_frame.grid(column=1, row=0)
+
+		self.add_memory_button = Button(buttons_frame, text = "Add new memory", command=self.add_new_memory)
+		self.add_memory_button.grid(column=1, row=1, sticky='news')
+
+		self.remove_memory_button = Button(buttons_frame, text = "Remove selected memory", command=self.remove_selected_memory)
+		self.remove_memory_button.grid(column=1, row=2, sticky='news')
+
 	def init_start_page(self):
 
 		# create page
@@ -217,7 +249,7 @@ class window():
 
 	def init_pages(self):
 		self.frames = {}
-		self.frame_names = ["StartPage", "ScenariosPage", "CapteursPage", "ADCPage",  "EndPage"] # ordered
+		self.frame_names = ["StartPage", "ScenariosPage", "CapteursPage", "ADCPage", "MemoryPage", "EndPage"] # ordered
 		# "TestPage",
 		self.current_page = 0
 		self.numPages = len(self.frame_names)
@@ -231,6 +263,7 @@ class window():
 		self.init_choose_scenario_page()
 		self.init_capteurs_page()
 		self.init_ADC_page()
+		self.init_memory_page()
 		self.init_end_page()
 
 	def update_capteur_list(self):
@@ -267,21 +300,41 @@ class window():
 
 		# iterate through all ADC files saved in the components folder
 		for ADC_filename in ADC_files:
-			ADC_name = ADC_filename[4:-7] # ex: "capteur_example.pickle" -> "example"
+			ADC_name = ADC_filename[4:-7] # ex: "ADC_example.pickle" -> "example"
 
 			# if a ACC is saved but not on the list, add it to the list
 			if(ADC_name not in self.ADC_listbox.get(0, END)):
 				self.ADC_listbox.insert(END, ADC_name)
 
+	def update_memory_list(self):
+		# to be called when loading MemoryPage or after adding/removing a new memory
+		
+		#print("\nDEBUG update_memory_list called\n")
+		components_folder_path = os.getcwd() + "/components/"
+		files = os.listdir(components_folder_path) # list of files in 'data_path' folder
+		#print("files in components folder : {}".format(files))
+		memory_files = [ f for f in files if 'memory' in f] # get only memory files
+
+		# print("DEBUG memory_listbox items:") # DEBUG
+		# print(self.memory_listbox.get(0, END)) # DEBUG
+
+		# iterate through all memory files saved in the components folder
+		for memory_filename in memory_files:
+			memory_name = memory_filename[7:-7] # ex: "memory_example.pickle" -> "example"
+
+			# if a memory is saved but not on the list, add it to the list
+			if(memory_name not in self.memory_listbox.get(0, END)):
+				self.memory_listbox.insert(END, memory_name)
+
 	def add_new_capteur(self):
 		# (self.add_capteur_button command)
 		# opens window to add item to the capteur list in the CapteursPage
-		toniolow = Add_new_capteur_window(parent=self)
+		capteur_window = Add_new_capteur_window(parent=self)
 
 	def add_new_ADC(self):
 		# (self.add_ADC_button command)
 		# opens window to add item to the ADC list in the ADCPage
-		toniolow = Add_new_ADC_window(parent=self)
+		ADC_window = Add_new_ADC_window(parent=self)
 
 	def add_new_MSP(self):
 		# (self.add_MSP_button command)
@@ -291,9 +344,8 @@ class window():
 
 	def add_new_memory(self):
 		# (self.add_memory_button command)
-		# opens window to add item to the memory list in the MemoriesPage
-		#toniolow = Add_new_memory_window(parent=self)
-		pass #TODO
+		# opens window to add item to the memory list in the MemoryPage
+		memory_window = Add_new_memory_window(parent=self)
 
 	def add_new_MRF(self):
 		# (self.add_MRF_button command)
@@ -336,6 +388,24 @@ class window():
 		self.ADC_listbox.delete(ANCHOR)
 		
 		print("DEBUG (remove_selected_ADC) removed : {}".format(ADC_filename)) # DEBUG
+
+	def remove_selected_memory(self):
+		# (self.remove_memory_button command)
+		# removes selected memory in the list and deletes its file
+		
+		# get name of memory and corresponding filename
+		memory_name = self.memory_listbox.get(ANCHOR)
+		components_folder_path = os.getcwd() + "/components/"
+		memory_filename = components_folder_path + "memory_"+ memory_name + ".pickle"
+
+		# delete file containing the memory parameters
+		#os.remove(memory_filename)
+		send2trash(memory_filename)
+
+		# delete item from listbox
+		self.memory_listbox.delete(ANCHOR)
+		
+		print("DEBUG (remove_selected_memory) removed : {}".format(memory_filename)) # DEBUG
 		
 	def changeScenario(self):
 		scenario = self.scenarioString.get()
@@ -344,7 +414,7 @@ class window():
 			# scenario 1
 			## variables : Autonomie, Source d’énergie
 			## parametres : Périodes de déconnexion, Composants, Configuration
-			self.frame_names = ["StartPage", "ScenariosPage", "CapteursPage", "ADCPage",  "EndPage"] # ordered
+			self.frame_names = ["StartPage", "ScenariosPage", "CapteursPage", "ADCPage", "MemoryPage", "EndPage"] # ordered
 
 		elif(scenario == "2"):
 			# TODO TO DO 

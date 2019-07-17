@@ -7,6 +7,12 @@ Graphical User Interface (GUI) made in python for the MATLAB simulation code of 
 ## how to run
 // TODO
 
+## features
+
+// TODO
+- allows to add/remove new components to the system, saving them for future simulations
+- does not allow invalid inputs for new components added to the system
+
 ### Context
 In a project of improving the work done by RAMMOUZ Ramzy in his thesis "Optimisation de la gestion d’énergie dans les systèmes embarqués", I will develop an interface to simplify the execution of the simulation, thus facilitating future reuse and continuation of this work.
 
