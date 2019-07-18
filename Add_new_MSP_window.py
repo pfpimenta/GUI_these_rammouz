@@ -52,7 +52,7 @@ class Add_new_MSP_window():
 	def init_central_frame(self):
 		# text
 		text = "Saisissez les parametres de la nouvelle memoire, svp"
-		self.text_lbl = Label(self.central_frame, text=text, font=self.text_font)
+		self.text_lbl = Label(self.central_frame, text=text, font=font_subtitles)
 		self.text_lbl.grid(row=0, column=0)
 
 		pad_frame = Frame(self.central_frame, height=30, bg="", colormap="new")
@@ -64,15 +64,23 @@ class Add_new_MSP_window():
 		current_row = 0
 
 		### MSP name
-		lbl_name = Label(frame_for_entries, text="name ")
-		lbl_name.grid(column=1, row=current_row)
+		lbl_name = Label(frame_for_entries, text="Name    ", font=font_subtitles)
+		lbl_name.grid(column=1, row=current_row, sticky=W)
 
 		self.entry_name = Entry(frame_for_entries)
 		self.entry_name.grid(column=2, row=current_row)
 		current_row = current_row + 1
 
+		# Transitions  (label)
+		pad_subtitle = Frame(frame_for_entries, height=15, bg="", colormap="new")
+		pad_subtitle.grid(column=0, row=current_row)
+		current_row = current_row + 1
+		lbl_subtitle = Label(frame_for_entries, text="Transitions ", font=font_subtitles)
+		lbl_subtitle.grid(column=1, row=current_row, columnspan = 2, sticky=W)
+		current_row = current_row + 1
+
 		### transition basse consomation 1 -> actif
-		lbl_trans_basse1_actif = Label(frame_for_entries, text="transition basse consomation 1 -> actif (us) ")
+		lbl_trans_basse1_actif = Label(frame_for_entries, text="Basse consomation 1 -> Actif (us) ", font=font_params)
 		lbl_trans_basse1_actif.grid(column=1, row=current_row)
 
 		self.entry_trans_basse1_actif = Entry(frame_for_entries)
@@ -80,7 +88,7 @@ class Add_new_MSP_window():
 		current_row = current_row + 1
 
 		### transition actif -> basse consomation 1
-		lbl_trans_actif_basse1 = Label(frame_for_entries, text="transition actif -> basse consomation 1 (us) ")
+		lbl_trans_actif_basse1 = Label(frame_for_entries, text="Actif -> Basse consomation 1 (us) ", font=font_params)
 		lbl_trans_actif_basse1.grid(column=1, row=current_row)
 
 		self.entry_trans_actif_basse1 = Entry(frame_for_entries)
@@ -88,7 +96,7 @@ class Add_new_MSP_window():
 		current_row = current_row + 1
 
 		### transition basse consomation 2 -> actif
-		lbl_trans_basse2_actif = Label(frame_for_entries, text="transition basse consomation 2 -> actif (us) ")
+		lbl_trans_basse2_actif = Label(frame_for_entries, text="Basse consomation 2 -> Actif (us) ", font=font_params)
 		lbl_trans_basse2_actif.grid(column=1, row=current_row)
 
 		self.entry_trans_basse2_actif = Entry(frame_for_entries)
@@ -96,15 +104,23 @@ class Add_new_MSP_window():
 		current_row = current_row + 1
 
 		### transition actif -> basse consomation 2
-		lbl_trans_actif_basse2 = Label(frame_for_entries, text="transition actif -> basse consomation 2 (us) ")
+		lbl_trans_actif_basse2 = Label(frame_for_entries, text="Actif -> Basse consomation 2 (us) ", font=font_params)
 		lbl_trans_actif_basse2.grid(column=1, row=current_row)
 
 		self.entry_trans_actif_basse2 = Entry(frame_for_entries)
 		self.entry_trans_actif_basse2.grid(column=2, row=current_row)
 		current_row = current_row + 1
 
+		# Consommation  (label)
+		pad_subtitle = Frame(frame_for_entries, height=15, bg="", colormap="new")
+		pad_subtitle.grid(column=0, row=current_row)
+		current_row = current_row + 1
+		lbl_subtitle = Label(frame_for_entries, text="Consommation ", font=font_subtitles)
+		lbl_subtitle.grid(column=1, row=current_row, columnspan = 2, sticky=W)
+		current_row = current_row + 1
+
 		### Consommation actif (frequence de traitement == 1 MHz)
-		lbl_conso_actif_1 = Label(frame_for_entries, text="consomation mode actif (mA) ")
+		lbl_conso_actif_1 = Label(frame_for_entries, text="Mode actif (mA) ", font=font_params)
 		lbl_conso_actif_1.grid(column=1, row=current_row)
 
 		self.entry_conso_actif_1 = Entry(frame_for_entries)
@@ -112,7 +128,7 @@ class Add_new_MSP_window():
 		current_row = current_row + 1
 
 		### Consommation actif (frequence de traitement == 4 MHz)
-		lbl_conso_actif_4 = Label(frame_for_entries, text="consomation mode actif (mA) ")
+		lbl_conso_actif_4 = Label(frame_for_entries, text="Mode actif (mA) ", font=font_params)
 		lbl_conso_actif_4.grid(column=1, row=current_row)
 
 		self.entry_conso_actif_4 = Entry(frame_for_entries)
@@ -120,7 +136,7 @@ class Add_new_MSP_window():
 		current_row = current_row + 1
 
 		### Consommation actif (frequence de traitement == 8 MHz)
-		lbl_conso_actif_8 = Label(frame_for_entries, text="consomation mode actif (mA) ")
+		lbl_conso_actif_8 = Label(frame_for_entries, text="Mode actif (mA) ", font=font_params)
 		lbl_conso_actif_8.grid(column=1, row=current_row)
 
 		self.entry_conso_actif_8 = Entry(frame_for_entries)
@@ -128,7 +144,7 @@ class Add_new_MSP_window():
 		current_row = current_row + 1
 
 		### Consommation actif (frequence de traitement == 12 MHz)
-		lbl_conso_actif_12 = Label(frame_for_entries, text="consomation mode actif (mA) ")
+		lbl_conso_actif_12 = Label(frame_for_entries, text="Mode actif (mA) ", font=font_params)
 		lbl_conso_actif_12.grid(column=1, row=current_row)
 
 		self.entry_conso_actif_12 = Entry(frame_for_entries)
@@ -136,7 +152,7 @@ class Add_new_MSP_window():
 		current_row = current_row + 1
 
 		### Consommation actif (frequence de traitement == 16 MHz)
-		lbl_conso_actif_16 = Label(frame_for_entries, text="consomation mode actif (mA) ")
+		lbl_conso_actif_16 = Label(frame_for_entries, text="Mode actif (mA) ", font=font_params)
 		lbl_conso_actif_16.grid(column=1, row=current_row)
 
 		self.entry_conso_actif_16 = Entry(frame_for_entries)
@@ -144,7 +160,7 @@ class Add_new_MSP_window():
 		current_row = current_row + 1
 		
 		### consomation mode basse consomation 1 (frequence de traitement == 1 MHz)
-		lbl_conso_basse1_1 = Label(frame_for_entries, text="consomation mode basse consomation 1 (uA) ")
+		lbl_conso_basse1_1 = Label(frame_for_entries, text="Mode basse consomation 1 (uA) ", font=font_params)
 		lbl_conso_basse1_1.grid(column=1, row=current_row)
 
 		self.entry_conso_basse1_1 = Entry(frame_for_entries)
@@ -152,7 +168,7 @@ class Add_new_MSP_window():
 		current_row = current_row + 1
 
 		### consomation mode basse consomation 1 (frequence de traitement == 4 MHz)
-		lbl_conso_basse1_4 = Label(frame_for_entries, text="consomation mode basse consomation 1 (uA) ")
+		lbl_conso_basse1_4 = Label(frame_for_entries, text="Mode basse consomation 1 (uA) ", font=font_params)
 		lbl_conso_basse1_4.grid(column=1, row=current_row)
 
 		self.entry_conso_basse1_4 = Entry(frame_for_entries)
@@ -160,7 +176,7 @@ class Add_new_MSP_window():
 		current_row = current_row + 1
 
 		### consomation mode basse consomation 1 (frequence de traitement == 8 MHz)
-		lbl_conso_basse1_8 = Label(frame_for_entries, text="consomation mode basse consomation 1 (uA) ")
+		lbl_conso_basse1_8 = Label(frame_for_entries, text="Mode basse consomation 1 (uA) ", font=font_params)
 		lbl_conso_basse1_8.grid(column=1, row=current_row)
 
 		self.entry_conso_basse1_8 = Entry(frame_for_entries)
@@ -168,7 +184,7 @@ class Add_new_MSP_window():
 		current_row = current_row + 1
 
 		### consomation mode basse consomation 1 (frequence de traitement == 12 MHz)
-		lbl_conso_basse1_12 = Label(frame_for_entries, text="consomation mode basse consomation 1 (uA) ")
+		lbl_conso_basse1_12 = Label(frame_for_entries, text="Mode basse consomation 1 (uA) ", font=font_params)
 		lbl_conso_basse1_12.grid(column=1, row=current_row)
 
 		self.entry_conso_basse1_12 = Entry(frame_for_entries)
@@ -176,7 +192,7 @@ class Add_new_MSP_window():
 		current_row = current_row + 1
 
 		### consomation mode basse consomation 1 (frequence de traitement == 16 MHz)
-		lbl_conso_basse1_16 = Label(frame_for_entries, text="consomation mode basse consomation 1 (uA) ")
+		lbl_conso_basse1_16 = Label(frame_for_entries, text="Mode basse consomation 1 (uA) ", font=font_params)
 		lbl_conso_basse1_16.grid(column=1, row=current_row)
 
 		self.entry_conso_basse1_16 = Entry(frame_for_entries)
@@ -184,7 +200,7 @@ class Add_new_MSP_window():
 		current_row = current_row + 1
 
 		### consomation mode basse consomation 2
-		lbl_conso_basse2 = Label(frame_for_entries, text="consomation mode basse consomation 2 (uA) ")
+		lbl_conso_basse2 = Label(frame_for_entries, text="Mode basse consomation 2 (uA) ", font=font_params)
 		lbl_conso_basse2.grid(column=1, row=current_row)
 
 		self.entry_conso_basse2 = Entry(frame_for_entries)

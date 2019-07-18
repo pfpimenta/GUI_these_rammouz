@@ -99,7 +99,6 @@ class Add_new_capteur_window():
 		lbl_subtitle.grid(column=1, row=current_row, columnspan = 2, sticky=W)
 		current_row = current_row + 1
 
-
 		### transition basse consomation -> actif
 		lbl_trans_basse_actif = Label(frame_for_entries, text="Basse consomation -> Actif (ms) ", font=font_params)
 		lbl_trans_basse_actif.grid(column=1, row=current_row, sticky=W)

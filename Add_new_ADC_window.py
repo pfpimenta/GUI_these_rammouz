@@ -50,9 +50,10 @@ class Add_new_ADC_window():
 		pad_frame_bottom.grid(column=10, row=10)
 
 	def init_central_frame(self):
+
 		# text
 		text = "Saisissez les parametres du nouveau ADC, svp"
-		self.text_lbl = Label(self.central_frame, text=text, font=self.text_font)
+		self.text_lbl = Label(self.central_frame, text=text, font=font_subtitles)
 		self.text_lbl.grid(row=0, column=0)
 
 		pad_frame = Frame(self.central_frame, height=30, bg="", colormap="new")
@@ -61,54 +62,88 @@ class Add_new_ADC_window():
 		frame_for_entries = Frame(self.central_frame)
 		frame_for_entries.grid(row=2, column=0)
 
+		current_row = 0
+
 		### ADC name
-		lbl_name = Label(frame_for_entries, text="name")
-		lbl_name.grid(column=1, row=0)
+		lbl_name = Label(frame_for_entries, text="Name ", font=font_subtitles)
+		lbl_name.grid(column=1, row=current_row, sticky=W)
 
 		self.entry_name = Entry(frame_for_entries)
-		self.entry_name.grid(column=2, row=0)
+		self.entry_name.grid(column=2, row=current_row)
+		current_row = current_row + 1
+
+		# Echantillonage  (label)
+		pad_subtitle = Frame(frame_for_entries, height=15, bg="", colormap="new")
+		pad_subtitle.grid(column=0, row=current_row)
+		current_row = current_row + 1
+		lbl_subtitle = Label(frame_for_entries, text="Echantillonage ", font=font_subtitles)
+		lbl_subtitle.grid(column=1, row=current_row, columnspan = 2, sticky=W)
+		current_row = current_row + 1
 
 		### temps de conversion
-		lbl_temps = Label(frame_for_entries, text="temps de conversion (us) ")
-		lbl_temps.grid(column=1, row=1)
+		lbl_temps = Label(frame_for_entries, text="Temps de conversion (us) ", font=font_params)
+		lbl_temps.grid(column=1, row=current_row)
 
 		self.entry_temps = Entry(frame_for_entries)
-		self.entry_temps.grid(column=2, row=1)
+		self.entry_temps.grid(column=2, row=current_row)
+		current_row = current_row + 1
+
+		# Transitions  (label)
+		pad_subtitle = Frame(frame_for_entries, height=15, bg="", colormap="new")
+		pad_subtitle.grid(column=0, row=current_row)
+		current_row = current_row + 1
+		lbl_subtitle = Label(frame_for_entries, text="Transitions ", font=font_subtitles)
+		lbl_subtitle.grid(column=1, row=current_row, columnspan = 2, sticky=W)
+		current_row = current_row + 1
 
 		### transition basse consomation -> actif
-		lbl_trans_basse_actif = Label(frame_for_entries, text="transition basse consomation -> actif (ms) ")
-		lbl_trans_basse_actif.grid(column=1, row=2)
+		lbl_trans_basse_actif = Label(frame_for_entries, text="Basse consomation -> actif (ms) ", font=font_params)
+		lbl_trans_basse_actif.grid(column=1, row=current_row)
 
 		self.entry_trans_basse_actif = Entry(frame_for_entries)
-		self.entry_trans_basse_actif.grid(column=2, row=2)
+		self.entry_trans_basse_actif.grid(column=2, row=current_row)
+		current_row = current_row + 1
 
 		### transition actif -> basse consomation
-		lbl_trans_actif_basse = Label(frame_for_entries, text="transition actif -> basse consomation (ms) ")
-		lbl_trans_actif_basse.grid(column=1, row=3)
+		lbl_trans_actif_basse = Label(frame_for_entries, text="Actif -> basse consomation (ms) ", font=font_params)
+		lbl_trans_actif_basse.grid(column=1, row=current_row)
 
 		self.entry_trans_actif_basse = Entry(frame_for_entries)
-		self.entry_trans_actif_basse.grid(column=2, row=3)
+		self.entry_trans_actif_basse.grid(column=2, row=current_row)
+		current_row = current_row + 1
+
+		# Consommation  (label)
+		pad_subtitle = Frame(frame_for_entries, height=15, bg="", colormap="new")
+		pad_subtitle.grid(column=0, row=current_row)
+		current_row = current_row + 1
+		lbl_subtitle = Label(frame_for_entries, text="Consommation ", font=font_subtitles)
+		lbl_subtitle.grid(column=1, row=current_row, columnspan = 2, sticky=W)
+		current_row = current_row + 1
+
 
 		### consomation mode actif
-		lbl_conso_actif = Label(frame_for_entries, text="consomation mode actif (uA) ")
-		lbl_conso_actif.grid(column=1, row=4)
+		lbl_conso_actif = Label(frame_for_entries, text="Mode actif (uA) ", font=font_params)
+		lbl_conso_actif.grid(column=1, row=current_row)
 
 		self.entry_conso_actif = Entry(frame_for_entries)
-		self.entry_conso_actif.grid(column=2, row=4)
+		self.entry_conso_actif.grid(column=2, row=current_row)
+		current_row = current_row + 1
 
 		### consomation mode basse consomation
-		lbl_conso_basse = Label(frame_for_entries, text="consomation mode basse consomation (uA) ")
-		lbl_conso_basse.grid(column=1, row=5)
+		lbl_conso_basse = Label(frame_for_entries, text="Mode basse consomation (uA) ", font=font_params)
+		lbl_conso_basse.grid(column=1, row=current_row)
 
 		self.entry_conso_basse = Entry(frame_for_entries)
-		self.entry_conso_basse.grid(column=2, row=5)
+		self.entry_conso_basse.grid(column=2, row=current_row)
+		current_row = current_row + 1
 
 		### consomation mode conversion
-		lbl_conso_conversion = Label(frame_for_entries, text="consomation mode conversion (uA) ")
-		lbl_conso_conversion.grid(column=1, row=6)
+		lbl_conso_conversion = Label(frame_for_entries, text="Mode conversion (uA) ", font=font_params)
+		lbl_conso_conversion.grid(column=1, row=current_row)
 
 		self.entry_conso_conversion = Entry(frame_for_entries)
-		self.entry_conso_conversion.grid(column=2, row=6)
+		self.entry_conso_conversion.grid(column=2, row=current_row)
+		current_row = current_row + 1
 
 	def verify_ADC_params(self, ADC_params):
 		# verify if the parameters of the ADC are valid

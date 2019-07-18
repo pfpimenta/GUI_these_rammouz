@@ -98,7 +98,7 @@ class window():
 		frame.grid(row=0, column=0, sticky="nsew")
 
 		text = "Choose scenario to simulate"
-		self.test_lbl = Label(self.frames["ScenariosPage"] , text=text, font=self.text_font)
+		self.test_lbl = Label(self.frames["ScenariosPage"] , text=text, font=font_subtitles)
 		self.test_lbl.grid(row=0, column=0)
 
 		pad_frame = Frame(self.frames["ScenariosPage"], height=30, bg="", colormap="new")
@@ -130,8 +130,8 @@ class window():
 		self.frames["CapteursPage"] = frame
 		frame.grid(row=0, column=0, sticky="nsew")
 
-		text = "Add new capteur \n (texto explicando algo? sei la)\n #TODO "
-		self.test_lbl = Label(self.frames["CapteursPage"] , text=text, font=self.text_font)
+		text = "Capteurs"# \n (texto explicando algo? sei la)\n #TODO "
+		self.test_lbl = Label(self.frames["CapteursPage"] , text=text, font=font_subtitles)
 		self.test_lbl.pack()
 
 		pad_frame = Frame(self.frames["CapteursPage"], height=30)
@@ -162,8 +162,8 @@ class window():
 		self.frames["ADCPage"] = frame
 		frame.grid(row=0, column=0, sticky="nsew")
 
-		text = "Add new ADC \n (texto explicando algo? sei la)\n #TODO "
-		self.test_lbl = Label(self.frames["ADCPage"] , text=text, font=self.text_font)
+		text = "Analog-Digial Converters"# \n (texto explicando algo? sei la)\n #TODO "
+		self.test_lbl = Label(self.frames["ADCPage"] , text=text, font=font_subtitles)
 		self.test_lbl.pack()
 
 		pad_frame = Frame(self.frames["ADCPage"], height=30)
@@ -194,8 +194,8 @@ class window():
 		self.frames["MemoryPage"] = frame
 		frame.grid(row=0, column=0, sticky="nsew")
 
-		text = "Add new memory \n (texto explicando algo? sei la)\n #TODO "
-		self.test_lbl = Label(self.frames["MemoryPage"] , text=text, font=self.text_font)
+		text = "Memories"# \n (texto explicando algo? sei la)\n #TODO "
+		self.test_lbl = Label(self.frames["MemoryPage"] , text=text, font=font_subtitles)
 		self.test_lbl.pack()
 
 		pad_frame = Frame(self.frames["MemoryPage"], height=30)
@@ -226,8 +226,8 @@ class window():
 		self.frames["MSPPage"] = frame
 		frame.grid(row=0, column=0, sticky="nsew")
 
-		text = "Add new MSP \n (texto explicando algo? sei la)\n #TODO "
-		self.test_lbl = Label(self.frames["MSPPage"] , text=text, font=self.text_font)
+		text = "Microprocesseurs"# \n (texto explicando algo? sei la)\n #TODO "
+		self.test_lbl = Label(self.frames["MSPPage"] , text=text, font=font_subtitles)
 		self.test_lbl.pack()
 
 		pad_frame = Frame(self.frames["MSPPage"], height=30)
@@ -259,8 +259,8 @@ class window():
 		self.frames["MRFPage"] = frame
 		frame.grid(row=0, column=0, sticky="nsew")
 
-		text = "Add new MRF \n (texto explicando algo? sei la)\n #TODO "
-		self.test_lbl = Label(self.frames["MRFPage"] , text=text, font=self.text_font)
+		text = "Modules Radio-Frequence"#\n (texto explicando algo? sei la)\n #TODO "
+		self.test_lbl = Label(self.frames["MRFPage"] , text=text, font=font_subtitles)
 		self.test_lbl.pack()
 
 		pad_frame = Frame(self.frames["MRFPage"], height=30)
@@ -323,7 +323,6 @@ class window():
 		# choix Etat
 		# periodes de deconnexion quotidiennes (borne inferieure et superieure)
 
-
 	def init_start_page(self):
 
 		# create page
@@ -332,12 +331,12 @@ class window():
 		frame.grid(row=0, column=0, sticky="nsew")
 
 		# text
-		self.start_lbl = Label(self.frames["StartPage"] , text=START_PAGE_TEXT, font=self.text_font)
+		self.start_lbl = Label(self.frames["StartPage"] , text=START_PAGE_TEXT, font=font_params)
 		self.start_lbl.pack()
 		pad_frame_top_1 = Frame(self.frames["StartPage"], height=100)
 		pad_frame_top_1.pack() #.grid(column=0, row=0)
 
-		self.thesis_link_lbl = Label(self.frames["StartPage"] , text=THESIS_LINK, font=self.text_font)
+		self.thesis_link_lbl = Label(self.frames["StartPage"] , text=THESIS_LINK, font=font_params)
 		self.thesis_link_lbl.pack()
 
 	def init_end_page(self):
@@ -349,7 +348,7 @@ class window():
 
 		# text
 		end_text = END_PAGE_TEXT
-		self.end_lbl = Label(self.frames["EndPage"] , text=end_text, font=self.text_font)
+		self.end_lbl = Label(self.frames["EndPage"] , text=end_text, font=font_params)
 		self.end_lbl.pack()
 
 	def init_pages(self):

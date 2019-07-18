@@ -52,7 +52,7 @@ class Add_new_memory_window():
 	def init_central_frame(self):
 		# text
 		text = "Saisissez les parametres de la nouvelle memoire, svp"
-		self.text_lbl = Label(self.central_frame, text=text, font=self.text_font)
+		self.text_lbl = Label(self.central_frame, text=text, font=font_params)
 		self.text_lbl.grid(row=0, column=0)
 
 		pad_frame = Frame(self.central_frame, height=30, bg="", colormap="new")
@@ -64,15 +64,23 @@ class Add_new_memory_window():
 		current_row = 0
 
 		### memory name
-		lbl_name = Label(frame_for_entries, text="name")
-		lbl_name.grid(column=1, row=current_row)
+		lbl_name = Label(frame_for_entries, text="Name", font=font_subtitles)
+		lbl_name.grid(column=1, row=current_row, sticky=W)
 
 		self.entry_name = Entry(frame_for_entries)
 		self.entry_name.grid(column=2, row=current_row)
 		current_row = current_row + 1
 
+		# Fonctionnement  (label)
+		pad_subtitle = Frame(frame_for_entries, height=15, bg="", colormap="new")
+		pad_subtitle.grid(column=0, row=current_row)
+		current_row = current_row + 1
+		lbl_subtitle = Label(frame_for_entries, text="Fonctionnement ", font=font_subtitles)
+		lbl_subtitle.grid(column=1, row=current_row, columnspan = 2, sticky=W)
+		current_row = current_row + 1
+
 		### taille
-		lbl_taille = Label(frame_for_entries, text="Taille (ko) ")
+		lbl_taille = Label(frame_for_entries, text="Taille (ko) ", font=font_params)
 		lbl_taille.grid(column=1, row=current_row)
 
 		self.entry_taille = Entry(frame_for_entries)
@@ -80,7 +88,7 @@ class Add_new_memory_window():
 		current_row = current_row + 1
 
 		### Octets par instruction
-		lbl_octets_intruction = Label(frame_for_entries, text="Octets par instruction (o) ")
+		lbl_octets_intruction = Label(frame_for_entries, text="Octets par instruction (o) ", font=font_params)
 		lbl_octets_intruction.grid(column=1, row=current_row)
 
 		self.entry_octets_intruction = Entry(frame_for_entries)
@@ -88,7 +96,7 @@ class Add_new_memory_window():
 		current_row = current_row + 1
 
 		### Frequence SPI
-		lbl_freq_spi = Label(frame_for_entries, text="Frequence SPI (MHz) ")
+		lbl_freq_spi = Label(frame_for_entries, text="Frequence SPI (MHz) ", font=font_params)
 		lbl_freq_spi.grid(column=1, row=current_row)
 
 		self.entry_freq_spi = Entry(frame_for_entries)
@@ -96,7 +104,7 @@ class Add_new_memory_window():
 		current_row = current_row + 1
 
 		### Octets par ecriture
-		lbl_octets_ecriture = Label(frame_for_entries, text="Octets par ecriture (o) ")
+		lbl_octets_ecriture = Label(frame_for_entries, text="Octets par ecriture (o) ", font=font_params)
 		lbl_octets_ecriture.grid(column=1, row=current_row)
 
 		self.entry_octets_ecriture = Entry(frame_for_entries)
@@ -104,7 +112,7 @@ class Add_new_memory_window():
 		current_row = current_row + 1
 
 		### Duree d'ecriture
-		lbl_duree_ecriture = Label(frame_for_entries, text="Duree d'ecriture (us) ")
+		lbl_duree_ecriture = Label(frame_for_entries, text="Duree d'ecriture (us) ", font=font_params)
 		lbl_duree_ecriture.grid(column=1, row=current_row)
 
 		self.entry_duree_ecriture = Entry(frame_for_entries)
@@ -112,7 +120,7 @@ class Add_new_memory_window():
 		current_row = current_row + 1
 
 		### Octets par lecture
-		lbl_octets_lecture = Label(frame_for_entries, text="Octets par lecture (o) ")
+		lbl_octets_lecture = Label(frame_for_entries, text="Octets par lecture (o) ", font=font_params)
 		lbl_octets_lecture.grid(column=1, row=current_row)
 
 		self.entry_octets_lecture = Entry(frame_for_entries)
@@ -120,7 +128,7 @@ class Add_new_memory_window():
 		current_row = current_row + 1
 
 		### Duree de lecture
-		lbl_duree_lecture = Label(frame_for_entries, text="Duree d'lecture (us) ")
+		lbl_duree_lecture = Label(frame_for_entries, text="Duree d'lecture (us) ", font=font_params)
 		lbl_duree_lecture.grid(column=1, row=current_row)
 
 		self.entry_duree_lecture = Entry(frame_for_entries)
@@ -128,7 +136,7 @@ class Add_new_memory_window():
 		current_row = current_row + 1
 
 		### Octets par effacement
-		lbl_octets_effacement = Label(frame_for_entries, text="Octets par effacement (ko) ")
+		lbl_octets_effacement = Label(frame_for_entries, text="Octets par effacement (ko) ", font=font_params)
 		lbl_octets_effacement.grid(column=1, row=current_row)
 
 		self.entry_octets_effacement = Entry(frame_for_entries)
@@ -136,15 +144,23 @@ class Add_new_memory_window():
 		current_row = current_row + 1
 
 		### Duree d'effacement
-		lbl_duree_effacement = Label(frame_for_entries, text="Duree d'effacement (ms) ")
+		lbl_duree_effacement = Label(frame_for_entries, text="Duree d'effacement (ms) ", font=font_params)
 		lbl_duree_effacement.grid(column=1, row=current_row)
 
 		self.entry_duree_effacement = Entry(frame_for_entries)
 		self.entry_duree_effacement.grid(column=2, row=current_row)
 		current_row = current_row + 1
 
+		# Transitions  (label)
+		pad_subtitle = Frame(frame_for_entries, height=15, bg="", colormap="new")
+		pad_subtitle.grid(column=0, row=current_row)
+		current_row = current_row + 1
+		lbl_subtitle = Label(frame_for_entries, text="Transitions ", font=font_subtitles)
+		lbl_subtitle.grid(column=1, row=current_row, columnspan = 2, sticky=W)
+		current_row = current_row + 1
+
 		### transition basse consomation 1 -> actif
-		lbl_trans_basse1_actif = Label(frame_for_entries, text="transition basse consomation 1 -> actif (us) ")
+		lbl_trans_basse1_actif = Label(frame_for_entries, text="Basse consomation 1 -> Actif (us) ", font=font_params)
 		lbl_trans_basse1_actif.grid(column=1, row=current_row)
 
 		self.entry_trans_basse1_actif = Entry(frame_for_entries)
@@ -152,7 +168,7 @@ class Add_new_memory_window():
 		current_row = current_row + 1
 
 		### transition actif -> basse consomation 1
-		lbl_trans_actif_basse1 = Label(frame_for_entries, text="transition actif -> basse consomation 1 (us) ")
+		lbl_trans_actif_basse1 = Label(frame_for_entries, text="Actif -> Basse consomation 1 (us) ", font=font_params)
 		lbl_trans_actif_basse1.grid(column=1, row=current_row)
 
 		self.entry_trans_actif_basse1 = Entry(frame_for_entries)
@@ -160,7 +176,7 @@ class Add_new_memory_window():
 		current_row = current_row + 1
 
 		### transition basse consomation 2 -> actif
-		lbl_trans_basse2_actif = Label(frame_for_entries, text="transition basse consomation 2 -> actif (us) ")
+		lbl_trans_basse2_actif = Label(frame_for_entries, text="Basse consomation 2 -> Actif (us) ", font=font_params)
 		lbl_trans_basse2_actif.grid(column=1, row=current_row)
 
 		self.entry_trans_basse2_actif = Entry(frame_for_entries)
@@ -168,15 +184,23 @@ class Add_new_memory_window():
 		current_row = current_row + 1
 
 		### transition actif -> basse consomation 2
-		lbl_trans_actif_basse2 = Label(frame_for_entries, text="transition actif -> basse consomation 2 (us) ")
+		lbl_trans_actif_basse2 = Label(frame_for_entries, text="Actif -> Basse consomation 2 (us) ", font=font_params)
 		lbl_trans_actif_basse2.grid(column=1, row=current_row)
 
 		self.entry_trans_actif_basse2 = Entry(frame_for_entries)
 		self.entry_trans_actif_basse2.grid(column=2, row=current_row)
 		current_row = current_row + 1
 
+		# Consommation  (label)
+		pad_subtitle = Frame(frame_for_entries, height=15, bg="", colormap="new")
+		pad_subtitle.grid(column=0, row=current_row)
+		current_row = current_row + 1
+		lbl_subtitle = Label(frame_for_entries, text="Consommation ", font=font_subtitles)
+		lbl_subtitle.grid(column=1, row=current_row, columnspan = 2, sticky=W)
+		current_row = current_row + 1
+
 		### consomation mode actif
-		lbl_conso_actif = Label(frame_for_entries, text="consomation mode actif (mA) ")
+		lbl_conso_actif = Label(frame_for_entries, text="Mode actif (mA) ", font=font_params)
 		lbl_conso_actif.grid(column=1, row=current_row)
 
 		self.entry_conso_actif = Entry(frame_for_entries)
@@ -184,7 +208,7 @@ class Add_new_memory_window():
 		current_row = current_row + 1
 
 		### consomation mode ecriture
-		lbl_conso_ecriture = Label(frame_for_entries, text="consomation mode ecriture (mA) ")
+		lbl_conso_ecriture = Label(frame_for_entries, text="Mode ecriture (mA) ", font=font_params)
 		lbl_conso_ecriture.grid(column=1, row=current_row)
 
 		self.entry_conso_ecriture = Entry(frame_for_entries)
@@ -192,7 +216,7 @@ class Add_new_memory_window():
 		current_row = current_row + 1
 
 		### consomation mode lecture
-		lbl_conso_lecture = Label(frame_for_entries, text="consomation mode lecture (mA) ")
+		lbl_conso_lecture = Label(frame_for_entries, text="Mode lecture (mA) ", font=font_params)
 		lbl_conso_lecture.grid(column=1, row=current_row)
 
 		self.entry_conso_lecture = Entry(frame_for_entries)
@@ -200,7 +224,7 @@ class Add_new_memory_window():
 		current_row = current_row + 1
 
 		### consomation mode effacement
-		lbl_conso_effacement = Label(frame_for_entries, text="consomation mode effacement (mA) ")
+		lbl_conso_effacement = Label(frame_for_entries, text="Mode effacement (mA) ", font=font_params)
 		lbl_conso_effacement.grid(column=1, row=current_row)
 
 		self.entry_conso_effacement = Entry(frame_for_entries)
@@ -208,7 +232,7 @@ class Add_new_memory_window():
 		current_row = current_row + 1
 		
 		### consomation mode basse consomation 1
-		lbl_conso_basse1 = Label(frame_for_entries, text="consomation mode basse consomation 1 (uA) ")
+		lbl_conso_basse1 = Label(frame_for_entries, text="Mode basse consomation 1 (uA) ", font=font_params)
 		lbl_conso_basse1.grid(column=1, row=current_row)
 
 		self.entry_conso_basse1 = Entry(frame_for_entries)
@@ -216,7 +240,7 @@ class Add_new_memory_window():
 		current_row = current_row + 1
 
 		### consomation mode basse consomation 2
-		lbl_conso_basse2 = Label(frame_for_entries, text="consomation mode basse consomation 2 (uA) ")
+		lbl_conso_basse2 = Label(frame_for_entries, text="Mode basse consomation 2 (uA) ", font=font_params)
 		lbl_conso_basse2.grid(column=1, row=current_row)
 
 		self.entry_conso_basse2 = Entry(frame_for_entries)

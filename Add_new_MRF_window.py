@@ -52,7 +52,7 @@ class Add_new_MRF_window():
 	def init_central_frame(self):
 		# text
 		text = "Saisissez les parametres de la nouvelle memoire, svp"
-		self.text_lbl = Label(self.central_frame, text=text, font=self.text_font)
+		self.text_lbl = Label(self.central_frame, text=text, font=font_subtitles)
 		self.text_lbl.grid(row=0, column=0)
 
 		pad_frame = Frame(self.central_frame, height=30, bg="", colormap="new")
@@ -64,15 +64,23 @@ class Add_new_MRF_window():
 		current_row = 0
 
 		### MRF name
-		lbl_name = Label(frame_for_entries, text="name ")
-		lbl_name.grid(column=1, row=current_row)
+		lbl_name = Label(frame_for_entries, text="Name    ", font=font_subtitles)
+		lbl_name.grid(column=1, row=current_row, sticky=W)
 
 		self.entry_name = Entry(frame_for_entries)
 		self.entry_name.grid(column=2, row=current_row)
 		current_row = current_row + 1
 
+		# Transitions  (label)
+		pad_subtitle = Frame(frame_for_entries, height=15, bg="", colormap="new")
+		pad_subtitle.grid(column=0, row=current_row)
+		current_row = current_row + 1
+		lbl_subtitle = Label(frame_for_entries, text="Transitions ", font=font_subtitles)
+		lbl_subtitle.grid(column=1, row=current_row, columnspan = 2, sticky=W)
+		current_row = current_row + 1
+
 		### Connection interval
-		lbl_connection_interval = Label(frame_for_entries, text="Connection interval (ms) ")
+		lbl_connection_interval = Label(frame_for_entries, text="Connection interval (ms) ", font=font_params)
 		lbl_connection_interval.grid(column=1, row=current_row)
 
 		self.entry_connection_interval = Entry(frame_for_entries)
@@ -80,7 +88,7 @@ class Add_new_MRF_window():
 		current_row = current_row + 1
 
 		### Advertising interval
-		lbl_advertising_interval = Label(frame_for_entries, text="Advertising interval (ms) ")
+		lbl_advertising_interval = Label(frame_for_entries, text="Advertising interval (ms) ", font=font_params)
 		lbl_advertising_interval.grid(column=1, row=current_row)
 
 		self.entry_advertising_interval = Entry(frame_for_entries)
@@ -88,7 +96,7 @@ class Add_new_MRF_window():
 		current_row = current_row + 1
 
 		### transition basse consomation 1 -> actif
-		lbl_trans_basse1_actif = Label(frame_for_entries, text="transition basse consomation 1 -> actif (us) ")
+		lbl_trans_basse1_actif = Label(frame_for_entries, text="transition basse consomation 1 -> actif (us) ", font=font_params)
 		lbl_trans_basse1_actif.grid(column=1, row=current_row)
 
 		self.entry_trans_basse1_actif = Entry(frame_for_entries)
@@ -96,7 +104,7 @@ class Add_new_MRF_window():
 		current_row = current_row + 1
 
 		### transition actif -> basse consomation 1
-		lbl_trans_actif_basse1 = Label(frame_for_entries, text="transition actif -> basse consomation 1 (us) ")
+		lbl_trans_actif_basse1 = Label(frame_for_entries, text="transition actif -> basse consomation 1 (us) ", font=font_params)
 		lbl_trans_actif_basse1.grid(column=1, row=current_row)
 
 		self.entry_trans_actif_basse1 = Entry(frame_for_entries)
@@ -104,7 +112,7 @@ class Add_new_MRF_window():
 		current_row = current_row + 1
 
 		### transition basse consomation 2 -> actif
-		lbl_trans_basse2_actif = Label(frame_for_entries, text="transition basse consomation 2 -> actif (us) ")
+		lbl_trans_basse2_actif = Label(frame_for_entries, text="transition basse consomation 2 -> actif (us) ", font=font_params)
 		lbl_trans_basse2_actif.grid(column=1, row=current_row)
 
 		self.entry_trans_basse2_actif = Entry(frame_for_entries)
@@ -112,15 +120,23 @@ class Add_new_MRF_window():
 		current_row = current_row + 1
 
 		### transition actif -> basse consomation 2
-		lbl_trans_actif_basse2 = Label(frame_for_entries, text="transition actif -> basse consomation 2 (us) ")
+		lbl_trans_actif_basse2 = Label(frame_for_entries, text="transition actif -> basse consomation 2 (us) ", font=font_params)
 		lbl_trans_actif_basse2.grid(column=1, row=current_row)
 
 		self.entry_trans_actif_basse2 = Entry(frame_for_entries)
 		self.entry_trans_actif_basse2.grid(column=2, row=current_row)
 		current_row = current_row + 1
 
+		# Consommation  (label)
+		pad_subtitle = Frame(frame_for_entries, height=15, bg="", colormap="new")
+		pad_subtitle.grid(column=0, row=current_row)
+		current_row = current_row + 1
+		lbl_subtitle = Label(frame_for_entries, text="Consommation ", font=font_subtitles)
+		lbl_subtitle.grid(column=1, row=current_row, columnspan = 2, sticky=W)
+		current_row = current_row + 1
+
 		### Transmission (puissance de transmission == 1)
-		lbl_transm_1 = Label(frame_for_entries, text="Transmission (puissance de transmission == 1) (mA) ")
+		lbl_transm_1 = Label(frame_for_entries, text="Transmission (puissance de transmission == 1) (mA) ", font=font_params)
 		lbl_transm_1.grid(column=1, row=current_row)
 
 		self.entry_transm_1 = Entry(frame_for_entries)
@@ -128,7 +144,7 @@ class Add_new_MRF_window():
 		current_row = current_row + 1
 
 		### Transmission (puissance de transmission == 7)
-		lbl_transm_7 = Label(frame_for_entries, text="Transmission (puissance de transmission == 7) (mA) ")
+		lbl_transm_7 = Label(frame_for_entries, text="Transmission (puissance de transmission == 7) (mA) ", font=font_params)
 		lbl_transm_7.grid(column=1, row=current_row)
 
 		self.entry_transm_7 = Entry(frame_for_entries)
@@ -136,7 +152,7 @@ class Add_new_MRF_window():
 		current_row = current_row + 1
 
 		### Transmission (puissance de transmission == 15)
-		lbl_transm_15 = Label(frame_for_entries, text="Transmission (puissance de transmission == 15) (mA) ")
+		lbl_transm_15 = Label(frame_for_entries, text="Transmission (puissance de transmission == 15) (mA) ", font=font_params)
 		lbl_transm_15.grid(column=1, row=current_row)
 
 		self.entry_transm_15 = Entry(frame_for_entries)
@@ -144,7 +160,7 @@ class Add_new_MRF_window():
 		current_row = current_row + 1
 
 		### consomation mode reception
-		lbl_conso_reception = Label(frame_for_entries, text="consomation mode reception (mA) ")
+		lbl_conso_reception = Label(frame_for_entries, text="consomation mode reception (mA) ", font=font_params)
 		lbl_conso_reception.grid(column=1, row=current_row)
 
 		self.entry_conso_reception = Entry(frame_for_entries)
@@ -152,7 +168,7 @@ class Add_new_MRF_window():
 		current_row = current_row + 1
 
 		### consomation mode actif
-		lbl_conso_actif = Label(frame_for_entries, text="consomation mode actif (mA) ")
+		lbl_conso_actif = Label(frame_for_entries, text="consomation mode actif (mA) ", font=font_params)
 		lbl_conso_actif.grid(column=1, row=current_row)
 
 		self.entry_conso_actif = Entry(frame_for_entries)
@@ -160,7 +176,7 @@ class Add_new_MRF_window():
 		current_row = current_row + 1
 		
 		### consomation mode basse consomation 1
-		lbl_conso_basse1 = Label(frame_for_entries, text="consomation mode basse consomation 1 (uA) ")
+		lbl_conso_basse1 = Label(frame_for_entries, text="consomation mode basse consomation 1 (uA) ", font=font_params)
 		lbl_conso_basse1.grid(column=1, row=current_row)
 
 		self.entry_conso_basse1 = Entry(frame_for_entries)
@@ -168,7 +184,7 @@ class Add_new_MRF_window():
 		current_row = current_row + 1
 
 		### consomation mode basse consomation 2
-		lbl_conso_basse2 = Label(frame_for_entries, text="consomation mode basse consomation 2 (uA) ")
+		lbl_conso_basse2 = Label(frame_for_entries, text="consomation mode basse consomation 2 (uA) ", font=font_params)
 		lbl_conso_basse2.grid(column=1, row=current_row)
 
 		self.entry_conso_basse2 = Entry(frame_for_entries)
