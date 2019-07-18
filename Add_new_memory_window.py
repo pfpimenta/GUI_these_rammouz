@@ -272,7 +272,9 @@ class Add_new_memory_window():
 		
 		# put params into a dict
 		memory_params = {}
+		# name :
 		memory_params["name"] =  self.entry_name.get()
+		# fonctionnement :
 		memory_params["taille"] =  self.entry_taille.get()
 		memory_params["octets_instruction"] =  self.entry_octets_intruction.get()
 		memory_params["freq_spi"] =  self.entry_freq_spi.get()
@@ -282,10 +284,12 @@ class Add_new_memory_window():
 		memory_params["duree_lecture"] =  self.entry_duree_lecture.get()
 		memory_params["octets_effacement"] =  self.entry_octets_effacement.get()
 		memory_params["duree_effacement"] =  self.entry_duree_effacement.get()
+		# transitions :
 		memory_params["trans_basse1_actif"] =  self.entry_trans_basse1_actif.get()
 		memory_params["trans_actif_basse1"] =  self.entry_trans_actif_basse1.get()
 		memory_params["trans_basse2_actif"] =  self.entry_trans_basse2_actif.get()
 		memory_params["trans_actif_basse2"] =  self.entry_trans_actif_basse2.get()
+		# consommation : 
 		memory_params["conso_actif"] =  self.entry_conso_actif.get()
 		memory_params["conso_ecriture"] =  self.entry_conso_ecriture.get()
 		memory_params["conso_lecture"] =  self.entry_conso_lecture.get()

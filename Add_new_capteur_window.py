@@ -126,10 +126,14 @@ class Add_new_capteur_window():
 		
 		# put params into a dict
 		capteur_params = {}
+		# name :
 		capteur_params["name"] =  self.entry_name.get()
+		# conversion en signal electrique :
 		capteur_params["duree"] =  self.entry_duree.get()
+		# transitions :
 		capteur_params["trans_basse_actif"] =  self.entry_trans_basse_actif.get()
 		capteur_params["trans_actif_basse"] =  self.entry_trans_actif_basse.get()
+		# consommation :
 		capteur_params["conso_actif"] =  self.entry_conso_actif.get()
 		capteur_params["conso_basse"] =  self.entry_conso_basse.get()
 		#print("debug capteur_params : {}".format(capteur_params)) # DEBUG

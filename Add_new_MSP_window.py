@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-# window to enter the parameters of a new MSP
+# window to enter the parameters of a new MSP (microprocesseur)
 # Pedro Foletto Pimenta, june-2019
 ###
 from tkinter import *
@@ -71,22 +71,6 @@ class Add_new_MSP_window():
 		self.entry_name.grid(column=2, row=current_row)
 		current_row = current_row + 1
 
-		### Connection interval
-		lbl_connection_interval = Label(frame_for_entries, text="Connection interval (ms) ")
-		lbl_connection_interval.grid(column=1, row=current_row)
-
-		self.entry_connection_interval = Entry(frame_for_entries)
-		self.entry_connection_interval.grid(column=2, row=current_row)
-		current_row = current_row + 1
-
-		### Advertising interval
-		lbl_advertising_interval = Label(frame_for_entries, text="Advertising interval (ms) ")
-		lbl_advertising_interval.grid(column=1, row=current_row)
-
-		self.entry_advertising_interval = Entry(frame_for_entries)
-		self.entry_advertising_interval.grid(column=2, row=current_row)
-		current_row = current_row + 1
-
 		### transition basse consomation 1 -> actif
 		lbl_trans_basse1_actif = Label(frame_for_entries, text="transition basse consomation 1 -> actif (us) ")
 		lbl_trans_basse1_actif.grid(column=1, row=current_row)
@@ -119,52 +103,84 @@ class Add_new_MSP_window():
 		self.entry_trans_actif_basse2.grid(column=2, row=current_row)
 		current_row = current_row + 1
 
-		### Transmission (puissance de transmission == 1)
-		lbl_transm_1 = Label(frame_for_entries, text="Transmission (puissance de transmission == 1) (mA) ")
-		lbl_transm_1.grid(column=1, row=current_row)
+		### Consommation actif (frequence de traitement == 1 MHz)
+		lbl_conso_actif_1 = Label(frame_for_entries, text="consomation mode actif (mA) ")
+		lbl_conso_actif_1.grid(column=1, row=current_row)
 
-		self.entry_transm_1 = Entry(frame_for_entries)
-		self.entry_transm_1.grid(column=2, row=current_row)
+		self.entry_conso_actif_1 = Entry(frame_for_entries)
+		self.entry_conso_actif_1.grid(column=2, row=current_row)
 		current_row = current_row + 1
 
-		### Transmission (puissance de transmission == 7)
-		lbl_transm_7 = Label(frame_for_entries, text="Transmission (puissance de transmission == 7) (mA) ")
-		lbl_transm_7.grid(column=1, row=current_row)
+		### Consommation actif (frequence de traitement == 4 MHz)
+		lbl_conso_actif_4 = Label(frame_for_entries, text="consomation mode actif (mA) ")
+		lbl_conso_actif_4.grid(column=1, row=current_row)
 
-		self.entry_transm_7 = Entry(frame_for_entries)
-		self.entry_transm_7.grid(column=2, row=current_row)
+		self.entry_conso_actif_4 = Entry(frame_for_entries)
+		self.entry_conso_actif_4.grid(column=2, row=current_row)
 		current_row = current_row + 1
 
-		### Transmission (puissance de transmission == 15)
-		lbl_transm_15 = Label(frame_for_entries, text="Transmission (puissance de transmission == 15) (mA) ")
-		lbl_transm_15.grid(column=1, row=current_row)
+		### Consommation actif (frequence de traitement == 8 MHz)
+		lbl_conso_actif_8 = Label(frame_for_entries, text="consomation mode actif (mA) ")
+		lbl_conso_actif_8.grid(column=1, row=current_row)
 
-		self.entry_transm_15 = Entry(frame_for_entries)
-		self.entry_transm_15.grid(column=2, row=current_row)
+		self.entry_conso_actif_8 = Entry(frame_for_entries)
+		self.entry_conso_actif_8.grid(column=2, row=current_row)
 		current_row = current_row + 1
 
-		### consomation mode reception
-		lbl_conso_reception = Label(frame_for_entries, text="consomation mode reception (mA) ")
-		lbl_conso_reception.grid(column=1, row=current_row)
+		### Consommation actif (frequence de traitement == 12 MHz)
+		lbl_conso_actif_12 = Label(frame_for_entries, text="consomation mode actif (mA) ")
+		lbl_conso_actif_12.grid(column=1, row=current_row)
 
-		self.entry_conso_reception = Entry(frame_for_entries)
-		self.entry_conso_reception.grid(column=2, row=current_row)
+		self.entry_conso_actif_12 = Entry(frame_for_entries)
+		self.entry_conso_actif_12.grid(column=2, row=current_row)
 		current_row = current_row + 1
 
-		### consomation mode actif
-		lbl_conso_actif = Label(frame_for_entries, text="consomation mode actif (mA) ")
-		lbl_conso_actif.grid(column=1, row=current_row)
+		### Consommation actif (frequence de traitement == 16 MHz)
+		lbl_conso_actif_16 = Label(frame_for_entries, text="consomation mode actif (mA) ")
+		lbl_conso_actif_16.grid(column=1, row=current_row)
 
-		self.entry_conso_actif = Entry(frame_for_entries)
-		self.entry_conso_actif.grid(column=2, row=current_row)
+		self.entry_conso_actif_16 = Entry(frame_for_entries)
+		self.entry_conso_actif_16.grid(column=2, row=current_row)
 		current_row = current_row + 1
 		
-		### consomation mode basse consomation 1
-		lbl_conso_basse1 = Label(frame_for_entries, text="consomation mode basse consomation 1 (uA) ")
-		lbl_conso_basse1.grid(column=1, row=current_row)
+		### consomation mode basse consomation 1 (frequence de traitement == 1 MHz)
+		lbl_conso_basse1_1 = Label(frame_for_entries, text="consomation mode basse consomation 1 (uA) ")
+		lbl_conso_basse1_1.grid(column=1, row=current_row)
 
-		self.entry_conso_basse1 = Entry(frame_for_entries)
-		self.entry_conso_basse1.grid(column=2, row=current_row)
+		self.entry_conso_basse1_1 = Entry(frame_for_entries)
+		self.entry_conso_basse1_1.grid(column=2, row=current_row)
+		current_row = current_row + 1
+
+		### consomation mode basse consomation 1 (frequence de traitement == 4 MHz)
+		lbl_conso_basse1_4 = Label(frame_for_entries, text="consomation mode basse consomation 1 (uA) ")
+		lbl_conso_basse1_4.grid(column=1, row=current_row)
+
+		self.entry_conso_basse1_4 = Entry(frame_for_entries)
+		self.entry_conso_basse1_4.grid(column=2, row=current_row)
+		current_row = current_row + 1
+
+		### consomation mode basse consomation 1 (frequence de traitement == 8 MHz)
+		lbl_conso_basse1_8 = Label(frame_for_entries, text="consomation mode basse consomation 1 (uA) ")
+		lbl_conso_basse1_8.grid(column=1, row=current_row)
+
+		self.entry_conso_basse1_8 = Entry(frame_for_entries)
+		self.entry_conso_basse1_8.grid(column=2, row=current_row)
+		current_row = current_row + 1
+
+		### consomation mode basse consomation 1 (frequence de traitement == 12 MHz)
+		lbl_conso_basse1_12 = Label(frame_for_entries, text="consomation mode basse consomation 1 (uA) ")
+		lbl_conso_basse1_12.grid(column=1, row=current_row)
+
+		self.entry_conso_basse1_12 = Entry(frame_for_entries)
+		self.entry_conso_basse1_12.grid(column=2, row=current_row)
+		current_row = current_row + 1
+
+		### consomation mode basse consomation 1 (frequence de traitement == 16 MHz)
+		lbl_conso_basse1_16 = Label(frame_for_entries, text="consomation mode basse consomation 1 (uA) ")
+		lbl_conso_basse1_16.grid(column=1, row=current_row)
+
+		self.entry_conso_basse1_16 = Entry(frame_for_entries)
+		self.entry_conso_basse1_16.grid(column=2, row=current_row)
 		current_row = current_row + 1
 
 		### consomation mode basse consomation 2
@@ -180,10 +196,6 @@ class Add_new_MSP_window():
 		# verify if the parameters of the MSP are valid
 		if(isinstance(MSP_params["name"], str) == False):
 			return False
-		if(is_number(MSP_params["connection_interval"]) == False):
-			return False
-		if(is_number(MSP_params["advertising_interval"]) == False):
-			return False
 		if(is_number(MSP_params["trans_basse1_actif"]) == False):
 			return False
 		if(is_number(MSP_params["trans_actif_basse1"]) == False):
@@ -192,17 +204,25 @@ class Add_new_MSP_window():
 			return False
 		if(is_number(MSP_params["trans_actif_basse2"]) == False):
 			return False
-		if(is_number(MSP_params["transm_1"]) == False):
+		if(is_number(MSP_params["conso_actif_1"]) == False):
 			return False
-		if(is_number(MSP_params["transm_7"]) == False):
+		if(is_number(MSP_params["conso_actif_4"]) == False):
 			return False
-		if(is_number(MSP_params["transm_15"]) == False):
+		if(is_number(MSP_params["conso_actif_8"]) == False):
 			return False
-		if(is_number(MSP_params["conso_reception"]) == False):
+		if(is_number(MSP_params["conso_actif_12"]) == False):
 			return False
-		if(is_number(MSP_params["conso_actif"]) == False):
+		if(is_number(MSP_params["conso_actif_16"]) == False):
 			return False
-		if(is_number(MSP_params["conso_basse1"]) == False):
+		if(is_number(MSP_params["conso_basse1_1"]) == False):
+			return False
+		if(is_number(MSP_params["conso_basse1_4"]) == False):
+			return False
+		if(is_number(MSP_params["conso_basse1_8"]) == False):
+			return False
+		if(is_number(MSP_params["conso_basse1_12"]) == False):
+			return False
+		if(is_number(MSP_params["conso_basse1_16"]) == False):
 			return False
 		if(is_number(MSP_params["conso_basse2"]) == False):
 			return False
@@ -212,19 +232,24 @@ class Add_new_MSP_window():
 		
 		# put params into a dict
 		MSP_params = {}
+		# name :
 		MSP_params["name"] =  self.entry_name.get()
-		MSP_params["connection_interval"] =  self.entry_connection_interval.get()
-		MSP_params["advertising_interval"] =  self.entry_advertising_interval.get()
+		# transitions :
 		MSP_params["trans_basse1_actif"] =  self.entry_trans_basse1_actif.get()
 		MSP_params["trans_actif_basse1"] =  self.entry_trans_actif_basse1.get()
 		MSP_params["trans_basse2_actif"] =  self.entry_trans_basse2_actif.get()
 		MSP_params["trans_actif_basse2"] =  self.entry_trans_actif_basse2.get()
-		MSP_params["transm_1"] =  self.entry_transm_7.get()
-		MSP_params["transm_7"] =  self.entry_transm_7.get()
-		MSP_params["transm_15"] =  self.entry_transm_15.get()
-		MSP_params["conso_reception"] =  self.entry_conso_reception.get()
-		MSP_params["conso_actif"] =  self.entry_conso_actif.get()
-		MSP_params["conso_basse1"] =  self.entry_conso_basse1.get()
+		# consommation :
+		MSP_params["conso_actif_1"] =  self.entry_conso_actif_1.get()
+		MSP_params["conso_actif_4"] =  self.entry_conso_actif_4.get()
+		MSP_params["conso_actif_8"] =  self.entry_conso_actif_8.get()
+		MSP_params["conso_actif_12"] =  self.entry_conso_actif_12.get()
+		MSP_params["conso_actif_16"] =  self.entry_conso_actif_16.get()
+		MSP_params["conso_basse1_1"] =  self.entry_conso_basse1_1.get()
+		MSP_params["conso_basse1_4"] =  self.entry_conso_basse1_4.get()
+		MSP_params["conso_basse1_8"] =  self.entry_conso_basse1_8.get()
+		MSP_params["conso_basse1_12"] =  self.entry_conso_basse1_12.get()
+		MSP_params["conso_basse1_16"] =  self.entry_conso_basse1_16.get()
 		MSP_params["conso_basse2"] =  self.entry_conso_basse2.get()
 		#print("debug MSP_params : {}".format(MSP_params)) # DEBUG
 

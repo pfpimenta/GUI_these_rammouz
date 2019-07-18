@@ -12,7 +12,7 @@ from Add_new_capteur_window import *
 from Add_new_ADC_window import *
 from Add_new_MSP_window import *
 from Add_new_memory_window import *
-#from Add_new_MRF_window import *
+from Add_new_MRF_window import *
 from Error_window import *
 
 
@@ -251,6 +251,39 @@ class window():
 		self.remove_MSP_button = Button(buttons_frame, text = "Remove selected MSP", command=self.remove_selected_MSP)
 		self.remove_MSP_button.grid(column=1, row=2, sticky='news')
 
+	def init_MRF_page(self):
+		# MRF = Module Radio-Frequence
+		
+		# create page
+		frame = Frame(self.central_frame)#, controller=self)
+		self.frames["MRFPage"] = frame
+		frame.grid(row=0, column=0, sticky="nsew")
+
+		text = "Add new MRF \n (texto explicando algo? sei la)\n #TODO "
+		self.test_lbl = Label(self.frames["MRFPage"] , text=text, font=self.text_font)
+		self.test_lbl.pack()
+
+		pad_frame = Frame(self.frames["MRFPage"], height=30)
+		pad_frame.pack()
+
+
+		listbox_buttons_frame = Frame(self.frames["MRFPage"])
+		listbox_buttons_frame.pack()
+
+		self.MRF_listbox = Listbox(listbox_buttons_frame, height=15, width=20)
+		self.MRF_listbox.grid(column=0, row=0)
+
+		self.update_MRF_list()
+
+		buttons_frame = Frame(listbox_buttons_frame)#(self.frames["MRFPage"])
+		buttons_frame.grid(column=1, row=0)
+
+		self.add_MRF_button = Button(buttons_frame, text = "Add new MRF", command=self.add_new_MRF)
+		self.add_MRF_button.grid(column=1, row=1, sticky='news')
+
+		self.remove_MRF_button = Button(buttons_frame, text = "Remove selected MRF", command=self.remove_selected_MRF)
+		self.remove_MRF_button.grid(column=1, row=2, sticky='news')
+
 	def init_start_page(self):
 
 		# create page
@@ -281,7 +314,7 @@ class window():
 
 	def init_pages(self):
 		self.frames = {}
-		self.frame_names = ["StartPage", "ScenariosPage", "CapteursPage", "ADCPage", "MemoryPage","MSPPage", "EndPage"] # ordered
+		self.frame_names = ["StartPage", "ScenariosPage", "CapteursPage", "ADCPage", "MemoryPage", "MSPPage", "MRFPage", "EndPage"] # ordered
 		# "TestPage",
 		self.current_page = 0
 		self.numPages = len(self.frame_names)
@@ -297,6 +330,7 @@ class window():
 		self.init_ADC_page()
 		self.init_memory_page()
 		self.init_MSP_page()
+		self.init_MRF_page()
 		self.init_end_page()
 
 	def update_capteur_list(self):
@@ -379,6 +413,26 @@ class window():
 			if(MSP_name not in self.MSP_listbox.get(0, END)):
 				self.MSP_listbox.insert(END, MSP_name)
 
+	def update_MRF_list(self):
+		# to be called when loading MRFPage or after adding/removing a new MRF (Module Radio-Frequence)
+		
+		#print("\nDEBUG update_MRF_list called\n")
+		components_folder_path = os.getcwd() + "/components/"
+		files = os.listdir(components_folder_path) # list of files in 'data_path' folder
+		#print("files in components folder : {}".format(files))
+		MRF_files = [ f for f in files if 'MRF' in f] # get only MRF files
+
+		# print("DEBUG MRF_listbox items:") # DEBUG
+		# print(self.MRF_listbox.get(0, END)) # DEBUG
+
+		# iterate through all MRF files saved in the components folder
+		for MRF_filename in MRF_files:
+			MRF_name = MRF_filename[4:-7] # ex: "MRF_example.pickle" -> "example"
+
+			# if a MRF is saved but not on the list, add it to the list
+			if(MRF_name not in self.MRF_listbox.get(0, END)):
+				self.MRF_listbox.insert(END, MRF_name)
+
 	def add_new_capteur(self):
 		# (self.add_capteur_button command)
 		# opens window to add item to the capteur list in the CapteursPage
@@ -392,7 +446,7 @@ class window():
 	def add_new_MSP(self):
 		# (self.add_MSP_button command)
 		# opens window to add item to the microprocessers list in the MSPPage
-		MSP_window = Add_new_MSP_window(parent=self)
+		MSP_window = Add_new_MSP_window(parent=self)  # MSP = Microprocesseur
 
 	def add_new_memory(self):
 		# (self.add_memory_button command)
@@ -402,8 +456,7 @@ class window():
 	def add_new_MRF(self):
 		# (self.add_MRF_button command)
 		# opens window to add item to the module_radio_frequence list in the MRFPage
-		#toniolow = Add_new_MRF_window(parent=self)
-		pass #TODO
+		MRF_window = Add_new_MRF_window(parent=self) # MRF = Module Radio-Frequence
 
 	def remove_selected_capteur(self):
 		# (self.remove_capteur_button command)
@@ -477,6 +530,24 @@ class window():
 		
 		print("DEBUG (remove_selected_MSP) removed : {}".format(MSP_filename)) # DEBUG
 		
+	def remove_selected_MRF(self):
+		# (self.remove_MRF_button command)
+		# removes selected MRF in the list and deletes its file
+		
+		# get name of MRF and corresponding filename
+		MRF_name = self.MRF_listbox.get(ANCHOR)
+		components_folder_path = os.getcwd() + "/components/"
+		MRF_filename = components_folder_path + "MRF_"+ MRF_name + ".pickle" # MRF = Module Radio-Frequence
+
+		# delete file containing the MRF parameters
+		#os.remove(MRF_filename)
+		send2trash(MRF_filename)
+
+		# delete item from listbox
+		self.MRF_listbox.delete(ANCHOR)
+		
+		print("DEBUG (remove_selected_MRF) removed : {}".format(MRF_filename)) # DEBUG
+		
 	def changeScenario(self):
 		scenario = self.scenarioString.get()
 
@@ -484,7 +555,7 @@ class window():
 			# scenario 1
 			## variables : Autonomie, Source d’énergie
 			## parametres : Périodes de déconnexion, Composants, Configuration
-			self.frame_names = ["StartPage", "ScenariosPage", "CapteursPage", "ADCPage", "MemoryPage", "MSPPage", "EndPage"] # ordered
+			self.frame_names = ["StartPage", "ScenariosPage", "CapteursPage", "ADCPage", "MemoryPage", "MSPPage", "MRFPage", "EndPage"] # ordered
 
 		elif(scenario == "2"):
 			# TODO TO DO 

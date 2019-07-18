@@ -132,10 +132,14 @@ class Add_new_ADC_window():
 		
 		# put params into a dict
 		ADC_params = {}
+		# name :
 		ADC_params["name"] =  self.entry_name.get()
+		# echantillonage :
 		ADC_params["temps"] =  self.entry_temps.get()
+		# transitions :
 		ADC_params["trans_basse_actif"] =  self.entry_trans_basse_actif.get()
 		ADC_params["trans_actif_basse"] =  self.entry_trans_actif_basse.get()
+		# consommation :
 		ADC_params["conso_actif"] =  self.entry_conso_actif.get()
 		ADC_params["conso_basse"] =  self.entry_conso_basse.get()
 		ADC_params["conso_conversion"] =  self.entry_conso_conversion.get()
