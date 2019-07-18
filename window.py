@@ -310,6 +310,10 @@ class window():
 		# choix Microprocesseur
 		# choix Memoire
 		# choix Module Radio-Frequence
+		# Periode de mesure (x2 ???)
+		# Frequence de traitement
+		# Frequence d'echantillonage
+		# Puissance de transmission
 
 		### Autonomie du noeud
 
@@ -367,6 +371,7 @@ class window():
 		self.init_memory_page()
 		self.init_MSP_page()
 		self.init_MRF_page()
+		#self.init_probleme_page()
 		self.init_end_page()
 
 	def update_capteur_list(self):
