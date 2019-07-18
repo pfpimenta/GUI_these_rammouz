@@ -25,6 +25,11 @@ END_PAGE_TEXT =  "Press \"Done\" to start simulation"
 
 
 
+# fonts for the labels
+font_params = 'Helvetica 11'
+font_subtitles = 'Helvetica 16 bold'
+
+
 ###########################################################################
 ### FUNCTIONS
 

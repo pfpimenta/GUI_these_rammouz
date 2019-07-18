@@ -64,7 +64,7 @@ class Add_new_MRF_window():
 		current_row = 0
 
 		### MRF name
-		lbl_name = Label(frame_for_entries, text="name: ")
+		lbl_name = Label(frame_for_entries, text="name ")
 		lbl_name.grid(column=1, row=current_row)
 
 		self.entry_name = Entry(frame_for_entries)

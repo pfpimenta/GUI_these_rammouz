@@ -32,7 +32,7 @@ class Add_new_capteur_window():
 		self.root = Toplevel(parent_window)
 		self.root.title("Add new capteur") # "GUI - these Rammouz"
 		### set text font:
-		self.text_font = tkfont.Font(family='Verdana', size=13)#, weight="bold", slant="italic")
+		self.text_font = font_subtitles #tkfont.Font(family='Verdana', size=13)#, weight="bold", slant="italic")
 		### central frame (where the parameter entries are placed)
 		self.central_frame = Frame(self.root, width=400, height=300, bg="", colormap="new", relief=SUNKEN)
 		self.central_frame.grid(column=2, row=2)
@@ -58,53 +58,87 @@ class Add_new_capteur_window():
 		self.text_lbl = Label(self.central_frame, text=text, font=self.text_font)
 		self.text_lbl.grid(row=0, column=0)
 
-		pad_frame = Frame(self.central_frame, height=30, bg="", colormap="new")
+		pad_frame = Frame(self.central_frame, height=60, bg="", colormap="new")
 		pad_frame.grid(row=1, column=0)
 
 		frame_for_entries = Frame(self.central_frame)
 		frame_for_entries.grid(row=2, column=0)
 
+
+		current_row = 0
+
 		### capteur name
-		lbl_name = Label(frame_for_entries, text="name:")
-		lbl_name.grid(column=1, row=0)
+		lbl_name = Label(frame_for_entries, text="Name    ", font=font_subtitles)
+		lbl_name.grid(column=1, row=current_row, sticky=W)
 
 		self.entry_name = Entry(frame_for_entries)
-		self.entry_name.grid(column=2, row=0)
+		self.entry_name.grid(column=2, row=current_row)
+		current_row = current_row + 1
+
+		# conversion en signal electrique  (label)
+		pad_subtitle = Frame(frame_for_entries, height=15, bg="", colormap="new")
+		pad_subtitle.grid(column=0, row=current_row)
+		current_row = current_row + 1
+		lbl_subtitle = Label(frame_for_entries, text="Conversion en signal electrique ", font=font_subtitles)
+		lbl_subtitle.grid(column=1, row=current_row, columnspan = 2, sticky=W)
+		current_row = current_row + 1
 
 		### duree de conversion
-		lbl_duree = Label(frame_for_entries, text="duree de conversion (s) ")
-		lbl_duree.grid(column=1, row=1)
+		lbl_duree = Label(frame_for_entries, text="Duree de conversion (s) ", font=font_params)
+		lbl_duree.grid(column=1, row=current_row, sticky=W)
 
 		self.entry_duree = Entry(frame_for_entries)
-		self.entry_duree.grid(column=2, row=1)
+		self.entry_duree.grid(column=2, row=current_row)
+		current_row = current_row + 1
+
+		# Transitions  (label)
+		pad_subtitle = Frame(frame_for_entries, height=15, bg="", colormap="new")
+		pad_subtitle.grid(column=0, row=current_row)
+		current_row = current_row + 1
+		lbl_subtitle = Label(frame_for_entries, text="Transitions ", font=font_subtitles)
+		lbl_subtitle.grid(column=1, row=current_row, columnspan = 2, sticky=W)
+		current_row = current_row + 1
+
 
 		### transition basse consomation -> actif
-		lbl_trans_basse_actif = Label(frame_for_entries, text="transition basse consomation -> actif (ms) ")
-		lbl_trans_basse_actif.grid(column=1, row=2)
+		lbl_trans_basse_actif = Label(frame_for_entries, text="Basse consomation -> Actif (ms) ", font=font_params)
+		lbl_trans_basse_actif.grid(column=1, row=current_row, sticky=W)
 
 		self.entry_trans_basse_actif = Entry(frame_for_entries)
-		self.entry_trans_basse_actif.grid(column=2, row=2)
+		self.entry_trans_basse_actif.grid(column=2, row=current_row)
+		current_row = current_row + 1
 
 		### transition actif -> basse consomation
-		lbl_trans_actif_basse = Label(frame_for_entries, text="transition actif -> basse consomation (ms) ")
-		lbl_trans_actif_basse.grid(column=1, row=3)
+		lbl_trans_actif_basse = Label(frame_for_entries, text="Actif -> Basse consomation (ms) ", font=font_params)
+		lbl_trans_actif_basse.grid(column=1, row=current_row, sticky=W)
 
 		self.entry_trans_actif_basse = Entry(frame_for_entries)
-		self.entry_trans_actif_basse.grid(column=2, row=3)
+		self.entry_trans_actif_basse.grid(column=2, row=current_row)
+		current_row = current_row + 1
+
+		# Consommation  (label)
+		pad_subtitle = Frame(frame_for_entries, height=15, bg="", colormap="new")
+		pad_subtitle.grid(column=0, row=current_row)
+		current_row = current_row + 1
+		lbl_subtitle = Label(frame_for_entries, text="Consommation ", font=font_subtitles)
+		lbl_subtitle.grid(column=1, row=current_row, columnspan = 2, sticky=W)
+		current_row = current_row + 1
 
 		### consomation mode actif
-		lbl_conso_actif = Label(frame_for_entries, text="consomation mode actif (uA) ")
-		lbl_conso_actif.grid(column=1, row=4)
+		lbl_conso_actif = Label(frame_for_entries, text="Mode actif (uA) ", font=font_params)
+		lbl_conso_actif.grid(column=1, row=current_row, sticky=W)
 
 		self.entry_conso_actif = Entry(frame_for_entries)
-		self.entry_conso_actif.grid(column=2, row=4)
+		self.entry_conso_actif.grid(column=2, row=current_row)
+		current_row = current_row + 1
 
 		### consomation mode basse consomation
-		lbl_conso_basse = Label(frame_for_entries, text="consomation mode basse consomation (uA) ")
-		lbl_conso_basse.grid(column=1, row=5)
+		lbl_conso_basse = Label(frame_for_entries, text="Mode basse consomation (uA) ", font=font_params)
+		lbl_conso_basse.grid(column=1, row=current_row, sticky=W)
 
 		self.entry_conso_basse = Entry(frame_for_entries)
-		self.entry_conso_basse.grid(column=2, row=5)
+		self.entry_conso_basse.grid(column=2, row=current_row)
+		current_row = current_row + 1
 
 	def verify_capteur_params(self, capteur_params):
 		# verify if the parameters of the capteur are valid

@@ -62,7 +62,7 @@ class Add_new_ADC_window():
 		frame_for_entries.grid(row=2, column=0)
 
 		### ADC name
-		lbl_name = Label(frame_for_entries, text="name:")
+		lbl_name = Label(frame_for_entries, text="name")
 		lbl_name.grid(column=1, row=0)
 
 		self.entry_name = Entry(frame_for_entries)

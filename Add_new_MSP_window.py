@@ -64,7 +64,7 @@ class Add_new_MSP_window():
 		current_row = 0
 
 		### MSP name
-		lbl_name = Label(frame_for_entries, text="name: ")
+		lbl_name = Label(frame_for_entries, text="name ")
 		lbl_name.grid(column=1, row=current_row)
 
 		self.entry_name = Entry(frame_for_entries)

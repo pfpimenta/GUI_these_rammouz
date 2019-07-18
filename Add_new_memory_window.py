@@ -64,7 +64,7 @@ class Add_new_memory_window():
 		current_row = 0
 
 		### memory name
-		lbl_name = Label(frame_for_entries, text="name:")
+		lbl_name = Label(frame_for_entries, text="name")
 		lbl_name.grid(column=1, row=current_row)
 
 		self.entry_name = Entry(frame_for_entries)
