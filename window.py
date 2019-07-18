@@ -46,13 +46,13 @@ class window():
 	def init_main_layout(self):
 		### init window:
 		self.root = Tk()
-		self.root.title("GUI - these Rammouz") # TODO : mudar nome?
+		self.root.title("GUI - these Rammouz")
 		#self.root.geometry('800x600')
 		#self.root.configure(background="black")
 		### set text font:
-		self.text_font = tkfont.Font(family='Verdana', size=13)#, weight="bold", slant="italic")
+		self.text_font = tkfont.Font(family='Verdana', size=13)
 		### central frame (where the pages are placed)
-		self.central_frame = Frame(self.root, width=500, height=500)#, bg="", colormap="new")
+		self.central_frame = Frame(self.root, width=500, height=500)
 		self.central_frame.grid(column=2, row=2)
 		### Next/Done button
 		self.next_button = Button(self.root, text = "Next", command=self.next_page)
@@ -61,13 +61,13 @@ class window():
 		self.back_button = Button(self.root, text = "Back", command=self.previous_page)
 		self.back_button.grid(column=1, row=4, sticky=E)
 		### padding
-		pad_frame_top_1 = Frame(self.root,width=50, height=30)#, bg="", colormap="new")
+		pad_frame_top_1 = Frame(self.root,width=50, height=30)
 		pad_frame_top_1.grid(column=0, row=0)
-		pad_frame_top_2 = Frame(self.root, width=50, height=30)#, bg="", colormap="new")
+		pad_frame_top_2 = Frame(self.root, width=50, height=30)
 		pad_frame_top_2.grid(column=1, row=1)
-		pad_frame_mid = Frame(self.root, width=50, height=30)#, bg="", colormap="new")
+		pad_frame_mid = Frame(self.root, width=50, height=30)
 		pad_frame_mid.grid(column=3, row=3)
-		pad_frame_bottom = Frame(self.root, width=30, height=25)#, bg="", colormap="new")
+		pad_frame_bottom = Frame(self.root, width=30, height=25)
 		pad_frame_bottom.grid(column=10, row=10)
 
 	def show_frame(self, page_name):
@@ -283,6 +283,42 @@ class window():
 
 		self.remove_MRF_button = Button(buttons_frame, text = "Remove selected MRF", command=self.remove_selected_MRF)
 		self.remove_MRF_button.grid(column=1, row=2, sticky='news')
+
+	def init_probleme_page(self):
+		
+		# create page
+		frame = Frame(self.central_frame)#, controller=self)
+		self.frames["ProblemePage"] = frame
+		frame.grid(row=0, column=0, sticky="nsew")
+
+		text = "Probleme ...? \n (texto explicando algo? sei la)\n #TODO "
+		self.test_lbl = Label(self.frames["ProblemePage"] , text=text, font=self.text_font)
+		self.test_lbl.pack()
+
+		pad_frame = Frame(self.frames["ProblemePage"], height=30)
+		pad_frame.pack()
+
+		### Configuration du reseau
+		# nombre de noeuds
+		# algorithm connexion
+		# octets par mesure
+
+		### Constitution du noeud
+		# noeud d'interet
+		# choix Capteur
+		# choix ADC
+		# choix Microprocesseur
+		# choix Memoire
+		# choix Module Radio-Frequence
+
+		### Autonomie du noeud
+
+		### Duree du monitoring
+
+		### Routine de vie du patient
+		# choix Etat
+		# periodes de deconnexion quotidiennes (borne inferieure et superieure)
+
 
 	def init_start_page(self):
 
