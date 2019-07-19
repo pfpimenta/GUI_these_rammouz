@@ -315,6 +315,8 @@ class window():
 		# Frequence d'echantillonage
 		# Puissance de transmission
 
+		# source d'energie (?)
+
 		### Autonomie du noeud
 
 		### Duree du monitoring
