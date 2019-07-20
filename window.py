@@ -13,6 +13,7 @@ from Add_new_ADC_window import *
 from Add_new_MSP_window import *
 from Add_new_memory_window import *
 from Add_new_MRF_window import *
+#from ProblemePage import *
 from Error_window import *
 
 
@@ -287,7 +288,8 @@ class window():
 	def init_probleme_page(self):
 		
 		# create page
-		frame = Frame(self.central_frame)#, controller=self)
+		frame = Frame(self.central_frame)
+		#frame = ProblemePage(self)
 		self.frames["ProblemePage"] = frame
 		frame.grid(row=0, column=0, sticky="nsew")
 
@@ -297,6 +299,38 @@ class window():
 
 		pad_frame = Frame(self.frames["ProblemePage"], height=30)
 		pad_frame.pack()
+
+		frame_for_entries = Frame(self.frames["ProblemePage"])
+		#frame_for_entries.grid(row=2, column=0)
+		frame_for_entries.pack()
+
+		current_row = 0
+
+		# Configuration du reseau  (label)
+		pad_subtitle = Frame(frame_for_entries, height=15, bg="", colormap="new")
+		pad_subtitle.grid(column=0, row=current_row)
+		current_row = current_row + 1
+		lbl_subtitle = Label(frame_for_entries, text="Configuration du reseau ", font=font_subtitles)
+		lbl_subtitle.grid(column=1, row=current_row, columnspan = 2, sticky=W)
+		current_row = current_row + 1
+
+		### Nombre de noeuds
+		lbl_num_noeuds = Label(frame_for_entries, text="Nombre de noeuds ", font=font_params)
+		lbl_num_noeuds.grid(column=1, row=current_row)
+
+		self.entry_num_noeuds = Entry(frame_for_entries)
+		self.entry_num_noeuds.grid(column=2, row=current_row)
+		current_row = current_row + 1
+
+		### Algorithm connexion
+		lbl_alg_connexion = Label(frame_for_entries, text="Algorithm connexion ", font=font_params)
+		lbl_alg_connexion.grid(column=1, row=current_row)
+
+		var = StringVar()
+		var.set("one") # initial value
+		self.option_alg_connexion = OptionMenu(frame_for_entries, var, "one", "two", "three", "four")
+		self.option_alg_connexion.grid(column=2, row=current_row)
+		current_row = current_row + 1
 
 		### Configuration du reseau
 		# nombre de noeuds
@@ -355,7 +389,7 @@ class window():
 
 	def init_pages(self):
 		self.frames = {}
-		self.frame_names = ["StartPage", "ScenariosPage", "CapteursPage", "ADCPage", "MemoryPage", "MSPPage", "MRFPage", "EndPage"] # ordered
+		self.frame_names = ["StartPage", "ScenariosPage", "CapteursPage", "ADCPage", "MemoryPage", "MSPPage", "MRFPage", "ProblemePage", "EndPage"] # ordered
 		# "TestPage",
 		self.current_page = 0
 		self.numPages = len(self.frame_names)
@@ -372,7 +406,7 @@ class window():
 		self.init_memory_page()
 		self.init_MSP_page()
 		self.init_MRF_page()
-		#self.init_probleme_page()
+		self.init_probleme_page()
 		self.init_end_page()
 
 	def update_capteur_list(self):
@@ -597,7 +631,7 @@ class window():
 			# scenario 1
 			## variables : Autonomie, Source d’énergie
 			## parametres : Périodes de déconnexion, Composants, Configuration
-			self.frame_names = ["StartPage", "ScenariosPage", "CapteursPage", "ADCPage", "MemoryPage", "MSPPage", "MRFPage", "EndPage"] # ordered
+			self.frame_names = ["StartPage", "ScenariosPage", "CapteursPage", "ADCPage", "MemoryPage", "MSPPage", "MRFPage", "ProblemePage", "EndPage"] # ordered
 
 		elif(scenario == "2"):
 			# TODO TO DO 

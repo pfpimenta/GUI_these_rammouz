@@ -8,14 +8,11 @@
 #import tkinter
 from tkinter import *
 from window import *
+from Results_window import *
 
 ###
 
 print("...initializing interface")
-# TODO
-#coco = Starting_window()
-#caca = Composants_window()
-#cucu = Probleme_window()
 toniolo = window()
 
 # TODO
@@ -24,4 +21,4 @@ print("...starting simulation")
 print("...simulation finished")
 # TODO
 print("..recovering results")
-# TODO
+#results_window = Results_window()
