@@ -48,6 +48,73 @@ def save_parameters(params):
 	# put parameters in a .mat file and save it
 
 
+	def getCapteur(capteur_name):
+		# loads the parameters of the capteur named capteur_name
+		# print("DEBUG getCapteur... capteur_name : {}".format(capteur_name))
+
+		# load pickle file to load capteur params
+		components_folder_path = os.getcwd() + "/components/"
+		capteur_filename = components_folder_path + "capteur_" + capteur_name + ".pickle"
+		file = open(capteur_filename,"rb")
+		capteur = pickle.load(file)
+		file.close()
+
+		return capteur
+
+	def getADC(ADC_name):
+	# loads the parameters of the ADC named ADC_name
+	# print("DEBUG getADC... ADC_name : {}".format(ADC_name))
+
+	# load pickle file to load ADC params
+	components_folder_path = os.getcwd() + "/components/"
+	ADC_filename = components_folder_path + "ADC_" + ADC_name + ".pickle"
+	file = open(ADC_filename,"rb")
+	ADC = pickle.load(file)
+	file.close()
+
+	return ADC
+
+def getMemory(memory_name):
+	# loads the parameters of the memory named memory_name
+	# print("DEBUG getMemory... memory_name : {}".format(memory_name))
+
+	# load pickle file to load memory params
+	components_folder_path = os.getcwd() + "/components/"
+	memory_filename = components_folder_path + "memory_" + memory_name + ".pickle"
+	file = open(memory_filename,"rb")
+	memory = pickle.load(file)
+	file.close()
+
+	return memory
+
+def getMSP(MSP_name):
+	# loads the parameters of the MSP named MSP_name
+	# print("DEBUG getMSP... MSP_name : {}".format(MSP_name))
+
+	# load pickle file to load MSP params
+	components_folder_path = os.getcwd() + "/components/"
+	MSP_filename = components_folder_path + "MSP_" + MSP_name + ".pickle"
+	file = open(MSP_filename,"rb")
+	MSP = pickle.load(file)
+	file.close()
+
+	return MSP
+
+def getMRF(MRF_name):
+	# loads the parameters of the MRF named MRF_name
+	#print("DEBUG getMRF... MRF_name : {}".format(MRF_name))
+
+	# load pickle file to load MRF params
+	components_folder_path = os.getcwd() + "/components/"
+	MRF_filename = components_folder_path + "MRF_" + MRF_name + ".pickle"
+	file = open(MRF_filename,"rb")
+	MRF = pickle.load(file)
+	file.close()
+
+	return MRF
+
+
+
 def is_number(s):
 	# check if a string is a number (float)
     try:

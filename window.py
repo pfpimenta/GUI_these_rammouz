@@ -7,6 +7,7 @@
 from tkinter import *
 from tkinter import font  as tkfont # python 3
 from send2trash import send2trash
+import pickle
 from convenience import *
 from Add_new_capteur_window import *
 from Add_new_ADC_window import *
@@ -17,17 +18,7 @@ from Add_new_MRF_window import *
 from Error_window import *
 
 
-
-# global variable with the simulation parameters 
-params = {}
-params['numCapteurs'] = 0
-params['numADCs'] = 0
-params['numMicroprocesseurs'] = 0
-params['numMemoires'] = 0
-params['numModulesRadiofrequence'] = 0
-
-
-
+# main window of the GUI
 class window():
 
 	def __init__(self):
@@ -953,6 +944,23 @@ class window():
 		# update numPages
 		self.numPages = len(self.frame_names)
 
+	def getProblemeParameters(self):
+		# gets all the problem configuration parameters and puts it into a dict
+		# (called by getSimulationParameters)
+		pass
+		
+	def getSimulationParameters(self):
+		# gets all the simulation parameters and puts it into a dict
+
+		params = {}
+		params["capteur"] = getCapteur(self.capteur_list_var.get())
+		params["ADC"] = getADC(self.ADC_list_var.get())
+		params["memory"] = getMemory(self.memory_list_var.get())
+		params["MSP"] = getMSP(self.MSP_list_var.get())
+		params["MRF"] = getMRF(self.MRF_list_var.get())
+		# params["Probleme"] = ?
+		return params
+
 	def next_page(self):
 		### go to next page
 
@@ -981,7 +989,9 @@ class window():
 
 	def quit(self):
 
+		params = self.getSimulationParameters()
+		print(params)
 		#  save simulation parameters
-		save_parameters(params)
+		#save_parameters(params)
 		# close window
 		self.root.destroy()
