@@ -71,6 +71,10 @@ class window():
 
 	def show_frame(self, page_name):
 		'''Show a frame for the given page name'''
+
+		if(page_name == "ProblemePage2"):
+			self.update_component_lists()
+
 		frame = self.frames[page_name]
 		frame.tkraise()
 		#self.current_page = page_name
@@ -315,8 +319,12 @@ class window():
 		lbl_num_noeuds = Label(frame_for_entries, text="Nombre de noeuds ", font=font_params)
 		lbl_num_noeuds.grid(column=1, row=current_row)
 
-		self.entry_num_noeuds = Entry(frame_for_entries)
-		self.entry_num_noeuds.grid(column=2, row=current_row)
+		# TODO : delete these two lines and accept more than 1 noeud
+		lbl_temp = Label(frame_for_entries, text=" 1 ", font=font_params, relief=SUNKEN)
+		lbl_temp.grid(column=2, row=current_row, sticky=W+E)
+
+		#self.entry_num_noeuds = Entry(frame_for_entries)
+		#self.entry_num_noeuds.grid(column=2, row=current_row)
 		current_row = current_row + 1
 
 		### Algorithm de connexion
@@ -345,9 +353,24 @@ class window():
 		current_row = current_row + 1
 	
 	def init_probleme_page_2(self):
-		pass #TODO
 
-	def init_probleme_page_3(self):
+		# create page
+		frame = Frame(self.central_frame)
+		#frame = ProblemePage(self)
+		self.frames["ProblemePage2"] = frame
+		frame.grid(row=0, column=0, sticky="nsew")
+
+		text = "Configuration du probleme"
+		self.test_lbl = Label(self.frames["ProblemePage2"] , text=text, font=font_titles)
+		self.test_lbl.pack()
+
+		pad_frame = Frame(self.frames["ProblemePage2"], height=30)
+		pad_frame.pack()
+
+		frame_for_entries = Frame(self.frames["ProblemePage2"])
+		frame_for_entries.pack()
+
+		current_row = 0
 
 		# Constitution du noeud  (label)
 		pad_subtitle = Frame(frame_for_entries, height=5, bg="", colormap="new")
@@ -361,93 +384,71 @@ class window():
 		lbl_noeud_dinteret = Label(frame_for_entries, text="Noeud d'interet ", font=font_params)
 		lbl_noeud_dinteret.grid(column=1, row=current_row)
 
-		self.entry_noeud_dinteret = Entry(frame_for_entries)
-		self.entry_noeud_dinteret.grid(column=2, row=current_row)
+		# TODO : delete these two lines and accept more than 1 noeud
+		lbl_temp = Label(frame_for_entries, text=" 1 ", font=font_params, relief=SUNKEN)
+		lbl_temp.grid(column=2, row=current_row, sticky=W+E)
+
+		#self.entry_noeud_dinteret = Entry(frame_for_entries)
+		#self.entry_noeud_dinteret.grid(column=2, row=current_row)
 		current_row = current_row + 1
 
 		### choix Capteur
-		lbl_choix_capteur = Label(frame_for_entries, text="Capteur ", font=font_params)
-		lbl_choix_capteur.grid(column=1, row=current_row)
+		lbl_capteur = Label(frame_for_entries, text="Capteur ", font=font_params)
+		lbl_capteur.grid(column=1, row=current_row)
 
-		OPTIONS = [
-			"eieiei",
-			"oiioioi",
-			"kapter"
-		]
+		capteur_list = list(self.capteur_listbox.get(0, END))
+		self.capteur_list_var = StringVar(frame_for_entries)
+		self.capteur_list_var.set(capteur_list[0]) # default value
 
-		var = StringVar(frame_for_entries)
-		var.set(OPTIONS[0]) # default value
-
-		self.option_choix_capteur = OptionMenu(frame_for_entries, var, *OPTIONS)
-		self.option_choix_capteur.grid(column=2, row=current_row, sticky = W+E)
+		self.option_capteur = OptionMenu(frame_for_entries, self.capteur_list_var, *capteur_list)
+		self.option_capteur.grid(column=2, row=current_row, sticky = W+E)
 		current_row = current_row + 1
 
-
 		### choix ADC
-		lbl_choix_ADC = Label(frame_for_entries, text="ADC ", font=font_params)
-		lbl_choix_ADC.grid(column=1, row=current_row)
+		lbl_ADC = Label(frame_for_entries, text="ADC ", font=font_params)
+		lbl_ADC.grid(column=1, row=current_row)
+		
+		ADC_list = list(self.ADC_listbox.get(0, END))
+		self.ADC_list_var = StringVar(frame_for_entries)
+		self.ADC_list_var.set(ADC_list[0]) # default value
 
-		OPTIONS = [
-			"cococo",
-			"cacaca",
-			"vayne"
-		]
-
-		var = StringVar(frame_for_entries)
-		var.set(OPTIONS[0]) # default value
-
-		self.option_ADC = OptionMenu(frame_for_entries, var, *OPTIONS)
+		self.option_ADC = OptionMenu(frame_for_entries, self.ADC_list_var, *ADC_list)
 		self.option_ADC.grid(column=2, row=current_row, sticky = W+E)
 		current_row = current_row + 1
 
 		### choix Microprocesseur
-		lbl_choix_MSP = Label(frame_for_entries, text="Microprocesseur ", font=font_params)
-		lbl_choix_MSP.grid(column=1, row=current_row)
+		lbl_MSP = Label(frame_for_entries, text="Microprocesseur ", font=font_params)
+		lbl_MSP.grid(column=1, row=current_row)
 
-		OPTIONS = [
-			"cococo",
-			"cacaca",
-			"vayne"
-		]
+		MSP_list = list(self.MSP_listbox.get(0, END))
+		self.MSP_list_var = StringVar(frame_for_entries)
+		self.MSP_list_var.set(MSP_list[0]) # default value
 
-		var = StringVar(frame_for_entries)
-		var.set(OPTIONS[0]) # default value
-
-		self.option_MSP = OptionMenu(frame_for_entries, var, *OPTIONS)
+		self.option_MSP = OptionMenu(frame_for_entries, self.MSP_list_var, *MSP_list)
 		self.option_MSP.grid(column=2, row=current_row, sticky = W+E)
 		current_row = current_row + 1
 
 		### choix Memoire
-		lbl_choix_memoire = Label(frame_for_entries, text="Memoire ", font=font_params)
-		lbl_choix_memoire.grid(column=1, row=current_row)
+		lbl_memoire = Label(frame_for_entries, text="Memoire ", font=font_params)
+		lbl_memoire.grid(column=1, row=current_row)
 
-		OPTIONS = [
-			"cococo",
-			"cacaca",
-			"vayne"
-		]
+		memory_list = list(self.memory_listbox.get(0, END)) 
+		self.memory_list_var = StringVar(frame_for_entries)
+		self.memory_list_var.set(memory_list[0]) # default value
 
-		var = StringVar(frame_for_entries)
-		var.set(OPTIONS[0]) # default value
-
-		self.option_memoire = OptionMenu(frame_for_entries, var, *OPTIONS)
-		self.option_memoire.grid(column=2, row=current_row, sticky = W+E)
+		self.option_memory = OptionMenu(frame_for_entries, self.memory_list_var, *memory_list)
+		self.option_memory.grid(column=2, row=current_row, sticky = W+E)
 		current_row = current_row + 1
 
 		### choix Module Radio-Frequence
-		lbl_choix_MRF = Label(frame_for_entries, text="Module Radio-Frequence ", font=font_params)
-		lbl_choix_MRF.grid(column=1, row=current_row)
+		lbl_MRF = Label(frame_for_entries, text="Module Radio-Frequence ", font=font_params)
+		lbl_MRF.grid(column=1, row=current_row)
 
-		OPTIONS = [
-			"cococo",
-			"cacaca",
-			"vayne"
-		]
+		MRF_list = list(self.MRF_listbox.get(0, END)) 
+		self.MRF_list_var = StringVar(frame_for_entries)
+		self.MRF_list_var.set(MRF_list[0]) # default value
 
-		var = StringVar(frame_for_entries)
-		var.set(OPTIONS[0]) # default value
-
-		self.option_MRF = OptionMenu(frame_for_entries, var, *OPTIONS)
+		self.option_MRF = OptionMenu(frame_for_entries, self.MRF_list_var, *MRF_list)
 		self.option_MRF.grid(column=2, row=current_row, sticky = W+E)
 		current_row = current_row + 1
 
@@ -491,13 +492,33 @@ class window():
 		self.entry_capacite_source.grid(column=2, row=current_row)
 		current_row = current_row + 1
 
+	def init_probleme_page_3(self):
+
+		# create page
+		frame = Frame(self.central_frame)
+		#frame = ProblemePage(self)
+		self.frames["ProblemePage3"] = frame
+		frame.grid(row=0, column=0, sticky="nsew")
+
+		text = "Configuration du probleme"
+		self.test_lbl = Label(self.frames["ProblemePage3"] , text=text, font=font_titles)
+		self.test_lbl.pack()
+
+		pad_frame = Frame(self.frames["ProblemePage3"], height=30)
+		pad_frame.pack()
+
+		frame_for_entries = Frame(self.frames["ProblemePage3"])
+		frame_for_entries.pack()
+
+		current_row = 0
+
 		### Autonomie du noeud
 		pad_subtitle = Frame(frame_for_entries, height=5, bg="", colormap="new")
 		pad_subtitle.grid(column=0, row=current_row)
 		current_row = current_row + 1
 
-		lbl_autonomie_noeud = Label(frame_for_entries, text="Autonomie du noeud (jours) ", font=font_subtitles)
-		lbl_autonomie_noeud.grid(column=1, row=current_row, sticky=W)
+		lbl_autonomie_noeud = Label(frame_for_entries, text="Autonomie du noeud (jours) ", font=font_params)
+		lbl_autonomie_noeud.grid(column=1, row=current_row)
 
 		self.entry_autonomie_noeud = Entry(frame_for_entries)
 		self.entry_autonomie_noeud.grid(column=2, row=current_row)
@@ -508,24 +529,16 @@ class window():
 		pad_subtitle.grid(column=0, row=current_row)
 		current_row = current_row + 1
 
-		lbl_duree_monitoring = Label(frame_for_entries, text="Duree du monitoring (jours) ", font=font_subtitles)
-		lbl_duree_monitoring.grid(column=1, row=current_row, sticky=W)
+		lbl_duree_monitoring = Label(frame_for_entries, text="Duree du monitoring (jours) ", font=font_params)
+		lbl_duree_monitoring.grid(column=1, row=current_row)
 
 		self.entry_duree_monitoring = Entry(frame_for_entries)
 		self.entry_duree_monitoring.grid(column=2, row=current_row)
 		current_row = current_row + 1
 
-		# Routine de vie du patient  (label)
-		pad_subtitle = Frame(frame_for_entries, height=5, bg="", colormap="new")
-		pad_subtitle.grid(column=0, row=current_row)
-		current_row = current_row + 1
-		lbl_subtitle = Label(frame_for_entries, text="Routine de vie du patient ", font=font_subtitles)
-		lbl_subtitle.grid(column=1, row=current_row, columnspan = 2, sticky=W)
-		current_row = current_row + 1
-
-		### choix Etat
-		lbl_choix_etat = Label(frame_for_entries, text="Etat ", font=font_params)
-		lbl_choix_etat.grid(column=1, row=current_row)
+		### choix Routine de vie du patient (Etat)
+		lbl_routine = Label(frame_for_entries, text="Routine de vie du patient ", font=font_params)
+		lbl_routine.grid(column=1, row=current_row)
 
 		OPTIONS = [
 			"predefini",
@@ -536,20 +549,20 @@ class window():
 		var = StringVar(frame_for_entries)
 		var.set(OPTIONS[0]) # default value
 
-		self.option_etat = OptionMenu(frame_for_entries, var, *OPTIONS)
-		self.option_etat.grid(column=2, row=current_row, sticky = W+E)
+		self.option_routine = OptionMenu(frame_for_entries, var, *OPTIONS)
+		self.option_routine.grid(column=2, row=current_row, sticky = W+E)
 		current_row = current_row + 1
 
 		### Periodes de deconnexion quotidiennes (borne inferieure et superieure)
-		lbl_periodes_deconnexion = Label(frame_for_entries, text="Periodes de deconnexion quotidiennes ", font=font_subtitles)
+		lbl_periodes_deconnexion = Label(frame_for_entries, text="Periodes de deconnexion quotidiennes ", font=font_params)
 		lbl_periodes_deconnexion.grid(column=1, row=current_row)
-		current_row = current_row + 1
+		
+		# TODO
+		lbl_TODO = Label(frame_for_entries, text=" // TODO", font=font_params)
+		lbl_TODO.grid(column=2, row=current_row)
 
-		lbl_borne_inf = Label(frame_for_entries, text="Etat ", font=font_params)
-		lbl_borne_inf.grid(column=1, row=current_row)
-
-		frame_for_borne = Frame(frame_for_entries)
-		frame_for_borne.grid(row=2, column=current_row)
+		#frame_for_borne = Frame(frame_for_entries)
+		#frame_for_borne.grid(row=2, column=current_row)
 
 		#self.entry_borne_inf = Entry(frame_for_borne)
 		#self.entry_borne_inf.grid(column=0)
@@ -609,7 +622,7 @@ class window():
 
 		# text
 		end_text = END_PAGE_TEXT
-		self.end_lbl = Label(self.frames["EndPage"] , text=end_text, font=font_params)
+		self.end_lbl = Label(self.frames["EndPage"] , text=end_text, font=font_titles)
 		self.end_lbl.pack()
 
 	def init_pages(self):
@@ -632,6 +645,8 @@ class window():
 		self.init_MSP_page()
 		self.init_MRF_page()
 		self.init_probleme_page_1()
+		self.init_probleme_page_2()
+		self.init_probleme_page_3()
 		self.init_end_page()
 
 	def update_capteur_list(self):
@@ -723,9 +738,6 @@ class window():
 		#print("files in components folder : {}".format(files))
 		MRF_files = [ f for f in files if 'MRF' in f] # get only MRF files
 
-		# print("DEBUG MRF_listbox items:") # DEBUG
-		# print(self.MRF_listbox.get(0, END)) # DEBUG
-
 		# iterate through all MRF files saved in the components folder
 		for MRF_filename in MRF_files:
 			MRF_name = MRF_filename[4:-7] # ex: "MRF_example.pickle" -> "example"
@@ -733,6 +745,56 @@ class window():
 			# if a MRF is saved but not on the list, add it to the list
 			if(MRF_name not in self.MRF_listbox.get(0, END)):
 				self.MRF_listbox.insert(END, MRF_name)
+
+		# print("DEBUG MRF_listbox items:") # DEBUG
+		# print(self.MRF_listbox.get(0, END)) # DEBUG # tuple
+
+	def update_component_lists(self):
+		# updates the component lists and the option menus in ProblemePage2
+		
+		## update listboxes by looking inside the components folder
+		self.update_capteur_list()
+		self.update_ADC_list()
+		self.update_memory_list()
+		self.update_MSP_list()
+		self.update_MRF_list()
+
+		## update the option menus
+		# capteur
+		capteur_list = list(self.capteur_listbox.get(0, END))
+		menu = self.option_capteur["menu"]
+		menu.delete(0, "end")
+		for string in capteur_list:
+			menu.add_command(label=string, 
+								command=lambda value=string: self.capteur_list_var.set(value))
+		# ADC
+		ADC_list = list(self.ADC_listbox.get(0, END))
+		menu = self.option_ADC["menu"]
+		menu.delete(0, "end")
+		for string in ADC_list:
+			menu.add_command(label=string, 
+								command=lambda value=string: self.ADC_list_var.set(value))
+		# memory
+		memory_list = list(self.memory_listbox.get(0, END))
+		menu = self.option_memory["menu"]
+		menu.delete(0, "end")
+		for string in memory_list:
+			menu.add_command(label=string, 
+								command=lambda value=string: self.memory_list_var.set(value))
+		# MSP
+		MSP_list = list(self.MSP_listbox.get(0, END))
+		menu = self.option_MSP["menu"]
+		menu.delete(0, "end")
+		for string in MSP_list:
+			menu.add_command(label=string, 
+								command=lambda value=string: self.MSP_list_var.set(value))
+		# MRF
+		MRF_list = list(self.MRF_listbox.get(0, END))
+		menu = self.option_MRF["menu"]
+		menu.delete(0, "end")
+		for string in MRF_list:
+			menu.add_command(label=string, 
+								command=lambda value=string: self.MRF_list_var.set(value))
 
 	def add_new_capteur(self):
 		# (self.add_capteur_button command)

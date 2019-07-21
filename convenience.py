@@ -15,7 +15,7 @@ DEFAULT_NUM_MSP = 1 # microprocesseurs
 DEFAULT_NUM_MEM = 1 # memoires
 DEFAULT_NUM_RF = 1 # modules radiofrequence
 
-PAGE_NAMES_SCENARIO_1 = ["StartPage", "ScenariosPage", "CapteursPage", "ADCPage", "MemoryPage", "MSPPage", "MRFPage", "ProblemePage1", "EndPage"] # ordered
+PAGE_NAMES_SCENARIO_1 = ["StartPage", "ScenariosPage", "CapteursPage", "ADCPage", "MemoryPage", "MSPPage", "MRFPage", "ProblemePage1", "ProblemePage2", "ProblemePage3", "EndPage"] # ordered
 
 
 THESIS_LINK = "link to the thesis (in pdf):\n https://tel.archives-ouvertes.fr/tel-02004444/document "
@@ -30,7 +30,7 @@ END_PAGE_TEXT =  "Press \"Done\" to start simulation"
 # fonts for the labels
 font_params = 'Helvetica 11'
 font_subtitles = 'Helvetica 16 bold'
-font_titles = 'Helvetica 18 bold'
+font_titles = 'Helvetica 24 bold'
 
 
 ###########################################################################
