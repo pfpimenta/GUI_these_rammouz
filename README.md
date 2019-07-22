@@ -2,7 +2,9 @@
 Graphical User Interface (GUI) made in python for the MATLAB simulation code of the thesis titled "Optimisation de la gestion d’énergie dans les systèmes embarqués", by RAMMOUZ Ramzy.
 
 ## dependecies
-// TODO
+
+- matlab.engine  (requires python 3.6)
+
 
 ## how to run
 // TODO

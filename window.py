@@ -8,6 +8,9 @@ from tkinter import *
 from tkinter import font  as tkfont # python 3
 from send2trash import send2trash
 import pickle
+import os
+from PIL import ImageTk
+import PIL.Image
 from convenience import *
 from Add_new_capteur_window import *
 from Add_new_ADC_window import *
@@ -116,6 +119,13 @@ class window():
 			b = Radiobutton(frame_for_entries, text=text,
 							variable=self.scenarioString, value=mode)
 			b.pack(anchor=W)
+		
+		#img = ImageTk.PhotoImage(PIL.Image.open(os.getcwd() + "/scenarios_resized.png"))
+		img = ImageTk.PhotoImage(PIL.Image.open("/home/pimenta/GUI_these_rammouz/scenarios_resized.jpg"))
+		panel = Label(self.frames["ScenariosPage"], image = img)
+		#panel = Label(self.frames["ScenariosPage"] , text="DEBUGGGG", font=font_titles) # DEBUG
+		panel.grid(row=2, column=1)#, sticky=W+E)
+		#panel.pack(side = "bottom", fill = "both", expand = "yes")
 
 	def init_capteurs_page(self):
 		
