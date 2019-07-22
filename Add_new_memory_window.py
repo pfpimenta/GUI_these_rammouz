@@ -51,7 +51,7 @@ class Add_new_memory_window():
 
 	def init_central_frame(self):
 		# text
-		text = "Saisissez les parametres de la nouvelle memoire, svp"
+		text = "Please enter the new memory parameters"
 		self.text_lbl = Label(self.central_frame, text=text, font=font_params)
 		self.text_lbl.grid(row=0, column=0)
 

@@ -8,7 +8,7 @@
 #import tkinter
 from tkinter import *
 from window import *
-from Results_window import *
+#from Results_window import *
 
 ###
 

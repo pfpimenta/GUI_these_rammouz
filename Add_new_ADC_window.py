@@ -52,7 +52,7 @@ class Add_new_ADC_window():
 	def init_central_frame(self):
 
 		# text
-		text = "Saisissez les parametres du nouveau ADC, svp"
+		text = "Please enter the new ADC parameters"
 		self.text_lbl = Label(self.central_frame, text=text, font=font_subtitles)
 		self.text_lbl.grid(row=0, column=0)
 

@@ -6,6 +6,9 @@
 ###
 
 
+import pickle
+import os
+
 ###########################################################################
 ### DEFINES
 
@@ -48,20 +51,20 @@ def save_parameters(params):
 	# put parameters in a .mat file and save it
 
 
-	def getCapteur(capteur_name):
-		# loads the parameters of the capteur named capteur_name
-		# print("DEBUG getCapteur... capteur_name : {}".format(capteur_name))
+def getCapteur(capteur_name):
+	# loads the parameters of the capteur named capteur_name
+	# print("DEBUG getCapteur... capteur_name : {}".format(capteur_name))
 
-		# load pickle file to load capteur params
-		components_folder_path = os.getcwd() + "/components/"
-		capteur_filename = components_folder_path + "capteur_" + capteur_name + ".pickle"
-		file = open(capteur_filename,"rb")
-		capteur = pickle.load(file)
-		file.close()
+	# load pickle file to load capteur params
+	components_folder_path = os.getcwd() + "/components/"
+	capteur_filename = components_folder_path + "capteur_" + capteur_name + ".pickle"
+	file = open(capteur_filename,"rb")
+	capteur = pickle.load(file)
+	file.close()
 
-		return capteur
+	return capteur
 
-	def getADC(ADC_name):
+def getADC(ADC_name):
 	# loads the parameters of the ADC named ADC_name
 	# print("DEBUG getADC... ADC_name : {}".format(ADC_name))
 

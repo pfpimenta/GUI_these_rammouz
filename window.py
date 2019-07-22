@@ -286,7 +286,7 @@ class window():
 		self.frames["ProblemePage1"] = frame
 		frame.grid(row=0, column=0, sticky="nsew")
 
-		text = "Configuration du probleme"
+		text = "Problem configuration"
 		self.test_lbl = Label(self.frames["ProblemePage1"] , text=text, font=font_titles)
 		self.test_lbl.pack()
 
@@ -351,7 +351,7 @@ class window():
 		self.frames["ProblemePage2"] = frame
 		frame.grid(row=0, column=0, sticky="nsew")
 
-		text = "Configuration du probleme"
+		text = "Problem configuration"
 		self.test_lbl = Label(self.frames["ProblemePage2"] , text=text, font=font_titles)
 		self.test_lbl.pack()
 
@@ -491,7 +491,7 @@ class window():
 		self.frames["ProblemePage3"] = frame
 		frame.grid(row=0, column=0, sticky="nsew")
 
-		text = "Configuration du probleme"
+		text = "Problem configuration"
 		self.test_lbl = Label(self.frames["ProblemePage3"] , text=text, font=font_titles)
 		self.test_lbl.pack()
 

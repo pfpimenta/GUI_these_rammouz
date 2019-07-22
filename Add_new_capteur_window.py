@@ -54,7 +54,7 @@ class Add_new_capteur_window():
 
 	def init_central_frame(self):
 		# text
-		text = "Saisissez les parametres du nouveau capteur, svp"
+		text = "Please enter the new capteur parameters"
 		self.text_lbl = Label(self.central_frame, text=text, font=self.text_font)
 		self.text_lbl.grid(row=0, column=0)
 
