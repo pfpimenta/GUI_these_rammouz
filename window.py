@@ -322,12 +322,7 @@ class window():
 		lbl_alg_connexion = Label(frame_for_entries, text="Algorithm de connexion ", font=font_params)
 		lbl_alg_connexion.grid(column=1, row=current_row)
 
-		OPTIONS = [
-			"egg",
-			"bunny",
-			"chicken"
-		]
-
+		OPTIONS = ["continu", "synchonise"]
 		var = StringVar(frame_for_entries)
 		var.set(OPTIONS[0]) # default value
 
@@ -475,13 +470,14 @@ class window():
 		self.entry_puissance_transmission.grid(column=2, row=current_row)
 		current_row = current_row + 1
 
-		### Capacite de la source
-		lbl_capacite_source = Label(frame_for_entries, text="Capacite de la source (mAh) ", font=font_params)
-		lbl_capacite_source.grid(column=1, row=current_row)
+		# la capacite de la source est une variable dans le scenario 1 !
+		# ### Capacite de la source
+		# lbl_capacite_source = Label(frame_for_entries, text="Capacite de la source (mAh) ", font=font_params)
+		# lbl_capacite_source.grid(column=1, row=current_row)
 
-		self.entry_capacite_source = Entry(frame_for_entries)
-		self.entry_capacite_source.grid(column=2, row=current_row)
-		current_row = current_row + 1
+		# self.entry_capacite_source = Entry(frame_for_entries)
+		# self.entry_capacite_source.grid(column=2, row=current_row)
+		# current_row = current_row + 1
 
 	def init_probleme_page_3(self):
 
@@ -503,17 +499,18 @@ class window():
 
 		current_row = 0
 
-		### Autonomie du noeud
-		pad_subtitle = Frame(frame_for_entries, height=5, bg="", colormap="new")
-		pad_subtitle.grid(column=0, row=current_row)
-		current_row = current_row + 1
+		# l'autonomie du noeud est une variable dans le scenario 1 !
+		# ### Autonomie du noeud
+		# pad_subtitle = Frame(frame_for_entries, height=5, bg="", colormap="new")
+		# pad_subtitle.grid(column=0, row=current_row)
+		# current_row = current_row + 1
 
-		lbl_autonomie_noeud = Label(frame_for_entries, text="Autonomie du noeud (jours) ", font=font_params)
-		lbl_autonomie_noeud.grid(column=1, row=current_row)
+		# lbl_autonomie_noeud = Label(frame_for_entries, text="Autonomie du noeud (jours) ", font=font_params)
+		# lbl_autonomie_noeud.grid(column=1, row=current_row)
 
-		self.entry_autonomie_noeud = Entry(frame_for_entries)
-		self.entry_autonomie_noeud.grid(column=2, row=current_row)
-		current_row = current_row + 1
+		# self.entry_autonomie_noeud = Entry(frame_for_entries)
+		# self.entry_autonomie_noeud.grid(column=2, row=current_row)
+		# current_row = current_row + 1
 
 		### Duree du monitoring
 		pad_subtitle = Frame(frame_for_entries, height=5, bg="", colormap="new")
@@ -533,8 +530,8 @@ class window():
 
 		OPTIONS = [
 			"predefini",
-			"indefini",
-			"aleatoire"
+			"aleatoire",
+			"non connu"
 		]
 
 		var = StringVar(frame_for_entries)
