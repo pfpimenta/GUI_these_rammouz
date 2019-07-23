@@ -334,10 +334,10 @@ class window():
 		lbl_alg_connexion.grid(column=1, row=current_row)
 
 		OPTIONS = ["continu", "synchonise"]
-		var = StringVar(frame_for_entries)
-		var.set(OPTIONS[0]) # default value
+		self.var_alg_connexion = StringVar(frame_for_entries)
+		self.var_alg_connexion.set(OPTIONS[0]) # default value
 
-		self.option_alg_connexion = OptionMenu(frame_for_entries, var, *OPTIONS)
+		self.option_alg_connexion = OptionMenu(frame_for_entries, self.var_alg_connexion, *OPTIONS)
 		self.option_alg_connexion.grid(column=2, row=current_row, sticky = W+E)
 		current_row = current_row + 1
 
@@ -545,10 +545,10 @@ class window():
 			"non connu"
 		]
 
-		var = StringVar(frame_for_entries)
-		var.set(OPTIONS[0]) # default value
+		self.var_routine = StringVar(frame_for_entries)
+		self.var_routine.set(OPTIONS[0]) # default value
 
-		self.option_routine = OptionMenu(frame_for_entries, var, *OPTIONS)
+		self.option_routine = OptionMenu(frame_for_entries, self.var_routine, *OPTIONS)
 		self.option_routine.grid(column=2, row=current_row, sticky = W+E)
 		current_row = current_row + 1
 
@@ -961,7 +961,7 @@ class window():
 		# octets par mesure
 
 		problem_params["num_noeuds"] = "1"
-		problem_params["alg_connexion"] = self.option_alg_connexion.get() # TODO ????
+		problem_params["alg_connexion"] = self.var_alg_connexion.get()
 		problem_params["octets_par_mesure"] = self.entry_octets_par_mesure.get()
 
 		### Constitution du noeud
@@ -976,12 +976,12 @@ class window():
 		# Frequence d'echantillonage
 		# Puissance de transmission
 
-		problem_params["noeud_dinteret"] = self.entry_noeud_dinteret.get()
-		problem_params["capteur"] = self.option_capteur.get()
-		problem_params["ADC"] = self.option_ADC.get()
-		problem_params["memory"] = self.option_memory.get()
-		problem_params["MSP"] = self.option_MSP.get()
-		problem_params["MRF"] = self.option_MRF.get()
+		problem_params["noeud_dinteret"] = "1" # self.entry_noeud_dinteret.get()
+		problem_params["capteur"] = self.capteur_list_var.get()
+		problem_params["ADC"] = self.ADC_list_var.get()
+		problem_params["memory"] = self.memory_list_var.get()
+		problem_params["MSP"] = self.MSP_list_var.get()
+		problem_params["MRF"] = self.MRF_list_var.get()
 		problem_params["periode_mesure"] = self.entry_periode_mesure.get()
 		problem_params["freq_traitement"] = self.entry_freq_traitement.get()
 		problem_params["freq_echantillonage"] = self.entry_freq_echantillonage.get()
@@ -994,8 +994,10 @@ class window():
 		# periodes de deconnexion quotidiennes (borne inferieure et superieure)
 
 		problem_params["duree_monitoring"] = self.entry_duree_monitoring.get()
-		problem_params["routine"] = self.option_routine.get()
+		problem_params["routine"] = self.var_routine.get()
 		# periodes de deconnexion # TODO !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+		return problem_params
 		
 	def getSimulationParameters(self):
 		# gets all the simulation parameters and puts it into a dict
