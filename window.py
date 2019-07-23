@@ -474,7 +474,7 @@ class window():
 		current_row = current_row + 1
 
 		### Puissance de transmission
-		lbl_puissance_transmission = Label(frame_for_entries, text="Puissance de transmission (?) ", font=font_params)
+		lbl_puissance_transmission = Label(frame_for_entries, text="Puissance de transmission ", font=font_params)
 		lbl_puissance_transmission.grid(column=1, row=current_row)
 
 		self.entry_puissance_transmission = Entry(frame_for_entries)
@@ -539,11 +539,7 @@ class window():
 		lbl_routine = Label(frame_for_entries, text="Routine de vie du patient ", font=font_params)
 		lbl_routine.grid(column=1, row=current_row)
 
-		OPTIONS = [
-			"predefini",
-			"aleatoire",
-			"non connu"
-		]
+		OPTIONS = ["predefini", "aleatoire", "non connu"]
 
 		self.var_routine = StringVar(frame_for_entries)
 		self.var_routine.set(OPTIONS[0]) # default value
@@ -982,10 +978,10 @@ class window():
 		problem_params["memory"] = self.memory_list_var.get()
 		problem_params["MSP"] = self.MSP_list_var.get()
 		problem_params["MRF"] = self.MRF_list_var.get()
-		problem_params["periode_mesure"] = self.entry_periode_mesure.get()
-		problem_params["freq_traitement"] = self.entry_freq_traitement.get()
-		problem_params["freq_echantillonage"] = self.entry_freq_echantillonage.get()
-		problem_params["puissance_transmission"] = self.entry_puissance_transmission.get()
+		problem_params["periode_mesure"] = int(self.entry_periode_mesure.get())
+		problem_params["freq_traitement"] = int(self.entry_freq_traitement.get())
+		problem_params["freq_echantillonage"] = int(self.entry_freq_echantillonage.get())
+		problem_params["puissance_transmission"] = int(self.entry_puissance_transmission.get())
 
 		### Duree du monitoring
 
@@ -993,7 +989,7 @@ class window():
 		# choix Etat (routine)
 		# periodes de deconnexion quotidiennes (borne inferieure et superieure)
 
-		problem_params["duree_monitoring"] = self.entry_duree_monitoring.get()
+		problem_params["duree_monitoring"] = int(self.entry_duree_monitoring.get())
 		problem_params["routine"] = self.var_routine.get()
 		# periodes de deconnexion # TODO !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
@@ -1042,6 +1038,6 @@ class window():
 		params = self.getSimulationParameters()
 		print(params)
 		#  save simulation parameters
-		#save_parameters(params)
+		save_parameters(params)
 		# close window
 		self.root.destroy()
