@@ -120,11 +120,12 @@ class window():
 							variable=self.scenarioString, value=mode)
 			b.pack(anchor=W)
 		
+		# TODO !!!!!!!!!!!!!!!!!!!!!!!!! scenarios image
 		#img = ImageTk.PhotoImage(PIL.Image.open(os.getcwd() + "/scenarios_resized.png"))
-		img = ImageTk.PhotoImage(PIL.Image.open("/home/pimenta/GUI_these_rammouz/scenarios_resized.jpg"))
-		panel = Label(self.frames["ScenariosPage"], image = img)
+		#img = ImageTk.PhotoImage(PIL.Image.open("/home/pimenta/GUI_these_rammouz/scenarios_resized.jpg"))
+		#panel = Label(self.frames["ScenariosPage"], image = img)
 		#panel = Label(self.frames["ScenariosPage"] , text="DEBUGGGG", font=font_titles) # DEBUG
-		panel.grid(row=2, column=1)#, sticky=W+E)
+		#panel.grid(row=2, column=1)#, sticky=W+E)
 		#panel.pack(side = "bottom", fill = "both", expand = "yes")
 
 	def init_capteurs_page(self):
@@ -585,10 +586,6 @@ class window():
 		# Frequence d'echantillonage
 		# Puissance de transmission
 
-		# source d'energie (?) / capacite de la source
-
-		### Autonomie du noeud
-
 		### Duree du monitoring
 
 		### Routine de vie du patient
@@ -954,7 +951,51 @@ class window():
 	def getProblemeParameters(self):
 		# gets all the problem configuration parameters and puts it into a dict
 		# (called by getSimulationParameters)
-		pass
+
+		problem_params = {}
+
+		###### list of the params:
+		### Configuration du reseau
+		# nombre de noeuds
+		# algorithm connexion
+		# octets par mesure
+
+		problem_params["num_noeuds"] = "1"
+		problem_params["alg_connexion"] = self.option_alg_connexion.get() # TODO ????
+		problem_params["octets_par_mesure"] = self.entry_octets_par_mesure.get()
+
+		### Constitution du noeud
+		# noeud d'interet
+		# choix Capteur
+		# choix ADC
+		# choix Microprocesseur
+		# choix Memoire
+		# choix Module Radio-Frequence
+		# Periode de mesure (x2 ???)
+		# Frequence de traitement
+		# Frequence d'echantillonage
+		# Puissance de transmission
+
+		problem_params["noeud_dinteret"] = self.entry_noeud_dinteret.get()
+		problem_params["capteur"] = self.option_capteur.get()
+		problem_params["ADC"] = self.option_ADC.get()
+		problem_params["memory"] = self.option_memory.get()
+		problem_params["MSP"] = self.option_MSP.get()
+		problem_params["MRF"] = self.option_MRF.get()
+		problem_params["periode_mesure"] = self.entry_periode_mesure.get()
+		problem_params["freq_traitement"] = self.entry_freq_traitement.get()
+		problem_params["freq_echantillonage"] = self.entry_freq_echantillonage.get()
+		problem_params["puissance_transmission"] = self.entry_puissance_transmission.get()
+
+		### Duree du monitoring
+
+		### Routine de vie du patient
+		# choix Etat (routine)
+		# periodes de deconnexion quotidiennes (borne inferieure et superieure)
+
+		problem_params["duree_monitoring"] = self.entry_duree_monitoring.get()
+		problem_params["routine"] = self.option_routine.get()
+		# periodes de deconnexion # TODO !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 		
 	def getSimulationParameters(self):
 		# gets all the simulation parameters and puts it into a dict
@@ -965,7 +1006,7 @@ class window():
 		params["memory"] = getMemory(self.memory_list_var.get())
 		params["MSP"] = getMSP(self.MSP_list_var.get())
 		params["MRF"] = getMRF(self.MRF_list_var.get())
-		# params["Probleme"] = ?
+		params["Probleme"] = self.getProblemeParameters()
 		return params
 
 	def next_page(self):
