@@ -15,9 +15,9 @@ disp("Starting simulation with the parameters from simulation_params.m")
 load simulation_params
 % load initialisation
 
-if (strcmp (routine, 'Non connu')) % Trajet non connu, � optimiser 
+if (strcmp (routine, 'non connu')) % Trajet non connu, � optimiser 
     trajet = [];
-elseif (strcmp (routine, 'Al�atoire')) % Trajet al�atoire, � g�n�rer avec la fonction Matlab 
+elseif (strcmp (routine, 'aleatoire')) % Trajet al�atoire, � g�n�rer avec la fonction Matlab 
     trajet = fonction_generation_trajet( 30 );
 else    % predefini, a lire, et a convertir en minutes
     % TODO
@@ -33,7 +33,13 @@ end
 
 % correct missing parameters
 fichier_out = 'Data_input.xlsx';% TEMPORAIRE
+capteur_init = capteur_init.'; % change columns for rows
+adc_init = adc_init.'; % change columns for rows
 memoire_init = memoire_init.'; % change columns for rows
+processeur_init = processeur_init.'; % change columns for rows
+module_rf_init = module_rf_init.'; % change columns for rows
+synchronisation = 0; % TEMPORAIRE : seulement (alg_connexion == "continu") pour l'instant
+nb = 1; % TEMPORAIRE : seulement 1 noeud simule pour l'instant
 
 % demarrer simulation
 logiciel;

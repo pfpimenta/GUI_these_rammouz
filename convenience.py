@@ -171,6 +171,7 @@ def save_parameters(params):
 	simulation_params["memoire_init"] = get_memoire_init(params["memory"])
 	simulation_params["processeur_init"] = get_processeur_init(params["MSP"])
 	simulation_params["module_rf_init"] = get_module_rf_init(params["MRF"])
+	simulation_params["n_jours"] = float(params["Probleme"]["duree_monitoring"])
 
 	sio.savemat(os.getcwd() + '/simulation_params.mat', simulation_params)
 
