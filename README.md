@@ -4,23 +4,28 @@ Graphical User Interface (GUI) made in python for the MATLAB simulation code of 
 ## dependecies
 
 - matlab.engine  (requires python 3.6)
+- scipy
+- PIL
+- tkinter
+- pickle
+- os
+- sys
 
 
 ## how to run
-// TODO
+
+'''
+python main.py
+'''
 
 ## features
 
-// TODO
 - allows to add/remove new components to the system, saving them for future simulations
 - does not allow invalid inputs for new components added to the system
 
 ### TO DO
 
 There is still a lot to do to complete this interface:
-- complete this README file
-- save simulation parameters into a .mat file
-- start simulation (MATLAB)
 - recover simulation results from a .mat file
 - show results in a clear fashion
 - allow other "puissances de transmission" to be configured in the add_MRF_window
