@@ -596,7 +596,7 @@ class window():
 		frame.grid(row=0, column=0, sticky="nsew")
 
 		# text
-		self.start_lbl = Label(self.frames["StartPage"] , text=START_PAGE_TEXT, font=font_params)
+		self.start_lbl = Label(self.frames["StartPage"] , text=START_PAGE_TEXT, font=font_titles)
 		self.start_lbl.pack()
 		pad_frame_top_1 = Frame(self.frames["StartPage"], height=100)
 		pad_frame_top_1.pack() #.grid(column=0, row=0)
