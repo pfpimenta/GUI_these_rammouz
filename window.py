@@ -6,7 +6,7 @@
 ###
 from tkinter import *
 from tkinter import font  as tkfont # python 3
-from send2trash import send2trash
+# from send2trash import send2trash
 import pickle
 import os
 from PIL import ImageTk
@@ -822,8 +822,8 @@ class window():
 		capteur_filename = components_folder_path + "capteur_"+ capteur_name + ".pickle"
 
 		# delete file containing the capteur parameters
-		#os.remove(capteur_filename)
-		send2trash(capteur_filename)
+		os.remove(capteur_filename)
+		#send2trash(capteur_filename)
 
 		# delete item from listbox
 		self.capteur_listbox.delete(ANCHOR)
@@ -840,8 +840,8 @@ class window():
 		ADC_filename = components_folder_path + "ADC_"+ ADC_name + ".pickle"
 
 		# delete file containing the ADC parameters
-		#os.remove(ADC_filename)
-		send2trash(ADC_filename)
+		os.remove(ADC_filename)
+		#send2trash(ADC_filename)
 
 		# delete item from listbox
 		self.ADC_listbox.delete(ANCHOR)
@@ -858,8 +858,8 @@ class window():
 		memory_filename = components_folder_path + "memory_"+ memory_name + ".pickle"
 
 		# delete file containing the memory parameters
-		#os.remove(memory_filename)
-		send2trash(memory_filename)
+		os.remove(memory_filename)
+		#send2trash(memory_filename)
 
 		# delete item from listbox
 		self.memory_listbox.delete(ANCHOR)
@@ -876,8 +876,8 @@ class window():
 		MSP_filename = components_folder_path + "MSP_"+ MSP_name + ".pickle"
 
 		# delete file containing the MSP parameters
-		#os.remove(MSP_filename)
-		send2trash(MSP_filename)
+		os.remove(MSP_filename)
+		#send2trash(MSP_filename)
 
 		# delete item from listbox
 		self.MSP_listbox.delete(ANCHOR)
@@ -894,8 +894,8 @@ class window():
 		MRF_filename = components_folder_path + "MRF_"+ MRF_name + ".pickle" # MRF = Module Radio-Frequence
 
 		# delete file containing the MRF parameters
-		#os.remove(MRF_filename)
-		send2trash(MRF_filename)
+		os.remove(MRF_filename)
+		#send2trash(MRF_filename)
 
 		# delete item from listbox
 		self.MRF_listbox.delete(ANCHOR)
@@ -1036,7 +1036,7 @@ class window():
 	def quit(self):
 
 		params = self.getSimulationParameters()
-		print(params)
+		# print(params) # DEBUG
 		#  save simulation parameters
 		save_parameters(params)
 		# close window

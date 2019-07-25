@@ -32,7 +32,7 @@ end
 
 
 % correct missing parameters
-fichier_out = 'Data_input.xlsx';% TEMPORAIRE
+fichier_out = 'Resultats.xlsx';% TEMPORAIRE
 capteur_init = capteur_init.'; % change columns for rows
 adc_init = adc_init.'; % change columns for rows
 memoire_init = memoire_init.'; % change columns for rows

@@ -7,7 +7,7 @@
 
 #import tkinter
 from tkinter import *
-#import matlab.engine
+import matlab.engine
 from window import *
 #from Results_window import *
 
@@ -18,9 +18,9 @@ toniolo = window()
 
 
 print("...starting simulation")
-# eng = matlab.engine.start_matlab()
-# eng.start_simulation(nargout=0)
-# eng.quit()
+eng = matlab.engine.start_matlab()
+eng.start_simulation(nargout=0)
+eng.quit()
 print("...simulation finished")
 
 print("..recovering results (TODO) ")
