@@ -21,11 +21,7 @@ print("...starting simulation")
 # eng = matlab.engine.start_matlab()
 # eng.start_simulation(nargout=0)
 # eng.quit()
-
-
 print("...simulation finished")
-# TODO
 
-
-print("..recovering results")
+print("..recovering results (TODO) ")
 #results_window = Results_window()
