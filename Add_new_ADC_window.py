@@ -170,14 +170,14 @@ class Add_new_ADC_window():
 		# name :
 		ADC_params["name"] =  self.entry_name.get()
 		# echantillonage :
-		ADC_params["temps"] =  int(self.entry_temps.get())
+		ADC_params["temps"] =  float(self.entry_temps.get())
 		# transitions :
-		ADC_params["trans_basse_actif"] =  int(self.entry_trans_basse_actif.get())
-		ADC_params["trans_actif_basse"] =  int(self.entry_trans_actif_basse.get())
+		ADC_params["trans_basse_actif"] =  float(self.entry_trans_basse_actif.get())
+		ADC_params["trans_actif_basse"] =  float(self.entry_trans_actif_basse.get())
 		# consommation :
-		ADC_params["conso_actif"] =  int(self.entry_conso_actif.get())
-		ADC_params["conso_basse"] =  int(self.entry_conso_basse.get())
-		ADC_params["conso_conversion"] =  int(self.entry_conso_conversion.get())
+		ADC_params["conso_actif"] =  float(self.entry_conso_actif.get())
+		ADC_params["conso_basse"] =  float(self.entry_conso_basse.get())
+		ADC_params["conso_conversion"] =  float(self.entry_conso_conversion.get())
 		#print("debug ADC_params : {}".format(ADC_params)) # DEBUG
 
 		if(self.verify_ADC_params(ADC_params) == False):

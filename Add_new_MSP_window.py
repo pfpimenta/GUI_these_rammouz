@@ -251,22 +251,22 @@ class Add_new_MSP_window():
 		# name :
 		MSP_params["name"] =  self.entry_name.get()
 		# transitions :
-		MSP_params["trans_basse1_actif"] =  int(self.entry_trans_basse1_actif.get())
-		MSP_params["trans_actif_basse1"] =  int(self.entry_trans_actif_basse1.get())
-		MSP_params["trans_basse2_actif"] =  int(self.entry_trans_basse2_actif.get())
-		MSP_params["trans_actif_basse2"] =  int(self.entry_trans_actif_basse2.get())
+		MSP_params["trans_basse1_actif"] =  float(self.entry_trans_basse1_actif.get())
+		MSP_params["trans_actif_basse1"] =  float(self.entry_trans_actif_basse1.get())
+		MSP_params["trans_basse2_actif"] =  float(self.entry_trans_basse2_actif.get())
+		MSP_params["trans_actif_basse2"] =  float(self.entry_trans_actif_basse2.get())
 		# consommation :
-		MSP_params["conso_actif_1"] =  int(self.entry_conso_actif_1.get())
-		MSP_params["conso_actif_4"] =  int(self.entry_conso_actif_4.get())
-		MSP_params["conso_actif_8"] =  int(self.entry_conso_actif_8.get())
-		MSP_params["conso_actif_12"] =  int(self.entry_conso_actif_12.get())
-		MSP_params["conso_actif_16"] =  int(self.entry_conso_actif_16.get())
-		MSP_params["conso_basse1_1"] =  int(self.entry_conso_basse1_1.get())
-		MSP_params["conso_basse1_4"] =  int(self.entry_conso_basse1_4.get())
-		MSP_params["conso_basse1_8"] =  int(self.entry_conso_basse1_8.get())
-		MSP_params["conso_basse1_12"] =  int(self.entry_conso_basse1_12.get())
-		MSP_params["conso_basse1_16"] =  int(self.entry_conso_basse1_16.get())
-		MSP_params["conso_basse2"] =  int(self.entry_conso_basse2.get())
+		MSP_params["conso_actif_1"] =  float(self.entry_conso_actif_1.get())
+		MSP_params["conso_actif_4"] =  float(self.entry_conso_actif_4.get())
+		MSP_params["conso_actif_8"] =  float(self.entry_conso_actif_8.get())
+		MSP_params["conso_actif_12"] =  float(self.entry_conso_actif_12.get())
+		MSP_params["conso_actif_16"] =  float(self.entry_conso_actif_16.get())
+		MSP_params["conso_basse1_1"] =  float(self.entry_conso_basse1_1.get())
+		MSP_params["conso_basse1_4"] =  float(self.entry_conso_basse1_4.get())
+		MSP_params["conso_basse1_8"] =  float(self.entry_conso_basse1_8.get())
+		MSP_params["conso_basse1_12"] =  float(self.entry_conso_basse1_12.get())
+		MSP_params["conso_basse1_16"] =  float(self.entry_conso_basse1_16.get())
+		MSP_params["conso_basse2"] =  float(self.entry_conso_basse2.get())
 		#print("debug MSP_params : {}".format(MSP_params)) # DEBUG
 
 		if(self.verify_MSP_params(MSP_params) == False):

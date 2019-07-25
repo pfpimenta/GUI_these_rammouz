@@ -162,13 +162,13 @@ class Add_new_capteur_window():
 		# name :
 		capteur_params["name"] =  self.entry_name.get()
 		# conversion en signal electrique :
-		capteur_params["duree"] =  int(self.entry_duree.get())
+		capteur_params["duree"] =  float(self.entry_duree.get())
 		# transitions :
-		capteur_params["trans_basse_actif"] =  int(self.entry_trans_basse_actif.get())
-		capteur_params["trans_actif_basse"] =  int(self.entry_trans_actif_basse.get())
+		capteur_params["trans_basse_actif"] =  float(self.entry_trans_basse_actif.get())
+		capteur_params["trans_actif_basse"] =  float(self.entry_trans_actif_basse.get())
 		# consommation :
-		capteur_params["conso_actif"] =  int(self.entry_conso_actif.get())
-		capteur_params["conso_basse"] =  int(self.entry_conso_basse.get())
+		capteur_params["conso_actif"] =  float(self.entry_conso_actif.get())
+		capteur_params["conso_basse"] =  float(self.entry_conso_basse.get())
 		#print("debug capteur_params : {}".format(capteur_params)) # DEBUG
 
 		if(self.verify_capteur_params(capteur_params) == False):

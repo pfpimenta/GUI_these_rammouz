@@ -232,20 +232,20 @@ class Add_new_MRF_window():
 		# name :
 		MRF_params["name"] =  self.entry_name.get()
 		# transitions :
-		MRF_params["connection_interval"] =  int(self.entry_connection_interval.get())
-		MRF_params["advertising_interval"] =  int(self.entry_advertising_interval.get())
-		MRF_params["trans_basse1_actif"] =  int(self.entry_trans_basse1_actif.get())
-		MRF_params["trans_actif_basse1"] =  int(self.entry_trans_actif_basse1.get())
-		MRF_params["trans_basse2_actif"] =  int(self.entry_trans_basse2_actif.get())
-		MRF_params["trans_actif_basse2"] =  int(self.entry_trans_actif_basse2.get())
+		MRF_params["connection_interval"] =  float(self.entry_connection_interval.get())
+		MRF_params["advertising_interval"] =  float(self.entry_advertising_interval.get())
+		MRF_params["trans_basse1_actif"] =  float(self.entry_trans_basse1_actif.get())
+		MRF_params["trans_actif_basse1"] =  float(self.entry_trans_actif_basse1.get())
+		MRF_params["trans_basse2_actif"] =  float(self.entry_trans_basse2_actif.get())
+		MRF_params["trans_actif_basse2"] =  float(self.entry_trans_actif_basse2.get())
 		# consommation
-		MRF_params["transm_1"] =  int(self.entry_transm_1.get())
-		MRF_params["transm_7"] =  int(self.entry_transm_7.get())
-		MRF_params["transm_15"] =  int(self.entry_transm_15.get())
-		MRF_params["conso_reception"] =  int(self.entry_conso_reception.get())
-		MRF_params["conso_actif"] =  int(self.entry_conso_actif.get())
-		MRF_params["conso_basse1"] =  int(self.entry_conso_basse1.get())
-		MRF_params["conso_basse2"] =  int(self.entry_conso_basse2.get())
+		MRF_params["transm_1"] =  float(self.entry_transm_1.get())
+		MRF_params["transm_7"] =  float(self.entry_transm_7.get())
+		MRF_params["transm_15"] =  float(self.entry_transm_15.get())
+		MRF_params["conso_reception"] =  float(self.entry_conso_reception.get())
+		MRF_params["conso_actif"] =  float(self.entry_conso_actif.get())
+		MRF_params["conso_basse1"] =  float(self.entry_conso_basse1.get())
+		MRF_params["conso_basse2"] =  float(self.entry_conso_basse2.get())
 		#print("debug MRF_params : {}".format(MRF_params)) # DEBUG
 
 		if(self.verify_MRF_params(MRF_params) == False):
