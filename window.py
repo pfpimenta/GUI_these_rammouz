@@ -1,7 +1,6 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-# ??????????
 # Pedro Foletto Pimenta, june-2019
 ###
 from tkinter import *
@@ -9,15 +8,14 @@ from tkinter import font  as tkfont # python 3
 # from send2trash import send2trash
 import pickle
 import os
-from PIL import ImageTk
-import PIL.Image
+#from PIL import ImageTk
+#import PIL.Image
 from convenience import *
 from Add_new_capteur_window import *
 from Add_new_ADC_window import *
 from Add_new_MSP_window import *
 from Add_new_memory_window import *
 from Add_new_MRF_window import *
-#from ProblemePage import *
 from Error_window import *
 
 

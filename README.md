@@ -5,18 +5,30 @@ Graphical User Interface (GUI) made in python for the MATLAB simulation code of 
 
 - matlab.engine  (requires python 3.6)
 - scipy
-- PIL
 - tkinter
-- pickle
-- os
-- sys
 
+
+## how set up the dependencies to run the code
+
+To run the code, you need a machine with Windows, Python 3.6 and MATLAB version 2014b or later.
+Also, you will need to have the 3 libraries used by it (_matlab.engine_, _scipy_, and _tkinter_) installed.
+
+For instructions on how to install _matlab.engine_, see:
+https://www.mathworks.com/help/matlab/matlab_external/install-the-matlab-engine-for-python.html
+
+For instructions on how to install scipy, see:
+https://www.scipy.org/install.html
+
+Personally, for scipy I would recommend installing Anaconda, a free distribution of Python with scientific packages:
+https://www.anaconda.com/distribution/
+
+There is no need to install tkinter because it is included with all standard Python distributions.
 
 ## how to run
 
-'''
+```
 python main.py
-'''
+```
 
 ## features
 
@@ -33,6 +45,7 @@ There is still a lot to do to complete this interface:
 - Scenario 2
 - Scenario 3
 - Scenario 4
+- allow the user to choose the measurement unit for each parameter chosen
 
 ### Context
 In a project of improving the work done by RAMMOUZ Ramzy in his thesis "Optimisation de la gestion d’énergie dans les systèmes embarqués", I will develop an interface to simplify the execution of the simulation, thus facilitating future reuse and continuation of this work.
